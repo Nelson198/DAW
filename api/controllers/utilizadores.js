@@ -1,4 +1,4 @@
-var Utilizador = require('../models/utilizadores')
+var Utilizador = require("../models/utilizadores")
 
 module.exports.listar = () => {
     return Utilizador

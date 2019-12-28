@@ -1,107 +1,111 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require("http-errors")
+const express = require("express")
+const path = require("path")
+const cookieParser = require("cookie-parser")
+const logger = require("morgan")
 
-// Módulos de suporte à autenticação
-var uuid = require('uuid/v4')
-var session = require('express-session')
-var FileStore = require('session-file-store')(session)
+/* Módulos de suporte à autenticação */
+const uuid = require("uuid/v4")
+const session = require("express-session")
+const FileStore = require("session-file-store")(session)
 
-var passport = require('passport')
-var LocalStrategy = require('passport-local').Strategy
-var axios = require('axios')
-var flash = require('connect-flash')
-var bcrypt = require('bcryptjs')
-var jwt = require('jsonwebtoken')
-//-----------------------------------
+const passport = require("passport")
+const LocalStrategy = require("passport-local").Strategy
+const axios = require("axios")
+const flash = require("connect-flash")
+const bcrypt = require("bcryptjs")
+const jwt = require("jsonwebtoken")
 
-// Configuração da estratégia local
+let indexRouter = require("./routes/index")
+
+/* Configuração da estratégia local */
 passport.use(new LocalStrategy(
-  {usernameField: 'email'}, (email, password, done) => {
-  var token = jwt.sign({}, "daw2019", 
-    {
+    {usernameField: "email"}, (email, password, done) => {
+    let token = jwt.sign({}, "daw2019", {
         expiresIn: 3000, 
         issuer: "Servidor myAgenda"
     })
-  axios.get('http://localhost:5003/utilizadores/' + email + '?token=' + token)
-    .then(dados => {
-      const user = dados.data
-      if(!user) { return done(null, false, {message: 'Utilizador inexistente!\n'})}
-      if(!bcrypt.compareSync(password, user.password)) { return done(null, false, {message: 'Password inválida!\n'})}
-      return done(null, user)
-  })
-  .catch(erro => done(erro))
+    axios.get(`http://localhost:5003/utilizadores/${email}?token=${token}`)
+        .then(dados => {
+            const user = dados.data
+            if(!user) { 
+                return done(null, false, {message: "Utilizador inexistente!\n"})
+            }
+            if(!bcrypt.compareSync(password, user.password)) {
+                return done(null, false, {message: "Password inválida!\n"})
+            }
+            return done(null, user)
+        })
+        .catch(erro => done(erro))
 }))
 
-// Indica-se ao passport como serializar o utilizador
+/* Indica-se ao passport como serializar o utilizador */
 passport.serializeUser((user,done) => {
-  console.log('Vou serializar o user: ' + JSON.stringify(user))
-  // Serialização do utilizador. O passport grava o utilizador na sessão aqui.
-  done(null, user.email)
+    console.log("Vou serializar o user: " + JSON.stringify(user))
+    /* Serialização do utilizador. O passport grava o utilizador na sessão aqui. */
+    done(null, user.email)
 })
   
-// Desserialização: a partir do id obtem-se a informação do utilizador
+/* Desserialização: a partir do id obtem-se a informação do utilizador */
 passport.deserializeUser((email, done) => {
-  var token = jwt.sign({}, "daw2019", 
-    {
+    let token = jwt.sign({}, "daw2019", {
         expiresIn: 3000, 
         issuer: "Servidor myAgenda"
-  })
-  console.log('Vou desserializar o utilizador: ' + email)
-  axios.get('http://localhost:5003/utilizadores/' + email + '?token=' + token)
-    .then(dados => done(null, dados.data))
-    .catch(erro => done(erro, false))
+    })
+    console.log(`Vou desserializar o utilizador: ${email}`)
+    axios.get(`http://localhost:5003/utilizadores/${email}?token=${token}`)
+        .then(dados => done(null, dados.data))
+        .catch(erro => done(erro, false))
 })
 
-var indexRouter = require('./routes/index');
+let app = express()
 
-var app = express();
+/* View engine setup */
+app.set("views", path.join(__dirname, "views"))
+app.set("view engine", "pug")
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+/* Pretty JSON setup */
+app.set("json spaces", 4)
 
 app.use(session({
-  genid: req => {
-    console.log('Dentro do middleware da sessão...')
-    console.log(req.sessionID)
-    return uuid()
-  },
-  store: new FileStore(),
-  secret: 'pri2019',
-  resave: false,
-  saveUninitialized: true
+    genid: req => {
+        console.log("Dentro do middleware da sessão...")
+        console.log(req.sessionID)
+        return uuid()
+    },
+    store: new FileStore(),
+    secret: "pri2019",
+    resave: false,
+    saveUninitialized: true
 }))
 
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.initialize())
+app.use(passport.session())
   
-app.use(flash());
+app.use(flash())
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(logger("dev"))
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
+app.use(cookieParser())
+app.use(express.static(path.join(__dirname, "public")))
 
-app.use('/', indexRouter);
+app.use("/", indexRouter)
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+/* Catch 404 and forward to error handler */
+app.use((req, res, next) => {
+  next(createError(404))
+})
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+/* Error handler */
+app.use((err, req, res, next) => {
+    /* Set locals, only providing error in development */
+    res.locals.message = err.message
+    res.locals.error = req.app.get("env") === "development" ? err : {}
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+    /* Render the error page */
+    res.status(err.status || 500)
+    res.render("error")
+})
 
-module.exports = app;
+module.exports = app

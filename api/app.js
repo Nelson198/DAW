@@ -47,6 +47,9 @@ let app = express()
 app.set("views", path.join(__dirname, "views"))
 app.set("view engine", "pug")
 
+/* Pretty JSON setup */
+app.set("json spaces", 4)
+
 app.use(passport.initialize())
 
 app.use(logger("dev"))
