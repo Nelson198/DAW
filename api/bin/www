@@ -5,13 +5,12 @@
  */
 
 const app = require("../app")
-const debug = require("debug")("api:server")
 const http = require("http")
 
 /**
  * Get port from environment and store in Express.
  */
-const myPort = "8008"
+const myPort = "5003"
 const port = normalizePort(process.env.PORT || myPort)
 app.set("port", port)
 
