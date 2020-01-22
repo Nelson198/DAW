@@ -1,9 +1,14 @@
-extends layout
-
-block content
-  h3 Agenda de Eventos: Login
-  form(action="/login" method="POST")
-    input(type="text" name="email")
-    input(type="password" name="password")
-    input(type="submit" value="Enviar")
-    
+doctype html
+html
+    head
+        title= title
+        link(rel="stylesheet", href="/stylesheets/styleLogin.css")
+    body
+        div(class="card")
+            h1(id="title") Login
+            form(class="form" action="/login" method="POST")
+                input(id="email" type="text" name="email" placeholder="Email" required)
+                br
+                input(id="password" type="password" name="password" placeholder="Password" required)
+                br
+                input(id="login" type="submit" value="Login")

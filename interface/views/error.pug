@@ -1,6 +1,22 @@
-extends layout
+doctype html
+html
+    head
+        title Erro
+        link(rel="icon" type="image/x-icon" href="/images/error.png")
+    body(style="padding: 30px")
+        if (message && error)
+            h1(style="text-align: center; margin: auto; font-size: 30pt; font-family: Montserrat, sans-serif; color: #ff0000")= message
+            h2= error.status
+            pre #{error.stack}
 
-block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+        else if (error)
+            h1(style="text-align: center; margin: auto; font-size: 30pt; font-family: Montserrat, sans-serif; color: #ff0000") Erro
+            h2= error.status
+            pre #{error.stack}
+
+        else
+            h1(style="text-align: center; font-size: 30pt; font-family: Montserrat, sans-serif; margin: auto; color: #ff0000") Erro
+            h2(style="text-align: center; font-family: Montserrat, sans-serif; margin: auto") &#128561; Infelizmente ocorreu um erro ... &#128561;
+            p(style="text-align: center; font-family: Montserrat, sans-serif; font-size: 15pt;")= erro
+            //- https://media.giphy.com/media/TvLuZ00OIADoQ/giphy.gif
+            img(style="display: block; margin: 0 auto; margin-top: 2%; width: 40%; border-radius: 30px" src="/images/error.gif", alt="")

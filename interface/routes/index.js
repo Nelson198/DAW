@@ -56,4 +56,11 @@ router.post("/reg", (req, res) => {
         .catch(e => res.render("error", { error: e }))
 })
 
+/**
+ * Other HTTP request
+ */
+router.all("*", (_req, res, _next) => {
+    res.status(500).render("error", { erro: "Pedido HTTP não suportado !" })
+})
+
 module.exports = router
