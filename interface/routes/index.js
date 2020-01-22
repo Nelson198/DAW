@@ -34,7 +34,7 @@ router.get("/login", (req, res) => {
 })
 
 router.get("/register", (req, res) => {
-    res.render("registo")
+    res.render("register")
 })
 
 router.post("/login", passport.authenticate("local", {
@@ -45,7 +45,7 @@ router.post("/login", passport.authenticate("local", {
 })
 )
 
-router.post("/reg", (req, res) => {
+router.post("/register", (req, res) => {
     let hash = bcrypt.hashSync(req.body.password, 10)
     axios.post("http://localhost:5003/utilizadores", {
         email: req.body.email,
@@ -59,8 +59,8 @@ router.post("/reg", (req, res) => {
 /**
  * Other HTTP request
  */
-router.all("*", (_req, res, _next) => {
-    res.status(500).render("error", { erro: "Pedido HTTP não suportado !" })
+router.all("*", (req, res, next) => {
+    res.status(500).render("error", { erro: "Pedido HTTP não suportado !", route: `${req.protocol}://${req.get("host")}${req.originalUrl}` })
 })
 
 module.exports = router
