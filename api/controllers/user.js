@@ -16,3 +16,7 @@ module.exports.inserir = u => {
     var novo = new Utilizador(u)
     return novo.save()
 }
+
+module.exports.insertMany = users => {
+    return Utilizador.insertMany(users).exec()
+}

@@ -1,19 +1,23 @@
-var Evento = require("../models/group")
+var Grupo = require("../models/group")
 
 module.exports.listar = () => {
-    return Evento
+    return Grupo
         .find()
         .exec()
 }
 
 module.exports.consultar = id => {
-    return Evento
+    return Grupo
         .findOne({ _id: id })
         .exec()
 }
 
 module.exports.filtrarParticipante = pid => {
-    return Evento
+    return Grupo
         .find({ participantes: pid })
         .exec()
+}
+
+module.exports.insertMany = grupos => {
+    return Grupo.insertMany(grupos).exec()
 }

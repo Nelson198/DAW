@@ -50,6 +50,7 @@ app.use(cookieParser())
 
 app.use("/api/eventos", require("./routes/eventos"))
 app.use("/api/utilizadores", require("./routes/utilizadores"))
+app.use("/api/backup", require("./routes/backup"))
 
 app.use("*", (req, res) => {
     res.status(404).json({ error: "Innefective route." })
