@@ -48,8 +48,8 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 
-app.use("/api/eventos", require("./routes/eventos"))
-app.use("/api/utilizadores", require("./routes/utilizadores"))
+app.use("/api/groups", require("./routes/groups"))
+app.use("/api/utilizadores", require("./routes/users"))
 app.use("/api/backup", require("./routes/backup"))
 
 app.use("*", (req, res) => {

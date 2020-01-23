@@ -22,7 +22,10 @@ var UserSchema = new mongoose.Schema({
         required: true
     },
     friends: {
-        type: [String] // mongoose.Schema.Types.ObjectId
+        type: [String]
+    },
+    posts: {
+        type: [String]
     },
     creationDate: {
         type: Date,
@@ -30,4 +33,4 @@ var UserSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model("utilizadores", UserSchema)
+module.exports = mongoose.model("user", UserSchema, "users")

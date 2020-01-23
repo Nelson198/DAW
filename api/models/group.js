@@ -1,11 +1,33 @@
 const mongoose = require("mongoose")
+const shortid = require("shortid")
 
-var eventoSchema = new mongoose.Schema({
-    titulo: { type: String, required: true },
-    data: { type: String, required: true },
-    local: String,
-    desc: String,
-    participantes: [String]
+var groupSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    public: {
+        type: Boolean,
+        required: true
+    },
+    joinKey: {
+        type: String,
+        default: shortid.generate
+    },
+    members: {
+        type: [String]
+    },
+    admins: {
+        type: [String]
+    },
+    creationDate: {
+        type: Date,
+        default: Date.now
+    }
 })
 
-module.exports = mongoose.model("evento", eventoSchema)
+module.exports = mongoose.model("group", groupSchema, "groups")

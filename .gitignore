@@ -105,3 +105,4 @@ dist
 
 # App
 interface/sessions/*
+package-lock.json
