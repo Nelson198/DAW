@@ -1,4 +1,4 @@
-* {
+body {
     background-color: rgb(64, 138, 167);
     font-family: Montserrat, sans-serif;
 }
@@ -19,7 +19,7 @@ input:focus::placeholder {
     height: 350px;
     width: 300px;
     background-color: rgb(92, 92, 92);
-    border: 3px solid white;
+    border: 6px outset white;
     border-radius: 10px;
     box-shadow: -1rem 0 3rem #000;
     transition: 0.5s step-start;
@@ -35,62 +35,106 @@ input:focus::placeholder {
     outline: none;
 }
 
+/* Style the form icons */
+.icon1 {
+    background: rgb(41, 187, 36);
+    font-size: 25px;
+    color: white;
+    padding: 8px;
+    min-width: 32px;
+    text-align: center;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.icon2 {
+    background: rgb(64, 138, 167);
+    font-size: 25px;
+    color: white;
+    padding: 8px;
+    min-width: 32px;
+    text-align: center;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
 #title {
     background-color: rgb(92, 92, 92);
     margin-top: 15%;
-    margin-bottom: 20%;
+    margin-bottom: 13%;
 }
 
 #login {
-    border: 2px solid rgb(41, 187, 36);
-    border-radius: 10px;
     background-color: rgb(41, 187, 36);
+    border-top: 2px solid rgb(41, 187, 36);
+    border-bottom: 2px solid rgb(41, 187, 36);
+    border-right: 2px solid rgb(41, 187, 36);
+    border-left: 2px solid rgb(255, 255, 255);
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
     color: white;
     font-size: 15px;
     font-weight: bold;
     text-align: center;
     transition-duration: 0.3s;
-    padding: 2.5% 2.5% 2.5% 2.5%;
+    padding: 13.3px 2% 2% 2%;
     cursor: pointer;
-    width: 75%
+    width: 65%
 }
 
 #registar {
-    border: 2px solid rgb(64, 138, 167);
-    border-radius: 10px;
+    border-top: 2px solid rgb(64, 138, 167);
+    border-bottom: 2px solid rgb(64, 138, 167);
+    border-right: 2px solid rgb(64, 138, 167);
+    border-left: 2px solid rgb(255, 255, 255);
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
     background-color: rgb(64, 138, 167);
     color: white;
     font-size: 15px;
     font-weight: bold;
     text-align: center; 
     transition-duration: 0.3s;
-    padding: 2.5% 2.5% 2.5% 2.5%;
+    padding: 13.3px 2% 2% 2%;
     cursor: pointer;
-    width: 75%
+    width: 65%;
 }
 
 #login:hover, #registar:hover {
-    border: 2px solid #ffffff;
+    border-top: 2px solid rgb(255, 255, 255);
+    border-bottom: 2px solid rgb(255, 255, 255);
+    border-right: 2px solid rgb(255, 255, 255);
 }
 
-#email:hover, #password:hover, #nome:hover {
+#email1:hover, #password1:hover {
     cursor: pointer;
-    border: 2.5px solid rgb(64, 138, 167)
+    border: 2px solid rgb(41, 187, 36);
 }
 
-#email:focus, #password:focus, #nome:focus {
-    border: 2.5px solid rgb(64, 138, 167);
+#email1:focus, #password1:focus {
+    border: 2px solid rgb(41, 187, 36);
     outline: 0
 }
 
-#email, #password, #nome {
-    border: 2px solid #ffffff;
-    border-radius: 10px;
+#email2:hover, #password2:hover, #nome:hover {
+    cursor: pointer;
+    border: 2px solid rgb(64, 138, 167);
+}
+
+#email2:focus, #password2:focus, #nome:focus {
+    border: 2px solid rgb(64, 138, 167);
+    outline: 0
+}
+
+#email1, #email2, #password1, #password2, #nome {
+    border: 2px solid rgb(255, 255, 255);
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
     background-color: #ffffff;
     font-size: 15px;
     text-align: center; 
     transition-duration: 0.3s;
     margin-bottom: 5%;
-    padding: 2% 2% 2% 2%;
-    width: 70%;
+    padding: 4.3% 2% 2% 2%;
+    width: 60%;
 }

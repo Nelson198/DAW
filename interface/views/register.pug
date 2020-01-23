@@ -3,14 +3,19 @@ html
     head
         title= title
         link(rel="stylesheet", href="/stylesheets/style-LoginRegister.css")
+        link(rel="stylesheet", href="/stylesheets/all.css")
     body
         div(class="card")
             h1(id="title") Registo
             form(class="form" action="/register" method="POST")
-                input(id="email" type="text" name="email" placeholder="Email" required)
+                i(class="far fa-envelope icon2")
+                input(id="email2" type="text" name="email" placeholder="Email" required)
                 br
+                i(class="fas fa-user-alt icon2")
                 input(id="nome" type="text" name="nome" placeholder="Nome" required)
                 br
-                input(id="password" type="password" name="password" placeholder="Password" required)
+                i(class="fas fa-key icon2")
+                input(id="password2" type="password" name="password" placeholder="Password" required)
                 br
+                i(class="fas fa-paper-plane icon2")
                 input(id="registar" type="submit" value="Registar")

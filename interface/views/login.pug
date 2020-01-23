@@ -3,12 +3,16 @@ html
     head
         title= title
         link(rel="stylesheet", href="/stylesheets/style-LoginRegister.css")
+        link(rel="stylesheet", href="/stylesheets/all.css")
     body
         div(class="card")
             h1(id="title") Login
             form(class="form" action="/login" method="POST")
-                input(id="email" type="text" name="email" placeholder="Email" required)
+                i(class="far fa-envelope icon1")
+                input(id="email1" type="text" name="email" placeholder="Email" required)
                 br
-                input(id="password" type="password" name="password" placeholder="Password" required)
+                i(class="fas fa-key icon1")
+                input(id="password1" type="password" name="password" placeholder="Password" required)
                 br
+                i(class="fas fa-sign-in-alt icon1")
                 input(id="login" type="submit" value="Login")
