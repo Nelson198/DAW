@@ -1,4 +1,4 @@
-var Utilizador = require("../models/utilizadores")
+var Utilizador = require("../models/user")
 
 module.exports.listar = () => {
     return Utilizador
@@ -8,7 +8,7 @@ module.exports.listar = () => {
 
 module.exports.consultar = email => {
     return Utilizador
-        .findOne({email: email})
+        .findOne({ email: email })
         .exec()
 }
 

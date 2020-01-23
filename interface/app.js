@@ -21,10 +21,10 @@ let indexRouter = require("./routes/index")
 /* Configuração da estratégia local */
 passport.use(new LocalStrategy(
     { usernameField: "email" }, (email, password, done) => {
-        let token = jwt.sign({}, "daw2019", {
+        let token = jwt.sign({}, "tpDAW1920", {
             expiresIn: 3000
         })
-        axios.get(`http://localhost:5003/utilizadores/${email}?token=${token}`)
+        axios.get(`http://localhost:5003/api/utilizadores/${email}?token=${token}`)
             .then(dados => {
                 const user = dados.data
                 if (!user) {
@@ -46,11 +46,11 @@ passport.serializeUser((user, done) => {
 
 /* Desserialização: a partir do id obtem-se a informação do utilizador */
 passport.deserializeUser((email, done) => {
-    let token = jwt.sign({}, "daw2019", {
+    let token = jwt.sign({}, "tpDAW1920", {
         expiresIn: 3000
     })
 
-    axios.get(`http://localhost:5003/utilizadores/${email}?token=${token}`)
+    axios.get(`http://localhost:5003/api/utilizadores/${email}?token=${token}`)
         .then(dados => done(null, dados.data))
         .catch(erro => done(erro))
 })

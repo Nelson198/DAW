@@ -13,13 +13,13 @@ let verificaAutenticacao = (req, res, next) => {
 }
 
 router.get("/", verificaAutenticacao, (req, res) => {
-    axios.get("http://localhost:5003")
+    axios.get("http://localhost:5003/api/eventos")
         .then(dados => res.render("index", { lista: dados.data }))
         .catch(e => res.render("error", { error: e }))
 })
 
 router.get("/eventos/:id", verificaAutenticacao, (req, res) => {
-    axios.get("http://localhost:5003/eventos/" + req.params.id)
+    axios.get("http://localhost:5003/api/eventos/" + req.params.id)
         .then(dados => res.render("evento", { evento: dados.data }))
         .catch(e => res.render("error", { error: e }))
 })
@@ -47,7 +47,7 @@ router.post("/login", passport.authenticate("local", {
 
 router.post("/reg", (req, res) => {
     let hash = bcrypt.hashSync(req.body.password, 10)
-    axios.post("http://localhost:5003/utilizadores", {
+    axios.post("http://localhost:5003/api/utilizadores", {
         email: req.body.email,
         nome: req.body.nome,
         password: hash

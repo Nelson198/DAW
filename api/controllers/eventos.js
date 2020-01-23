@@ -1,4 +1,4 @@
-var Evento = require("../models/eventos")
+var Evento = require("../models/group")
 
 module.exports.listar = () => {
     return Evento
@@ -8,12 +8,12 @@ module.exports.listar = () => {
 
 module.exports.consultar = id => {
     return Evento
-        .findOne({_id: id})
+        .findOne({ _id: id })
         .exec()
 }
 
 module.exports.filtrarParticipante = pid => {
     return Evento
-        .find({participantes: pid})
+        .find({ participantes: pid })
         .exec()
 }
