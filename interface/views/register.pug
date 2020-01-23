@@ -5,10 +5,12 @@ html
         link(rel="stylesheet", href="/stylesheets/style-LoginRegister.css")
     body
         div(class="card")
-            h1(id="title") Login
-            form(class="form" action="/login" method="POST")
+            h1(id="title") Registo
+            form(class="form" action="/register" method="POST")
                 input(id="email" type="text" name="email" placeholder="Email" required)
+                br
+                input(id="nome" type="text" name="nome" placeholder="Nome" required)
                 br
                 input(id="password" type="password" name="password" placeholder="Password" required)
                 br
-                input(id="login" type="submit" value="Login")
+                input(id="registar" type="submit" value="Registar")

@@ -1,0 +1,96 @@
+* {
+    background-color: rgb(64, 138, 167);
+    font-family: Montserrat, sans-serif;
+}
+
+input:focus::placeholder {
+    color: transparent
+}
+
+.card {
+    display: table;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 16%;
+
+    text-align: center;
+    color: #ffffff;
+
+    height: 350px;
+    width: 300px;
+    background-color: rgb(92, 92, 92);
+    border: 3px solid white;
+    border-radius: 10px;
+    box-shadow: -1rem 0 3rem #000;
+    transition: 0.5s step-start;
+    position: relative;
+    left: 0px;
+}
+
+.form {
+    background-color: rgb(92, 92, 92);
+}
+
+.input {
+    outline: none;
+}
+
+#title {
+    background-color: rgb(92, 92, 92);
+    margin-top: 15%;
+    margin-bottom: 20%;
+}
+
+#login {
+    border: 2px solid rgb(41, 187, 36);
+    border-radius: 10px;
+    background-color: rgb(41, 187, 36);
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    transition-duration: 0.3s;
+    padding: 2.5% 2.5% 2.5% 2.5%;
+    cursor: pointer;
+    width: 75%
+}
+
+#registar {
+    border: 2px solid rgb(64, 138, 167);
+    border-radius: 10px;
+    background-color: rgb(64, 138, 167);
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center; 
+    transition-duration: 0.3s;
+    padding: 2.5% 2.5% 2.5% 2.5%;
+    cursor: pointer;
+    width: 75%
+}
+
+#login:hover, #registar:hover {
+    border: 2px solid #ffffff;
+}
+
+#email:hover, #password:hover, #nome:hover {
+    cursor: pointer;
+    border: 2.5px solid rgb(64, 138, 167)
+}
+
+#email:focus, #password:focus, #nome:focus {
+    border: 2.5px solid rgb(64, 138, 167);
+    outline: 0
+}
+
+#email, #password, #nome {
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+    background-color: #ffffff;
+    font-size: 15px;
+    text-align: center; 
+    transition-duration: 0.3s;
+    margin-bottom: 5%;
+    padding: 2% 2% 2% 2%;
+    width: 70%;
+}
