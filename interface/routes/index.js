@@ -14,7 +14,7 @@ let verificaAutenticacao = (req, res, next) => {
 
 router.get("/", verificaAutenticacao, (req, res) => {
     axios.get("http://localhost:5003/api/eventos")
-        .then(dados => res.render("index", { lista: dados.data }))
+        .then(dados => res.render("feed", { lista: dados.data }))
         .catch(e => res.render("error", { error: e }))
 })
 
@@ -28,7 +28,11 @@ router.get("/logout", verificaAutenticacao, (req, res) => {
     req.logout()
     res.redirect("/")
 })
-
+/* Only for testting interface
+router.get("/feed", (req, res) => {
+    res.render("feed")
+}) 
+*/
 router.get("/login", (req, res) => {
     res.render("login")
 })

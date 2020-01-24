@@ -2,6 +2,21 @@ doctype html
 html
     head
         title= title
-        link(rel="stylesheet", href="/stylesheets/w3.css")
+        
+        //- Required meta tags
+        meta(charset="utf-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+
+        //- Bootstrap CSS
+        link(rel="stylesheet" href="/stylesheets/bootstrap.min.css")
+        //- Feed CSS
+        link(rel="stylesheet" href="/stylesheets/style-Feed.css")
+
+        //- JQuery 3.4.1
+        script(src="javascripts/jquery-3.4.1.slim.min.js")
+        //- Popper
+        script(src="javascripts/popper.min.js")
+        //- Bootstrap JS
+        script(src="javascripts/bootstrap.min.js")
     body
         block content
