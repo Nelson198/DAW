@@ -17,6 +17,10 @@ var UserSchema = new mongoose.Schema({
         type: String,
         default: ""
     },
+    avatar: {
+        type: String,
+        default: ""
+    },
     birthday: {
         type: Date,
         required: true
@@ -25,6 +29,9 @@ var UserSchema = new mongoose.Schema({
         type: [String]
     },
     posts: {
+        type: [String]
+    },
+    friendRequests: {
         type: [String]
     },
     creationDate: {

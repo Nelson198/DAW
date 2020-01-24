@@ -1,23 +1,23 @@
+const Utilizadores = require("../controllers/user")
 const express = require("express")
 const passport = require("passport")
-let router = express.Router()
-let Utilizadores = require("../controllers/user")
+const router = express.Router()
 
 /* GET users listing. */
 router.get("/", passport.authenticate("jwt", { session: false }), (req, res) => {
-    Utilizadores.listar()
+    Utilizadores.find()
         .then(dados => res.jsonp(dados))
         .catch(e => res.status(500).jsonp(e))
 })
 
 router.get("/:email", passport.authenticate("jwt", { session: false }), (req, res) => {
-    Utilizadores.consultar(req.params.email)
+    Utilizadores.findOneByEmail(req.params.email)
         .then(dados => res.jsonp(dados))
         .catch(e => res.status(500).jsonp(e))
 })
 
 router.post("/", (req, res) => {
-    Utilizadores.inserir(req.body)
+    Utilizadores.insert(req.body)
         .then(dados => res.jsonp(dados))
         .catch(e => res.status(500).jsonp(e))
 })

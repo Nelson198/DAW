@@ -1,22 +1,22 @@
-const Groups = require("../controllers/group")
+const Posts = require("../controllers/post")
 const express = require("express")
 const router = express.Router()
 
 /* GET users listing. */
 router.get("/", (req, res) => {
     if (req.query.participante) {
-        Groups.filtrarParticipante(req.query.participante)
+        Posts.filtrarParticipante(req.query.participante)
             .then(dados => res.jsonp(dados))
             .catch(e => res.status(500).jsonp(e))
     } else {
-        Groups.find()
+        Posts.find()
             .then(dados => res.jsonp(dados))
             .catch(e => res.status(500).jsonp(e))
     }
 })
 
 router.get("/:id", (req, res) => {
-    Groups.findOneById(req.params.id)
+    Posts.findOneById(req.params.id)
         .then(dados => res.jsonp(dados))
         .catch(e => res.status(500).jsonp(e))
 })

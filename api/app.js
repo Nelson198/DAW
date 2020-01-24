@@ -2,6 +2,7 @@ const express = require("express")
 const cookieParser = require("cookie-parser")
 const logger = require("morgan")
 const mongoose = require("mongoose")
+const { app, server } = require("./socket")
 
 // Estabelecer a ligação à base de dados
 mongoose.connect("mongodb://127.0.0.1:27017/daw2019-agenda", { useNewUrlParser: true, useUnifiedTopology: true })
@@ -39,8 +40,6 @@ passport.use(new JWTStrategy({
 ///////
 
 // Configurar as rotas
-const app = express()
-
 app.use(passport.initialize())
 
 app.use(logger("dev"))
@@ -55,5 +54,7 @@ app.use("/api/backup", require("./routes/backup"))
 app.use("*", (req, res) => {
     res.status(404).json({ error: "Innefective route." })
 })
+
+server.listen(5003, () => console.log(`Servidor da API à escuta na porta 5003 ...`))
 
 module.exports = app

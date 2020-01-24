@@ -1,22 +1,18 @@
-var Utilizador = require("../models/user")
+var User = require("../models/user")
 
-module.exports.listar = () => {
-    return Utilizador
-        .find()
-        .exec()
+module.exports.find = () => {
+    return User.find().exec()
 }
 
-module.exports.consultar = email => {
-    return Utilizador
-        .findOne({ email: email })
-        .exec()
+module.exports.findOneByEmail = email => {
+    return User.findOne({ email: email }).exec()
 }
 
-module.exports.inserir = u => {
-    var novo = new Utilizador(u)
-    return novo.save()
+module.exports.insert = user => {
+    var newUser = new User(user)
+    return newUser.save()
 }
 
 module.exports.insertMany = users => {
-    return Utilizador.insertMany(users).exec()
+    return User.insertMany(users).exec()
 }
