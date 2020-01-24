@@ -28,11 +28,12 @@ router.get("/logout", verificaAutenticacao, (req, res) => {
     req.logout()
     res.redirect("/")
 })
-/* Only for testting interface
+
+// Only for testting interface
 router.get("/feed", (req, res) => {
     res.render("feed")
 }) 
-*/
+
 router.get("/login", (req, res) => {
     res.render("login")
 })

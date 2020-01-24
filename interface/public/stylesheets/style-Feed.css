@@ -1,7 +1,36 @@
-a {
+html, body, div { 
+    height: 100%;
+}
+
+.aNavbar {
     color: #ffffff;
+}
+
+.aNavbar:hover {
+    transition: all 0.3s ease;
+    color: #ffffffc5;
+}
+
+.iconNavbar:hover {
+    transition: ease-out;
+    transition-duration: 0.6s;
+    opacity: 0.8;
 }
 
 #signOut:hover {
     color: red;
+}
+
+#arrowNavbar {
+    color: white;
+}
+
+#content {
+    border-left: 1px solid rgba(0, 0, 0, 0.05);
+    width: 100%;
+}
+
+#chat {
+    height: 100%;
+    border-left: 1px solid rgba(0, 0, 0, 0.05);
 }
