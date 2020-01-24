@@ -47,6 +47,9 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 
+/* Pretty JSON setup */
+app.set("json spaces", 4)
+
 app.use("/api/groups", require("./routes/groups"))
 app.use("/api/utilizadores", require("./routes/users"))
 app.use("/api/backup", require("./routes/backup"))
