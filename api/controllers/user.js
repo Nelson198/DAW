@@ -17,6 +17,10 @@ module.exports.insertMany = users => {
     return User.insertMany(users).exec()
 }
 
+module.exports.remove = email => {
+    return User.deleteOne({ email: email }).exec()
+}
+
 module.exports.backup = async (users) => {
     await User.deleteMany({}).exec()
     await User.insertMany(users).exec()

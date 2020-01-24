@@ -1,7 +1,7 @@
 var Post = require("../models/post")
 
 module.exports.find = () => {
-    return Post.find().exec()
+    return Post.find({}).sort({date: -1}).exec()
 }
 
 module.exports.findOneById = id => {
@@ -15,6 +15,10 @@ module.exports.insert = post => {
 
 module.exports.insertMany = posts => {
     return Post.insertMany(posts).exec()
+}
+
+module.exports.remove = id => {
+    return Post.deleteOne({ _id: id }).exec()
 }
 
 module.exports.backup = async (posts) => {

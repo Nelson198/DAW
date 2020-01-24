@@ -31,6 +31,9 @@ var UserSchema = new mongoose.Schema({
     posts: {
         type: [String]
     },
+    groups: {
+        type: [String]
+    },
     friendRequests: {
         type: [String]
     },

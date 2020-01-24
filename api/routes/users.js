@@ -22,4 +22,10 @@ router.post("/", (req, res) => {
         .catch(e => res.status(500).jsonp(e))
 })
 
+router.delete("/:email", (req, res) => {
+    Utilizadores.remove(req.params.email)
+        .then(dados => res.jsonp(dados))
+        .catch(e => res.status(500).jsonp(e))
+})
+
 module.exports = router

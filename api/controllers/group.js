@@ -12,8 +12,17 @@ module.exports.filtrarParticipante = pid => {
     return Grupo.find({ participantes: pid }).exec()
 }
 
+module.exports.insert = grupo => {
+    var newGroup = new Grupo(grupo)
+    return newGroup.save()
+}
+
 module.exports.insertMany = grupos => {
     return Grupo.insertMany(grupos).exec()
+}
+
+module.exports.remove = id => {
+    return Grupo.deleteOne({_id: id}).exec()
 }
 
 module.exports.backup = async (groups) => {
