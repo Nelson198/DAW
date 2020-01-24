@@ -9,6 +9,10 @@ var PostSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    public: {
+        type: Boolean,
+        required: true
+    },
     hashtags: {
         type: [String]
     },
