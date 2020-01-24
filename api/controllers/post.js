@@ -1,7 +1,7 @@
 var Post = require("../models/post")
 
 module.exports.find = () => {
-    return Post.find().exec()
+    return Post.find({}).sort({date: -1}).exec()
 }
 
 module.exports.findOneById = id => {

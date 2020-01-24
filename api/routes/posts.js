@@ -4,15 +4,9 @@ const router = express.Router()
 
 /* GET users listing. */
 router.get("/", (req, res) => {
-    if (req.query.participante) {
-        Posts.filtrarParticipante(req.query.participante)
-            .then(dados => res.jsonp(dados))
-            .catch(e => res.status(500).jsonp(e))
-    } else {
-        Posts.find()
-            .then(dados => res.jsonp(dados))
-            .catch(e => res.status(500).jsonp(e))
-    }
+    Posts.find()
+        .then(dados => res.jsonp(dados))
+        .catch(e => res.status(500).jsonp(e))
 })
 
 router.get("/:id", (req, res) => {
