@@ -1,4 +1,4 @@
-var Grupo = require("../models/group")
+const Grupo = require("../models/group")
 
 module.exports.find = () => {
     return Grupo.find().exec()
@@ -13,7 +13,7 @@ module.exports.filtrarParticipante = pid => {
 }
 
 module.exports.insert = grupo => {
-    var newGroup = new Grupo(grupo)
+    const newGroup = new Grupo(grupo)
     return newGroup.save()
 }
 
@@ -22,10 +22,14 @@ module.exports.insertMany = grupos => {
 }
 
 module.exports.remove = id => {
-    return Grupo.deleteOne({_id: id}).exec()
+    return Grupo.deleteOne({ _id: id }).exec()
 }
 
 module.exports.backup = async (groups) => {
     await Group.deleteMany({}).exec()
     await Group.insertMany(groups).exec()
+}
+
+module.exports.updateOne = (groupKey, updatedGroup) => {
+    return User.updateOne({ joinKey: groupKey }, { $set: updatedGroup }).exec()
 }

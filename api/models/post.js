@@ -1,6 +1,26 @@
 const mongoose = require("mongoose")
 
-var PostSchema = new mongoose.Schema({
+const CommentSchema = new mongoose.Schema({
+    content: {
+        type: String
+    },
+    author: {
+        type: String,
+        required: true
+    },
+    hashtags: {
+        type: [String]
+    },
+    attachments: {
+        type: [String]
+    },
+    date: {
+        type: Date,
+        default: Date.now
+    }
+})
+
+const PostSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -21,6 +41,9 @@ var PostSchema = new mongoose.Schema({
     },
     attachments: {
         type: [String]
+    },
+    comments: {
+        type: [CommentSchema]
     },
     date: {
         type: Date,

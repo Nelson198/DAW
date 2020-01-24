@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-var UserSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true
@@ -19,7 +19,7 @@ var UserSchema = new mongoose.Schema({
     },
     avatar: {
         type: String,
-        default: ""
+        default: "default.png"
     },
     birthday: {
         type: Date,

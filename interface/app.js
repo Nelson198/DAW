@@ -16,15 +16,13 @@ const flash = require("connect-flash")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 
-let indexRouter = require("./routes/index")
-
 /* Configuração da estratégia local */
 passport.use(new LocalStrategy(
     { usernameField: "email" }, (email, password, done) => {
-        let token = jwt.sign({}, "tpDAW1920", {
+        let token = jwt.sign({ email: email }, "tpDAW1920", {
             expiresIn: 3000
         })
-        axios.get(`http://localhost:5003/api/utilizadores/${email}?token=${token}`)
+        axios.get(`http://localhost:5003/api/users/${email}?token=${token}`)
             .then(dados => {
                 const user = dados.data
                 if (!user) {
@@ -46,11 +44,11 @@ passport.serializeUser((user, done) => {
 
 /* Desserialização: a partir do id obtem-se a informação do utilizador */
 passport.deserializeUser((email, done) => {
-    let token = jwt.sign({}, "tpDAW1920", {
+    let token = jwt.sign({ email: email }, "tpDAW1920", {
         expiresIn: 3000
     })
 
-    axios.get(`http://localhost:5003/api/utilizadores/${email}?token=${token}`)
+    axios.get(`http://localhost:5003/api/users/${email}?token=${token}`)
         .then(dados => done(null, dados.data))
         .catch(erro => done(erro))
 })
@@ -85,7 +83,7 @@ app.use(flash())
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.use("/", indexRouter)
+app.use("/", require("./routes/index"))
 
 /* Catch 404 and forward to error handler */
 app.use((req, res, next) => {

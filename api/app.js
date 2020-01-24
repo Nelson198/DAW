@@ -12,23 +12,15 @@ mongoose.connect("mongodb://127.0.0.1:27017/daw2019-agenda", { useNewUrlParser: 
 // Configurar a autenticação com JWT
 const passport = require("passport")
 const JWTStrategy = require("passport-jwt").Strategy
-const ExtractJWT = require("passport-jwt").ExtractJwt
-
-const extractFromQS = (req) => {
-    var token = null
-    if (req.query && req.query.token) token = req.query.token
-    return token
-}
-
-const extractFromBody = (req) => {
-    var token = null
-    if (req.body && req.body.token) token = req.body.token
-    return token
-}
 
 passport.use(new JWTStrategy({
     secretOrKey: "tpDAW1920",
-    jwtFromRequest: ExtractJWT.fromExtractors([extractFromQS, extractFromBody])
+    jwtFromRequest: (req) => {
+        let token = null
+        if (req.query && req.query.token)
+            token = req.query.token
+        return token
+    }
 }, async (payload, done) => {
     try {
         return done(null, payload)
@@ -51,7 +43,8 @@ app.use(cookieParser())
 app.set("json spaces", 4)
 
 app.use("/api/groups", require("./routes/groups"))
-app.use("/api/utilizadores", require("./routes/users"))
+app.use("/api/users", require("./routes/users"))
+app.use("/api/posts", require("./routes/posts"))
 app.use("/api/backup", require("./routes/backup"))
 
 app.use("*", (req, res) => {

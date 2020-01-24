@@ -51,7 +51,7 @@ router.post("/login", passport.authenticate("local", {
 
 router.post("/register", (req, res) => {
     let hash = bcrypt.hashSync(req.body.password, 10)
-    axios.post("http://localhost:5003/api/utilizadores", {
+    axios.post("http://localhost:5003/api/users", {
         email: req.body.email,
         nome: req.body.nome,
         password: hash
