@@ -15,3 +15,8 @@ module.exports.filtrarParticipante = pid => {
 module.exports.insertMany = grupos => {
     return Grupo.insertMany(grupos).exec()
 }
+
+module.exports.backup = async (groups) => {
+    await Group.deleteMany({}).exec()
+    await Group.insertMany(groups).exec()
+}

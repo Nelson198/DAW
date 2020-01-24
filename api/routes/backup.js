@@ -1,5 +1,6 @@
-const User = require("../controllers/user")
-const Group = require("../controllers/group")
+const Users = require("../controllers/user")
+const Groups = require("../controllers/group")
+const Posts = require("../controllers/post")
 const express = require("express")
 const passport = require("passport")
 const router = express.Router()
@@ -7,16 +8,18 @@ const router = express.Router()
 // Route to get all the data for backup
 router.get("/", passport.authenticate("jwt", { session: false }), async (req, res) => {
     const backup = {}
-    backup.users = await User.find()
-    backup.groups = await Group.find()
+    backup.users = await Users.find()
+    backup.groups = await Groups.find()
+    backup.posts = await Posts.find()
 
     res.jsonp(backup)
 })
 
 // Route to insert all the data from backup
 router.post("/", passport.authenticate("jwt", { session: false }), async (req, res) => {
-    await User.insertMany(req.body.users)
-    await Group.insertMany(req.body.groups)
+    await Users.backup(req.body.users)
+    await Groups.backup(req.body.groups)
+    await Posts.backup(req.body.posts)
 
     res.jsonp("Successfully updated the database")
 })

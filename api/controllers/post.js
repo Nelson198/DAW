@@ -16,3 +16,8 @@ module.exports.insert = post => {
 module.exports.insertMany = posts => {
     return Post.insertMany(posts).exec()
 }
+
+module.exports.backup = async (posts) => {
+    await Post.deleteMany({}).exec()
+    await Post.insertMany(posts).exec()
+}
