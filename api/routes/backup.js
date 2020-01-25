@@ -1,6 +1,7 @@
 const Users = require("../controllers/user")
 const Groups = require("../controllers/group")
 const Posts = require("../controllers/post")
+const Events = require("../controllers/event")
 const express = require("express")
 const passport = require("passport")
 const router = express.Router()
@@ -11,6 +12,7 @@ router.get("/", passport.authenticate("jwt", { session: false }), async (req, re
     backup.users = await Users.find()
     backup.groups = await Groups.find()
     backup.posts = await Posts.find()
+    backup.events = await Events.find()
 
     res.jsonp(backup)
 })
@@ -20,6 +22,7 @@ router.post("/", passport.authenticate("jwt", { session: false }), async (req, r
     await Users.backup(req.body.users)
     await Groups.backup(req.body.groups)
     await Posts.backup(req.body.posts)
+    await Events.backup(req.body.events)
 
     res.jsonp("Successfully updated the database")
 })

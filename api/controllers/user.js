@@ -14,10 +14,6 @@ module.exports.insert = user => {
     return newUser.save()
 }
 
-module.exports.insertMany = users => {
-    return User.insertMany(users).exec()
-}
-
 module.exports.remove = email => {
     return User.deleteOne({ email: email }).exec()
 }

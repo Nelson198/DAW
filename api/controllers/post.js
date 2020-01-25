@@ -15,10 +15,6 @@ module.exports.insert = async post => {
     return newPost.save()
 }
 
-module.exports.insertMany = posts => {
-    return Post.insertMany(posts).exec()
-}
-
 module.exports.remove = id => {
     return Post.deleteOne({ _id: id }).exec()
 }

@@ -1,28 +1,24 @@
-const Grupo = require("../models/group")
+const Group = require("../models/group")
 
 module.exports.find = () => {
-    return Grupo.find().exec()
+    return Group.find().exec()
 }
 
 module.exports.findOneById = id => {
-    return Grupo.findOne({ _id: id }).exec()
+    return Group.findOne({ _id: id }).exec()
 }
 
 module.exports.filtrarParticipante = pid => {
-    return Grupo.find({ participantes: pid }).exec()
+    return Group.find({ participantes: pid }).exec()
 }
 
 module.exports.insert = grupo => {
-    const newGroup = new Grupo(grupo)
+    const newGroup = new Group(grupo)
     return newGroup.save()
 }
 
-module.exports.insertMany = grupos => {
-    return Grupo.insertMany(grupos).exec()
-}
-
 module.exports.remove = id => {
-    return Grupo.deleteOne({ _id: id }).exec()
+    return Group.deleteOne({ _id: id }).exec()
 }
 
 module.exports.backup = async (groups) => {

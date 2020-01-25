@@ -85,6 +85,7 @@ app.use(passport.session())
 app.use("/", require("./routes/index"))
 app.use("/groups", require("./routes/groups"))
 app.use("/profiles", require("./routes/profiles"))
+app.use("/events", require("./routes/events"))
 
 /**
  * Other HTTP requests
