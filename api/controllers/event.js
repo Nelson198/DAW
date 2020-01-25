@@ -1,4 +1,5 @@
 const Event = require("../models/event")
+const User = require("../models/user")
 
 module.exports.find = () => {
     return Event.find().exec()
@@ -22,12 +23,14 @@ module.exports.backup = async (events) => {
     await Event.insertMany(events).exec()
 }
 
-module.exports.addParticipant = (id, email) => {
-    return Event.updateOne({ _id: id }, { $push: { participants: email } }).exec()
+module.exports.addParticipant = async (id, email) => {
+    await Event.updateOne({ _id: id }, { $push: { participants: email } }).exec()
+    await User.updateOne({ email: email }, { $push: { events: id } }).exec()
 }
 
-module.exports.removeParticipant = (id, email) => {
-    return Event.updateOne({ _id: id }, { $pull: { participants: email } }).exec()
+module.exports.removeParticipant = async (id, email) => {
+    await Event.updateOne({ _id: id }, { $pull: { participants: email } }).exec()
+    await User.updateOne({ email: email }, { $pull: { events: id } }).exec()
 }
 
 module.exports.updateOne = (id, updatedPost) => {

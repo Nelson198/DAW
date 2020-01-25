@@ -1,5 +1,6 @@
 const Post = require("../models/post")
 const User = require("../models/user")
+const Group = require("../models/group")
 
 module.exports.find = () => {
     return Post.find({}).sort({ date: -1 }).exec()
@@ -12,6 +13,8 @@ module.exports.findOneById = id => {
 module.exports.insert = async post => {
     const newPost = new Post(post)
     await User.updateOne({ email: newPost.author }, { $push: { posts: newPost._id } }).exec()
+    if (newPost.group !== null)
+        await Group.updateOne({ _id: newPost.group }, { $push: { posts: newPost._id } }).exec()
     return newPost.save()
 }
 

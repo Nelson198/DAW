@@ -1,13 +1,19 @@
 const Posts = require("../controllers/post")
+const Users = require("../controllers/user")
 const express = require("express")
 const passport = require("passport")
 const router = express.Router()
 
 /* GET posts listing. */
-router.get("/", passport.authenticate("jwt", { session: false }), (req, res) => {
-    Posts.find({ $or: [{ public: true }, { author: req.user.email }] })
-        .then(dados => res.jsonp(dados))
-        .catch(e => res.status(500).jsonp(e))
+router.get("/", passport.authenticate("jwt", { session: false }), async (req, res) => {
+    try {
+        const data = await Users.findOneByEmail(req.user.email)
+        const posts = await Posts.find({ $or: [{ public: true }, { author: req.user.email }, { public: false, group: { $in: data.groups } }] })
+
+        res.jsonp(posts)
+    } catch (e) {
+        res.status(500).jsonp(e)
+    }
 })
 
 router.get("/:id", passport.authenticate("jwt", { session: false }), (req, res) => {
