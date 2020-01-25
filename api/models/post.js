@@ -33,6 +33,10 @@ const PostSchema = new mongoose.Schema({
         type: Boolean,
         required: true
     },
+    group: {
+        type: String,
+        default: null
+    },
     hashtags: {
         type: [String]
     },
