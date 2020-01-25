@@ -51,6 +51,4 @@ app.use("*", (req, res) => {
     res.status(404).json({ error: "Innefective route." })
 })
 
-server.listen(5003, () => console.log(`Servidor da API à escuta na porta 5003 ...`))
-
-module.exports = app
+server.listen(5003, () => console.log(`Servidor da API à escuta na porta 5003...`))

@@ -2,9 +2,10 @@ const express = require("express")
 const axios = require("axios")
 const passport = require("passport")
 const bcrypt = require("bcryptjs")
-let router = express.Router()
+const jwt = require("jsonwebtoken")
+const router = express.Router()
 
-let verificaAutenticacao = (req, res, next) => {
+const verificaAutenticacao = (req, res, next) => {
     if (req.isAuthenticated()) {
         next()
     } else {
@@ -13,13 +14,21 @@ let verificaAutenticacao = (req, res, next) => {
 }
 
 router.get("/", verificaAutenticacao, (req, res) => {
-    axios.get("http://localhost:5003/api/eventos")
+    const token = jwt.sign({ email: req.user.email }, "tpDAW1920", {
+        expiresIn: 3000
+    })
+
+    axios.get(`http://localhost:5003/api/groups?token=${token}`)
         .then(dados => res.render("feed", { lista: dados.data }))
         .catch(e => res.render("error", { error: e }))
 })
 
 router.get("/eventos/:id", verificaAutenticacao, (req, res) => {
-    axios.get("http://localhost:5003/api/eventos/" + req.params.id)
+    const token = jwt.sign({ email: email }, "tpDAW1920", {
+        expiresIn: 3000
+    })
+
+    axios.get("http://localhost:5003/api/groups/" + req.params.id)
         .then(dados => res.render("evento", { evento: dados.data }))
         .catch(e => res.render("error", { error: e }))
 })
@@ -32,7 +41,7 @@ router.get("/logout", verificaAutenticacao, (req, res) => {
 // Only for testting interface
 router.get("/feed", (req, res) => {
     res.render("feed")
-}) 
+})
 
 router.get("/login", (req, res) => {
     res.render("login")
@@ -51,10 +60,10 @@ router.post("/login", passport.authenticate("local", {
 )
 
 router.post("/register", (req, res) => {
-    let hash = bcrypt.hashSync(req.body.password, 10)
+    const hash = bcrypt.hashSync(req.body.password, 10)
     axios.post("http://localhost:5003/api/users", {
         email: req.body.email,
-        nome: req.body.nome,
+        name: req.body.nome,
         password: hash
     })
         .then(dados => res.redirect("/"))

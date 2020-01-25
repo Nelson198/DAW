@@ -1,6 +1,7 @@
 const Utilizadores = require("../controllers/user")
 const express = require("express")
 const passport = require("passport")
+const bcrypt = require("bcrypt")
 const router = express.Router()
 
 /* GET users listing. */
@@ -53,6 +54,10 @@ router.post("/:email/leaveGroup", (req, res) => {
 })
 
 router.patch("/:email", (req, res) => {
+    // Hash the password if it exists
+    if (req.body.password)
+        req.body.password = bcrypt.hashSync(req.body.password, 10)
+
     Utilizadores.updateOne(req.params.email, req.body)
         .then(dados => res.jsonp(dados))
         .catch(e => res.status(500).jsonp(e))

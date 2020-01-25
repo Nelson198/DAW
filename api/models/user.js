@@ -21,10 +21,6 @@ const UserSchema = new mongoose.Schema({
         type: String,
         default: "default.png"
     },
-    birthday: {
-        type: Date,
-        required: true
-    },
     friends: {
         type: [String]
     },

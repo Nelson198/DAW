@@ -6,6 +6,7 @@
         "start": "nodemon app.js"
     },
     "dependencies": {
+        "bcrypt": "^3.0.6",
         "cookie-parser": "~1.4.4",
         "express": "~4.16.1",
         "http-errors": "~1.6.3",

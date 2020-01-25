@@ -19,7 +19,7 @@ const jwt = require("jsonwebtoken")
 /* Configuração da estratégia local */
 passport.use(new LocalStrategy(
     { usernameField: "email" }, (email, password, done) => {
-        let token = jwt.sign({ email: email }, "tpDAW1920", {
+        const token = jwt.sign({ email: email }, "tpDAW1920", {
             expiresIn: 3000
         })
         axios.get(`http://localhost:5003/api/users/${email}?token=${token}`)
@@ -44,7 +44,7 @@ passport.serializeUser((user, done) => {
 
 /* Desserialização: a partir do id obtem-se a informação do utilizador */
 passport.deserializeUser((email, done) => {
-    let token = jwt.sign({ email: email }, "tpDAW1920", {
+    const token = jwt.sign({ email: email }, "tpDAW1920", {
         expiresIn: 3000
     })
 
@@ -53,7 +53,7 @@ passport.deserializeUser((email, done) => {
         .catch(erro => done(erro))
 })
 
-let app = express()
+const app = express()
 
 /* View engine setup */
 app.set("views", path.join(__dirname, "views"))
@@ -101,4 +101,4 @@ app.use((err, req, res, next) => {
     res.render("error")
 })
 
-module.exports = app
+app.listen(8080, () => console.log(`Servidor da interface à escuta na porta 8080...`))
