@@ -1,0 +1,91 @@
+https://www.json-generator.com/
+
+{
+  users: [
+    '{{repeat(100, 150)}}',
+    {
+      name: '{{firstName()}} {{surname()}}',
+      email: '{{email()}}',
+      password: '',
+      gender: '{{gender()}}',
+      birthday: '{{date(new Date(1995, 0, 1), new Date(2001, 0, 1), "YYYY-MM-dd")}}',
+      creationDate: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-dd")}}',
+      course: '{{random("Informatics Engineering", "Computer Science", "Telecommunications Engineering and Informatics")}}',
+      avatar: '',
+      friends: [],
+      posts: [],
+      groups: [],
+      events: [],
+      friendRequests: [],
+      conversations: [
+        '{{repeat(0, 5)}}',
+        {
+          name: '',
+          messages: []
+        }
+      ]
+    }
+  ],
+  
+  posts: [
+    '{{repeat(150, 250)}}',
+    {
+      author: '',
+      "public": '{{random("P", "G", "F")}}',
+      group: '',
+      hashtags: [
+        '{{repeat(0,7)}}',
+        '{{lorem(1, "words")}}'
+      ],
+      description: '',
+      attachments: [],
+      date: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-dd")}}',
+      comments: [
+        '{{repeat(0,10)}}',
+        {
+          content: '',
+          author: '',
+          hashtags: [
+            '{{repeat(0,3)}}',
+            '{{lorem(1, "words")}}'
+          ],
+          attachments: [],
+          date: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-dd")}}'
+        }
+      ]
+    }
+  ],
+  
+    groups: [
+      '{{repeat(20, 40)}}',
+      {
+        name: '{{lorem(1, "words")}}',
+        description: '',
+        "public": '{{random("true", "false")}}',
+        joinKey: '{{guid()}}',
+        members: [],
+        posts: [],
+        creationDate: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-dd")}}'
+      }      
+    ],
+      
+    events:  [
+      '{{repeat(30, 50)}}',
+      {
+        title: '{{lorem(1, "words")}}',
+        description: '',
+        participants: [],
+        date: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-dd")}}'
+      }
+    ]
+}
+
+
+
+
+
+
+
+
+
+
