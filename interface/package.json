@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "private": true,
     "scripts": {
-        "start": "node app.js"
+        "start": "nodemon --ignore sessions/ app.js"
     },
     "dependencies": {
         "axios": "^0.19.2",
