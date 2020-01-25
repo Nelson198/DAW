@@ -29,12 +29,16 @@ const UserSchema = new mongoose.Schema({
     },
     gender: {
         type: String,
-        enum: ["M", "F", "N"],
-        default: "N"
+        enum: ["female", "male"],
+        required: true
+    },
+    birthday: {
+        type: Date,
+        required: true
     },
     course: {
         type: String,
-        default: "Informatics Engineering"
+        required: true
     },
     avatar: {
         type: String,
