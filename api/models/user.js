@@ -34,7 +34,7 @@ const UserSchema = new mongoose.Schema({
     },
     course: {
         type: String,
-        default: "Informatics Student"
+        default: "Informatics Engineering"
     },
     avatar: {
         type: String,
