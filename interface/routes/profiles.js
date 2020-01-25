@@ -12,7 +12,7 @@ const verificaAutenticacao = (req, res, next) => {
 }
 
 router.get("/:id", verificaAutenticacao, (req, res) => {
-    const token = jwt.sign({ email: email }, "tpDAW1920", {
+    const token = jwt.sign({ email: req.user.email }, "tpDAW1920", {
         expiresIn: 3000
     })
 

@@ -25,7 +25,7 @@ router.get("/", verificaAutenticacao, (req, res) => {
 
 router.get("/logout", verificaAutenticacao, (req, res) => {
     req.logout()
-    res.redirect("/")
+    res.redirect("/login")
 })
 
 router.get("/login", (req, res) => {

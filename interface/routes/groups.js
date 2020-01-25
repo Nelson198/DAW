@@ -11,8 +11,18 @@ const verificaAutenticacao = (req, res, next) => {
     }
 }
 
+router.get("/", verificaAutenticacao, (req, res) => {
+    const token = jwt.sign({ email: req.user.email }, "tpDAW1920", {
+        expiresIn: 3000
+    })
+
+    axios.get(`http://localhost:5003/api/groups?token=${token}`)
+        .then(dados => res.render("evento", { evento: dados.data }))
+        .catch(e => res.render("error", { error: e }))
+})
+
 router.get("/:id", verificaAutenticacao, (req, res) => {
-    const token = jwt.sign({ email: email }, "tpDAW1920", {
+    const token = jwt.sign({ email: req.user.email }, "tpDAW1920", {
         expiresIn: 3000
     })
 

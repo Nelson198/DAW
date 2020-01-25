@@ -1,4 +1,3 @@
-const createError = require("http-errors")
 const express = require("express")
 const path = require("path")
 const cookieParser = require("cookie-parser")
@@ -69,7 +68,7 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, "public")))
 
 app.use(session({
-    genid: req => {
+    genid: (req) => {
         return uuid()
     },
     store: new FileStore,
@@ -86,7 +85,6 @@ app.use(passport.session())
 app.use("/", require("./routes/index"))
 app.use("/groups", require("./routes/groups"))
 app.use("/profiles", require("./routes/profiles"))
-app.use("/settings", require("./routes/"))
 
 /**
  * Other HTTP requests
