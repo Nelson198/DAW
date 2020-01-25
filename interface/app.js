@@ -84,21 +84,15 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use("/", require("./routes/index"))
+app.use("/groups", require("./routes/groups"))
+app.use("/profiles", require("./routes/profiles"))
+app.use("/settings", require("./routes/"))
 
-/* Catch 404 and forward to error handler */
-app.use((req, res, next) => {
-    next(createError(404))
-})
-
-/* Error handler */
-app.use((err, req, res, next) => {
-    /* Set locals, only providing error in development */
-    res.locals.message = err.message
-    res.locals.error = req.app.get("env") === "development" ? err : {}
-
-    /* Render the error page */
-    res.status(err.status || 500)
-    res.render("error")
+/**
+ * Other HTTP requests
+ */
+app.use("*", (req, res, next) => {
+    res.status(500).render("error", { erro: "Pedido HTTP não suportado !", route: `${req.protocol}://${req.get("host")}${req.originalUrl}` })
 })
 
 app.listen(8080, () => console.log(`Servidor da interface à escuta na porta 8080...`))

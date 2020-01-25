@@ -18,29 +18,14 @@ router.get("/", verificaAutenticacao, (req, res) => {
         expiresIn: 3000
     })
 
-    axios.get(`http://localhost:5003/api/groups?token=${token}`)
+    axios.get(`http://localhost:5003/api/posts?token=${token}`)
         .then(dados => res.render("feed", { lista: dados.data }))
-        .catch(e => res.render("error", { error: e }))
-})
-
-router.get("/eventos/:id", verificaAutenticacao, (req, res) => {
-    const token = jwt.sign({ email: email }, "tpDAW1920", {
-        expiresIn: 3000
-    })
-
-    axios.get("http://localhost:5003/api/groups/" + req.params.id)
-        .then(dados => res.render("evento", { evento: dados.data }))
         .catch(e => res.render("error", { error: e }))
 })
 
 router.get("/logout", verificaAutenticacao, (req, res) => {
     req.logout()
     res.redirect("/")
-})
-
-// Only for testting interface
-router.get("/feed", (req, res) => {
-    res.render("feed")
 })
 
 router.get("/login", (req, res) => {
@@ -68,13 +53,6 @@ router.post("/register", (req, res) => {
     })
         .then(dados => res.redirect("/"))
         .catch(e => res.render("error", { error: e }))
-})
-
-/**
- * Other HTTP request
- */
-router.all("*", (req, res, next) => {
-    res.status(500).render("error", { erro: "Pedido HTTP não suportado !", route: `${req.protocol}://${req.get("host")}${req.originalUrl}` })
 })
 
 module.exports = router
