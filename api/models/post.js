@@ -21,10 +21,6 @@ const CommentSchema = new mongoose.Schema({
 }, { _id: false })
 
 const PostSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
     author: {
         type: String,
         required: true

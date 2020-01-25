@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 
 const ConversationSchema = new mongoose.Schema({
-    name: {
+    other: {
         type: String,
         required: true
     },
