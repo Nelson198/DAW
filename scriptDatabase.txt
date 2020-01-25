@@ -2,7 +2,7 @@ https://www.json-generator.com/
 
 {
   users: [
-    '{{repeat(100, 150)}}',
+    '{{repeat(40, 60)}}',
     {
       name: '{{firstName()}} {{surname()}}',
       email: '{{email()}}',
@@ -17,33 +17,27 @@ https://www.json-generator.com/
       groups: [],
       events: [],
       friendRequests: [],
-      conversations: [
-        '{{repeat(0, 5)}}',
-        {
-          name: '',
-          messages: []
-        }
-      ]
+      conversations: []
     }
   ],
   
   posts: [
-    '{{repeat(150, 250)}}',
+    '{{repeat(100, 175)}}',
     {
       author: '',
-      "public": '{{random("P", "G", "F")}}',
+      "public": '{{random("true", "false")}}',
       group: '',
       hashtags: [
         '{{repeat(0,7)}}',
         '{{lorem(1, "words")}}'
       ],
-      description: '',
+      description: '{{lorem(random(1,10), "words")}}',
       attachments: [],
       date: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-dd")}}',
       comments: [
-        '{{repeat(0,10)}}',
+        '{{repeat(0,5)}}',
         {
-          content: '',
+          content: '{{lorem(random(1,10), "words")}}',
           author: '',
           hashtags: [
             '{{repeat(0,3)}}',
@@ -57,10 +51,10 @@ https://www.json-generator.com/
   ],
   
     groups: [
-      '{{repeat(20, 40)}}',
+      '{{repeat(10, 25)}}',
       {
         name: '{{lorem(1, "words")}}',
-        description: '',
+        description: '{{lorem(random(1,10), "words")}}',
         "public": '{{random("true", "false")}}',
         joinKey: '{{guid()}}',
         members: [],
@@ -72,20 +66,10 @@ https://www.json-generator.com/
     events:  [
       '{{repeat(30, 50)}}',
       {
-        title: '{{lorem(1, "words")}}',
-        description: '',
+        title: '{{lorem(random(1,3), "words")}}',
+        description: '{{lorem(random(1,10), "words")}}',
         participants: [],
         date: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-dd")}}'
       }
     ]
 }
-
-
-
-
-
-
-
-
-
-
