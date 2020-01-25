@@ -18,7 +18,7 @@ const CommentSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     }
-})
+}, { _id: false })
 
 const PostSchema = new mongoose.Schema({
     name: {

@@ -1,5 +1,15 @@
 const mongoose = require("mongoose")
 
+const ConversationSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    messages: {
+        type: [String]
+    }
+}, { _id: false })
+
 const UserSchema = new mongoose.Schema({
     email: {
         type: String,
@@ -41,6 +51,9 @@ const UserSchema = new mongoose.Schema({
     },
     friendRequests: {
         type: [String]
+    },
+    conversations: {
+        type: [ConversationSchema]
     },
     creationDate: {
         type: Date,
