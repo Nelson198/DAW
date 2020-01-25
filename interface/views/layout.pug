@@ -9,8 +9,15 @@ html
 
         //- Bootstrap CSS
         link(rel="stylesheet" href="/stylesheets/bootstrap.min.css")
+        //- Fontawesome CSS
+        link(rel="stylesheet", href="/stylesheets/all.min.css")
+        //- Scrollbar Custom CSS
+        link(rel="stylesheet" href="/stylesheets/jquery.mCustomScrollbar.min.css")
         //- Feed CSS
         link(rel="stylesheet" href="/stylesheets/style-Feed.css")
+
+    body
+        block content
 
         //- JQuery 3.4.1
         script(src="javascripts/jquery-3.4.1.slim.min.js")
@@ -18,5 +25,7 @@ html
         script(src="javascripts/popper.min.js")
         //- Bootstrap JS
         script(src="javascripts/bootstrap.min.js")
-    body
-        block content
+        //- JQuery Custom Scroller
+        script(src="javascripts/jquery.mCustomScrollbar.concat.min.js")
+        //- My JS
+        script(src="javascripts/my.js")

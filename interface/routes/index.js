@@ -36,6 +36,12 @@ router.get("/register", (req, res) => {
     res.render("register")
 })
 
+/* For testting feed.pug
+router.get("/feed", (req, res) => {
+    res.render("feed")
+})
+*/
+
 router.post("/login", passport.authenticate("local", {
     successRedirect: "/",
     successFlash: "Utilizador autenticado com sucesso!",
