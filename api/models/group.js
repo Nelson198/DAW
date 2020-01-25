@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const shortid = require("shortid")
 
-const groupSchema = new mongoose.Schema({
+const GroupSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -21,10 +21,13 @@ const groupSchema = new mongoose.Schema({
     members: {
         type: [String]
     },
+    posts: {
+        type: [String]
+    },
     creationDate: {
         type: Date,
         default: Date.now
     }
 })
 
-module.exports = mongoose.model("group", groupSchema, "groups")
+module.exports = mongoose.model("group", GroupSchema, "groups")
