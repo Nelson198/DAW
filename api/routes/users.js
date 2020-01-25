@@ -1,4 +1,6 @@
 const Users = require("../controllers/user")
+const Groups = require("../controllers/group")
+const Events = require("../controllers/event")
 const express = require("express")
 const passport = require("passport")
 const bcrypt = require("bcrypt")
@@ -22,6 +24,20 @@ router.get("/:email", passport.authenticate("jwt", { session: false }), async (r
             friends.push(friend)
         }
         user.friends = friends
+
+        let groups = []
+        for (const groupId of user.groups) {
+            const group = await Groups.findOneById(groupId)
+            groups.push(group)
+        }
+        user.groups = groups
+
+        let events = []
+        for (const eventId of user.events) {
+            const event = await Events.findOneById(eventId)
+            events.push(event)
+        }
+        user.events = events
 
         res.jsonp(user)
     } catch (e) {

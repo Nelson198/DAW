@@ -8,10 +8,6 @@ module.exports.findOneById = id => {
     return Group.findOne({ _id: id }).exec()
 }
 
-module.exports.filtrarParticipante = pid => {
-    return Group.find({ participantes: pid }).exec()
-}
-
 module.exports.insert = grupo => {
     const newGroup = new Group(grupo)
     return newGroup.save()

@@ -3,8 +3,8 @@ nav#rightSidebar
     .rightSidebar-header.mb-2
         h3(id="titleSidebar") Chat
 
-    if (friends.length > 0)
-        each friend in friends
+    if (user.friends.length > 0)
+        each friend in user.friends
             a(class="nav-link d-flex align-items-center" href="#")
                 img(src="/images/user.svg" height="40" class="d-inline-block align-top mr-2" alt="")
                 span= friend.name

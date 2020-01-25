@@ -5,7 +5,6 @@ nav#leftSidebar
         h3(id="titleSidebar") Informatics Social Network
 
     ul.list-unstyled.components
-        p Bem vindo(a)
         li.active
             //-i.fas.fa-newspaper
             a(href="#") Feed de notícias
@@ -13,19 +12,13 @@ nav#leftSidebar
             //-i.fas.fa-users
             a.dropdown-toggle(href="#groupSubmenu" data-toggle="collapse" aria-expanded="false") Grupos
             ul#groupSubmenu.collapse.list-unstyled
-                li
-                    a(href="#") Grupo 1
-                li
-                    a(href="#") Grupo 2
-                li
-                    a(href="#") Grupo 3
+                each group in user.groups
+                    li
+                        a(href="#")= group.name
         li
             //-i.fas.fa-calendar
             a.dropdown-toggle(href="#eventSubmenu" data-toggle="collapse" aria-expanded="false") Eventos
             ul#eventSubmenu.collapse.list-unstyled
-                li
-                    a(href="#") Evento 1
-                li
-                    a(href="#") Evento 2
-                li
-                    a(href="#") Evento 3
+                each event in user.events
+                    li
+                        a(href="#")= event.name

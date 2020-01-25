@@ -49,6 +49,9 @@ const UserSchema = new mongoose.Schema({
     groups: {
         type: [String]
     },
+    events: {
+        type: [String]
+    },
     friendRequests: {
         type: [String]
     },
