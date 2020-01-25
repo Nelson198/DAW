@@ -1,4 +1,4 @@
-const Utilizadores = require("../controllers/user")
+const Users = require("../controllers/user")
 const express = require("express")
 const passport = require("passport")
 const bcrypt = require("bcrypt")
@@ -11,44 +11,56 @@ router.get("/", passport.authenticate("jwt", { session: false }), (req, res) => 
         .catch(e => res.status(500).jsonp(e))
 })
 
-router.get("/:email", passport.authenticate("jwt", { session: false }), (req, res) => {
-    Utilizadores.findOneByEmail(req.params.email)
-        .then(dados => res.jsonp(dados))
-        .catch(e => res.status(500).jsonp(e))
+router.get("/:email", passport.authenticate("jwt", { session: false }), async (req, res) => {
+    try {
+        const dados = await Users.findOneByEmail(req.params.email)
+        const user = dados.toObject()
+
+        let friends = []
+        for (const friendEmail of user.friends) {
+            const friend = await Users.findOneByEmail(friendEmail)
+            friends.push(friend)
+        }
+        user.friends = friends
+
+        res.jsonp(user)
+    } catch (e) {
+        res.status(500).jsonp(e)
+    }
 })
 
 router.post("/", (req, res) => {
-    Utilizadores.insert(req.body)
+    Users.insert(req.body)
         .then(dados => res.jsonp(dados))
         .catch(e => res.status(500).jsonp(e))
 })
 
 router.post("/:email/addFriend", (req, res) => {
-    Utilizadores.addFriend(req.params.email, req.body.email)
+    Users.addFriend(req.params.email, req.body.email)
         .then(dados => res.jsonp(dados))
         .catch(e => res.status(500).jsonp(e))
 })
 
 router.post("/:email/acceptFriend", (req, res) => {
-    Utilizadores.acceptFriend(req.params.email, req.body.email)
+    Users.acceptFriend(req.params.email, req.body.email)
         .then(dados => res.jsonp(dados))
         .catch(e => res.status(500).jsonp(e))
 })
 
 router.post("/:email/removeFriend", (req, res) => {
-    Utilizadores.removeFriend(req.params.email, req.body.email)
+    Users.removeFriend(req.params.email, req.body.email)
         .then(dados => res.jsonp(dados))
         .catch(e => res.status(500).jsonp(e))
 })
 
 router.post("/:email/joinGroup", (req, res) => {
-    Utilizadores.joinGroup(req.params.email, req.body.joinKey)
+    Users.joinGroup(req.params.email, req.body.joinKey)
         .then(dados => res.jsonp(dados))
         .catch(e => res.status(500).jsonp(e))
 })
 
 router.post("/:email/leaveGroup", (req, res) => {
-    Utilizadores.leaveGroup(req.params.email, req.body.joinKey)
+    Users.leaveGroup(req.params.email, req.body.joinKey)
         .then(dados => res.jsonp(dados))
         .catch(e => res.status(500).jsonp(e))
 })
@@ -58,13 +70,13 @@ router.patch("/:email", (req, res) => {
     if (req.body.password)
         req.body.password = bcrypt.hashSync(req.body.password, 10)
 
-    Utilizadores.updateOne(req.params.email, req.body)
+    Users.updateOne(req.params.email, req.body)
         .then(dados => res.jsonp(dados))
         .catch(e => res.status(500).jsonp(e))
 })
 
 router.delete("/:email", passport.authenticate("jwt", { session: false }), (req, res) => {
-    Utilizadores.remove(req.params.email)
+    Users.remove(req.params.email)
         .then(dados => res.jsonp(dados))
         .catch(e => res.status(500).jsonp(e))
 })
