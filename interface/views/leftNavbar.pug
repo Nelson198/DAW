@@ -12,13 +12,21 @@ nav#leftSidebar
             //-i.fas.fa-users
             a.dropdown-toggle(href="#groupSubmenu" data-toggle="collapse" aria-expanded="false") Grupos
             ul#groupSubmenu.collapse.list-unstyled
-                each group in user.groups
+                if (user.groups.length > 0)
+                    each group in user.groups
+                        li
+                            a(href="#")= group.name
+                else
                     li
-                        a(href="#")= group.name
+                        a Nenhum grupo
         li
             //-i.fas.fa-calendar
             a.dropdown-toggle(href="#eventSubmenu" data-toggle="collapse" aria-expanded="false") Eventos
             ul#eventSubmenu.collapse.list-unstyled
-                each event in user.events
+                if (user.events.length > 0)
+                    each event in user.events
+                        li
+                            a(href="#")= event.name
+                else
                     li
-                        a(href="#")= event.name
+                        a Nenhum evento
