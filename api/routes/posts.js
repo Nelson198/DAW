@@ -8,7 +8,13 @@ const router = express.Router()
 router.get("/", passport.authenticate("jwt", { session: false }), async (req, res) => {
     try {
         const data = await Users.findOneByEmail(req.user.email)
-        const posts = await Posts.find({ $or: [{ public: true }, { author: req.user.email }, { public: false, group: { $in: data.groups } }] })
+        const aux = await Posts.find({ $or: [{ public: true }, { author: req.user.email }, { public: false, group: { $in: data.groups } }] })
+
+        let posts = []
+        for (const post of aux) {
+            post.author = await Users.findOneByEmail(post.author)
+            posts.push(post)
+        }
 
         res.jsonp(posts)
     } catch (e) {

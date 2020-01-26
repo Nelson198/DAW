@@ -4,22 +4,8 @@ const Events = require("../controllers/event")
 const express = require("express")
 const passport = require("passport")
 const bcrypt = require("bcrypt")
-const fs = require("fs")
-const path = require("path")
 const moment = require("moment")
 const router = express.Router()
-
-// Function that converts an image to base64 encoding
-function base64(filename) {
-    return new Promise((resolve, reject) => {
-        fs.readFile(filename, (err, data) => {
-            if (err)
-                return reject(err)
-
-            resolve("data:image/" + path.extname(filename).substr(1) + ";base64," + data.toString("base64"))
-        })
-    })
-}
 
 /* GET users listing. */
 router.get("/", passport.authenticate("jwt", { session: false }), (req, res) => {
@@ -36,12 +22,9 @@ router.get("/:email", passport.authenticate("jwt", { session: false }), async (r
 
         const user = dados.toObject()
 
-        user.avatar = await base64(`data/avatars/${user.avatar}`)
-
         let friends = []
         for (const friendEmail of user.friends) {
             const friend = await Users.findOneByEmail(friendEmail)
-            friend.avatar = await base64(`data/avatars/${friend.avatar}`)
             friends.push(friend)
         }
         user.friends = friends

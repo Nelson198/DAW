@@ -1,12 +1,28 @@
 const User = require("../models/user")
 const Group = require("../models/group")
+const fs = require("fs")
+const path = require("path")
+
+// Function that converts an image to base64 encoding
+function base64(filename) {
+    return new Promise((resolve, reject) => {
+        fs.readFile(filename, (err, data) => {
+            if (err)
+                return reject(err)
+
+            resolve("data:image/" + path.extname(filename).substr(1) + ";base64," + data.toString("base64"))
+        })
+    })
+}
 
 module.exports.find = () => {
     return User.find().exec()
 }
 
-module.exports.findOneByEmail = email => {
-    return User.findOne({ email: email }).exec()
+module.exports.findOneByEmail = async (email) => {
+    const user = await User.findOne({ email: email }).exec()
+    user.avatar = await base64(`data/avatars/${user.avatar}`)
+    return user
 }
 
 module.exports.insert = user => {
