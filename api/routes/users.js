@@ -6,6 +6,7 @@ const passport = require("passport")
 const bcrypt = require("bcrypt")
 const fs = require("fs")
 const path = require("path")
+const moment = require("moment")
 const router = express.Router()
 
 // Function that converts an image to base64 encoding
@@ -55,6 +56,8 @@ router.get("/:email", passport.authenticate("jwt", { session: false }), async (r
             events.push(event)
         }
         user.events = events
+
+        user.birthday = moment(user.birthday).format('DD-MM-YYYY') + " : " + moment(user.birthday).fromNow("years")
 
         res.jsonp(user)
     } catch (e) {

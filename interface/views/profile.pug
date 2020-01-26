@@ -1,0 +1,73 @@
+extends layout.pug
+block content
+
+    include topNavbar.pug
+
+    //- Layout    
+    .wrapper
+        //- Sidebar
+        include leftNavbar.pug
+
+        //- Page Content
+        .container-fluid.gedf-wrapper
+            //- Post card
+            .card.gedf-card.card1
+                .card-header
+                    ul#myTab.nav.nav-tabs.card-header-tabs(role="tablist")
+                        li.nav-item
+                            a#posts-tab.nav-link.active(data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="true")
+                                | Informação
+                        li.nav-item
+                            a#images-tab.nav-link(data-toggle="tab" role="tab" aria-controls="images" aria-selected="false" href="#images")
+                                | Publicações
+                .card-body
+                    #myTabContent.tab-content
+                        #posts.tab-pane.fade.show.active(role="tabpanel" aria-labelledby="posts-tab")
+                            .card
+                                .card-header
+                                    .d-flex.justify-content-between.align-items-center
+                                        .d-flex.justify-content-between.align-items-center
+                                            a.mr-2(href=`/profiles/${user.email}`)
+                                                img.rounded-circle(width="150" src=`${user.avatar}` alt="")
+                                            .ml-2
+                                                .h5.m-0
+                                                    a(href=`/profiles/${user.email}`)
+                                                        span= user.name
+                                                        span  - 
+                                                        span= user.email
+                                                .h7.text-muted
+                                                    span Género: 
+                                                    if (user.gender == "male")
+                                                        span Macho
+                                                    else
+                                                        span Fêmea
+                                                .h7.text-muted
+                                                    span Aniversário: 
+                                                    span= user.birthday
+                                                .h7.text-muted
+                                                    span Curso: 
+                                                    span= user.course
+                                                .h7.text-muted
+                                                    span Biografia: 
+                                                    span= user.bio
+                                                .h7.text-muted
+                                                    span Amigos:
+                                                    br
+                                                    each friend in user.friends
+                                                        a.mr-2(href=`/profiles/${user.email}`)
+                                                            img.rounded-circle(width="20" src=`${friend.avatar}` alt="")
+                                                            | 
+                                                            span= friend.name
+                        #images.tab-pane.fade(role="tabpanel" aria-labelledby="images-tab")
+                            if (user.posts.length > 0)
+                                each post in user.posts
+                                    .card
+                                        .card-body
+                                            .text-muted.h7.mb-2
+                                                i.fa.fa-clock-o= post.date
+                                            p.card-text= post.description
+                            else
+                                | Nenhuma Publicação
+
+        //- Chat
+        include chat.pug
