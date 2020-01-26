@@ -45,6 +45,7 @@ app.set("json spaces", 4)
 app.use("/api/groups", require("./routes/groups"))
 app.use("/api/users", require("./routes/users"))
 app.use("/api/posts", require("./routes/posts"))
+app.use("/api/events", require("./routes/events"))
 app.use("/api/backup", require("./routes/backup"))
 
 app.use("*", (req, res) => {
