@@ -60,12 +60,12 @@ router.post("/register", (req, res) => {
     axios.post("http://localhost:5000/api/users", {
         email: req.body.email,
         course: req.body.course,
-        name: req.body.nome,
+        name: req.body.name,
         gender: req.body.gender,
         birthday: req.body.birthday,
         password: hash
     })
-        .then(dados => res.redirect("/"))
+        .then(dados => res.redirect("/login"))
         .catch(e => res.render("error", { error: e }))
 })
 
