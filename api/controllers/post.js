@@ -1,13 +1,18 @@
 const Post = require("../models/post")
 const User = require("../models/user")
 const Group = require("../models/group")
+const moment = require("moment")
 
 module.exports.find = () => {
     return Post.find({}).sort({ date: -1 }).exec()
 }
 
-module.exports.findOneById = id => {
-    return Post.findOne({ _id: id }).exec()
+module.exports.findOneById = async (id) => {
+    const aux = await Post.findOne({ _id: id }).exec()
+    const post = aux.toObject()
+    post.date = moment(post.date).fromNow()
+
+    return post
 }
 
 module.exports.insert = async post => {

@@ -30,7 +30,7 @@ router.get("/:id", verificaAutenticacao, async (req, res) => {
         const user = await axios.get(`http://localhost:5000/api/users/${req.user.email}?token=${token}`)
         const group = await axios.get(`http://localhost:5000/api/groups/${req.params.id}?token=${token}`)
 
-        res.render("group", { group: group.data, user: user.data, group: req.params.id })
+        res.render("group", { group: group.data, user: user.data, groupId: req.params.id })
     } catch (e) {
         res.render("error", { error: e })
     }

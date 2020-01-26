@@ -14,13 +14,13 @@ nav#leftSidebar
                 //-i.fas.fa-newspaper
                 a(href="/") Feed de notícias
 
-        if (group)
+        if (groupId)
             li
                 //-i.fas.fa-users
                 a.dropdown-toggle(href="#groupSubmenu" data-toggle="collapse" aria-expanded="false") Grupos
                 ul#groupSubmenu.collapse.list-unstyled.show
                     each group in user.groups
-                        if (group._id == group)
+                        if (group._id == groupId)
                             li.active
                                 a(href=`/groups/${group._id}`)= group.name
                         else
@@ -39,13 +39,13 @@ nav#leftSidebar
                         li
                             a Nenhum grupo
 
-        if (event)
+        if (eventId)
             li
                 //-i.fas.fa-calendar
                 a.dropdown-toggle(href="#eventSubmenu" data-toggle="collapse" aria-expanded="false") Eventos
                 ul#eventSubmenu.collapse.list-unstyled.show
                     each event in user.events
-                        if (event._id == event)
+                        if (event._id == eventId)
                             li.active
                                 a(href=`/events/${event_id}`)= event.name
                         else

@@ -21,7 +21,7 @@ passport.use(new LocalStrategy(
         const token = jwt.sign({ email: email }, "tpDAW1920", {
             expiresIn: 3000
         })
-        axios.get(`http://localhost:5003/api/users/${email}?token=${token}`)
+        axios.get(`http://localhost:5000/api/users/${email}?token=${token}`)
             .then(dados => {
                 const user = dados.data
                 if (!user) {
@@ -47,7 +47,7 @@ passport.deserializeUser((email, done) => {
         expiresIn: 3000
     })
 
-    axios.get(`http://localhost:5003/api/users/${email}?token=${token}`)
+    axios.get(`http://localhost:5000/api/users/${email}?token=${token}`)
         .then(dados => done(null, dados.data))
         .catch(erro => done(erro))
 })

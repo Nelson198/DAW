@@ -10,7 +10,7 @@ nav(class="navbar navbar-dark" style="background-color: rgb(64, 138, 167); borde
     ul(class="nav row align-items-center")
 
         li(class="nav-item")
-            a(class="nav-link active d-flex align-items-center topNavbar" href="#") 
+            a(class="nav-link active d-flex align-items-center topNavbar" href=`/profiles/${user.email}`) 
                 img(src=`${user.avatar}` height="40" class="d-inline-block align-top mr-2" alt="")
                 span= user.name
 
