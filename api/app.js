@@ -5,7 +5,7 @@ const mongoose = require("mongoose")
 const { app, server } = require("./socket")
 
 // Estabelecer a ligação à base de dados
-mongoose.connect("mongodb://127.0.0.1:27017/daw2019-agenda", { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect("mongodb://127.0.0.1:27017/ISN", { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log("Servidor Mongo da API da agenda a correr..."))
     .catch((erro) => console.log("Mongo: erro na conexão: " + erro))
 
@@ -51,4 +51,4 @@ app.use("*", (req, res) => {
     res.status(404).json({ error: "Innefective route." })
 })
 
-server.listen(5003, () => console.log(`Servidor da API à escuta na porta 5003...`))
+server.listen(5000, () => console.log(`Servidor da API à escuta na porta 5000...`))
