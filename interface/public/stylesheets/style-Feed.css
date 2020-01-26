@@ -97,7 +97,7 @@ ul ul a {
     display: block;
 }
 
-/* Separator destacado (active) */
+/* Separador destacado (active) */
 #leftSidebar ul li.active > a {
     color: #fff;
     background: #6d7fcc;
