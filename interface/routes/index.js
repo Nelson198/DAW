@@ -19,8 +19,8 @@ router.get("/", verificaAutenticacao, async (req, res) => {
     })
 
     try {
-        const posts = await axios.get(`http://localhost:5003/api/posts?token=${token}`)
-        const user = await axios.get(`http://localhost:5003/api/users/${req.user.email}?token=${token}`)
+        const posts = await axios.get(`http://localhost:5000/api/posts?token=${token}`)
+        const user = await axios.get(`http://localhost:5000/api/users/${req.user.email}?token=${token}`)
 
         res.render("feed", { posts: posts.data, user: user.data })
     } catch (e) {
@@ -57,7 +57,7 @@ router.post("/login", passport.authenticate("local", {
 
 router.post("/register", (req, res) => {
     const hash = bcrypt.hashSync(req.body.password, 10)
-    axios.post("http://localhost:5003/api/users", {
+    axios.post("http://localhost:5000/api/users", {
         email: req.body.email,
         name: req.body.nome,
         password: hash

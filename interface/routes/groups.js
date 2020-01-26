@@ -16,7 +16,7 @@ router.get("/", verificaAutenticacao, (req, res) => {
         expiresIn: 3000
     })
 
-    axios.get(`http://localhost:5003/api/groups?token=${token}`)
+    axios.get(`http://localhost:5000/api/groups?token=${token}`)
         .then(dados => res.render("evento", { evento: dados.data }))
         .catch(e => res.render("error", { error: e }))
 })
@@ -26,7 +26,7 @@ router.get("/:id", verificaAutenticacao, (req, res) => {
         expiresIn: 3000
     })
 
-    axios.get(`http://localhost:5003/api/groups/${req.params.id}?token=${token}`)
+    axios.get(`http://localhost:5000/api/groups/${req.params.id}?token=${token}`)
         .then(dados => res.render("evento", { evento: dados.data }))
         .catch(e => res.render("error", { error: e }))
 })
