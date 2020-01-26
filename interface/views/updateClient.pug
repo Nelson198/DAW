@@ -33,15 +33,12 @@ block content
                                             form.form-update(action="/update" method="POST")
                                                 .h5.m-0
                                                     a(href=`/profiles/${user.email}`)
-                                                        input#inputName.form-control(type="text" name="name" placeholder=`${user.name}` required)
-                                                        span  - 
-                                                        input#inputEmail.form-control(type="email" name="email" placeholder=`${user.email}` required autofocus)
                                                 .h7.text-muted
-                                                    span Género: 
-                                                    if (user.gender == "male")
-                                                        span Masculino
-                                                    else
-                                                        span Feminino
+                                                    span Nome:
+                                                    input#inputName.form-control(type="text" name="name" placeholder=`${user.name}` required)
+                                                .h7.text-muted
+                                                    span E-mail:                                                        
+                                                    input#inputEmail.form-control(type="email" name="email" placeholder=`${user.email}` required autofocus)
                                                 .h7.text-muted
                                                     span Aniversário:
                                                     input#inputDate.form-control(type="date" name="birthday" placeholder=`${user.birthday}` required)
@@ -50,15 +47,19 @@ block content
                                                     input#inputCourse.form-control(type="text" name="course" placeholder=`${user.course}` required) 
                                                 .h7.text-muted
                                                     span Biografia:
-                                                    span= user.bio
-                                            button.btn.btn-lg.btn-block.text-uppercase#Register(type="submit") Guardar alterações
+                                                    input#inputCourse.form-control(type="text" name="bio" placeholder=`${user.bio}`) 
+
+                                                button.btn.btn-lg.btn-block#Register(type="submit") Guardar
                                                     
                         #images.tab-pane.fade(role="tabpanel" aria-labelledby="images-tab")
-                            each friend in user.friends
-                                a.mr-2(href=`/profiles/${user.email}`)
-                                    img.rounded-circle(width="20" src=`${friend.avatar}` alt="")
-                                    | 
-                                    span= friend.name
+                            if (user.friends.length > 0)
+                                each friend in user.friends
+                                    a.mr-2(href=`/profiles/${user.email}`)
+                                        img.rounded-circle(width="20" src=`${friend.avatar}` alt="")
+                                        | 
+                                        span= friend.name
+                            else
+                                | Nenhum amigo
 
         //- Chat
         include chat.pug
