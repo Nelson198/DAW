@@ -13,15 +13,15 @@ html
                     .card.card-register.my-5
                         .card-body
                             h5.card-title.text-center Registar
-                            form.form-signin
+                            form.form-register(action="/register" method="POST")
                                 .form-label-group
-                                    input#inputEmail.form-control(type="email" placeholder="Email address" required autofocus)
+                                    input#inputEmail.form-control(type="email" name="email" placeholder="Email" required autofocus)
                                     label(for="inputEmail") Email
                                 .form-label-group
-                                    input#inputCourse.form-control(type="text" placeholder="Curso" required)
+                                    input#inputCourse.form-control(type="text" name="course" placeholder="Curso" required)
                                     label(for="inputCourse") Curso
                                 .form-label-group
-                                    input#inputName.form-control(type="text" placeholder="Nome" required)
+                                    input#inputName.form-control(type="text" name="name" placeholder="Nome" required)
                                     label(for="inputName") Nome
                                 .form-label-group
                                     select.form-control(name="gender" style="height: 50px" required)
@@ -29,10 +29,10 @@ html
                                         option(value="male") Masculino
                                         option(value="female") Feminino
                                 .form-label-group
-                                    input#inputDate.form-control(type="date" placeholder="Data de nascimento" required)
+                                    input#inputDate.form-control(type="date" name="birthday" placeholder="Data de nascimento" required)
                                     label(for="inputDate") Data de nascimento
                                 .form-label-group
-                                    input#inputPassword.form-control(type="password" placeholder="Password" required)
+                                    input#inputPassword.form-control(type="password" name="password" placeholder="Password" required)
                                     label(for="inputPassword") Password
                                 hr.my-4
                                 button.btn.btn-lg.btn-block.text-uppercase#Register(type="submit") Registar

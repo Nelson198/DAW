@@ -23,11 +23,11 @@ body {
     padding: 2rem;
 }
   
-.form-register {
+.form-signin, .form-register {
     width: 100%;
 }
   
-.form-register .btn {
+.form-signin .btn, .form-register .btn {
     font-size: 80%;
     border-radius: 5rem;
     letter-spacing: .1rem;
@@ -103,6 +103,6 @@ body {
 }
 
 #Register:hover, #Login:hover {
-    background-color:#336e85;
-    border-color:#336e85;
+    background-color: #336e85;
+    border-color: #336e85;
 }
