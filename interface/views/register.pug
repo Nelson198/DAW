@@ -3,7 +3,7 @@ html
     head
         title Registo
         //- Register style
-        link(rel="stylesheet", href="/stylesheets/style-Login-Register.css")
+        link(rel="stylesheet" href="/stylesheets/style-Login-Register.css")
         //- Bootstrap CSS
         link(rel="stylesheet" href="/stylesheets/bootstrap.min.css")
     body
@@ -34,10 +34,16 @@ html
                                 .form-label-group
                                     input#inputPassword.form-control(type="password" name="password" placeholder="Password" required)
                                     label(for="inputPassword") Password
-                                hr.my-4
                                 button.btn.btn-lg.btn-block.text-uppercase#Register(type="submit") Registar
+                                hr.my-4
+                            h5.card-title2.text-center Já te registaste ?
+                            button.btn.btn-lg.btn-block.text-uppercase#Option(onclick=`goToPage("login")`) Fazer login
 
         //- JQuery 3.4.1
         script(src="/javascripts/jquery-3.4.1.slim.min.js")
         //- Bootstrap JS
-        script(src="javascripts/bootstrap.min.js")
+        script(src="/javascripts/bootstrap.min.js")
+        //- Axios
+        script(src="/javascripts/axios.min.js")
+        //- My JS
+        script(src="/javascripts/actions.js")

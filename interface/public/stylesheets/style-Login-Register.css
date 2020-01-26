@@ -18,6 +18,12 @@ body {
     font-weight: 300;
     font-size: 1.5rem;
 }
+
+.card-title2 {
+    margin-bottom: 2rem;
+    font-weight: 300;
+    font-size: 1rem;
+}
   
 .card-register .card-body {
     padding: 2rem;
@@ -105,4 +111,23 @@ body {
 #Register:hover, #Login:hover {
     background-color: #336e85;
     border-color: #336e85;
+}
+
+#Option {
+    color: #666666;
+    background: #e5e5e5;
+    border-color: #e5e5e5;
+
+    font-size: 80%;
+    border-radius: 5rem;
+    letter-spacing: .1rem;
+    font-weight: bold;
+    padding: 1rem;
+    transition: all 0.2s;
+}
+
+#Option:hover {
+    color: #505050;
+    background: #b4b4b4;
+    border-color: #b4b4b4;
 }
