@@ -25,42 +25,45 @@ block content
                         #posts.tab-pane.fade.show.active(role="tabpanel" aria-labelledby="posts-tab")
                             .card
                                 .card-header
+                                    // TODO - embelezar este "botão"
+                                    if (ownProfile)
+                                        a(href="/profiles/updateProfile") Edit
                                     .d-flex.justify-content-between.align-items-center
                                         .d-flex.justify-content-between.align-items-center
-                                            a.mr-2(href=`/profiles/${user.email}`)
-                                                img.rounded-circle(width="150" src=`${user.avatar}` alt="")
+                                            a.mr-2(href=`/profiles/${profile.email}`)
+                                                img.rounded-circle(width="150" src=`${profile.avatar}` alt="")
                                             .ml-2
                                                 .h5.m-0
-                                                    a(href=`/profiles/${user.email}`)
-                                                        span= user.name
+                                                    a(href=`/profiles/${profile.email}`)
+                                                        span= profile.name
                                                         span  - 
-                                                        span= user.email
+                                                        span= profile.email
                                                 .h7.text-muted
                                                     span Género: 
-                                                    if (user.gender == "male")
+                                                    if (profile.gender == "male")
                                                         span Masculino
                                                     else
                                                         span Feminino
                                                 .h7.text-muted
                                                     span Aniversário: 
-                                                    span= user.birthday
+                                                    span= profile.birthday
                                                 .h7.text-muted
                                                     span Curso: 
-                                                    span= user.course
+                                                    span= profile.course
                                                 .h7.text-muted
                                                     span Biografia: 
-                                                    span= user.bio
+                                                    span= profile.bio
                                                 .h7.text-muted
                                                     span Amigos:
                                                     br
-                                                    each friend in user.friends
+                                                    each friend in profile.friends
                                                         a.mr-2(href=`/profiles/${friend.email}`)
                                                             img.rounded-circle(width="20" src=`${friend.avatar}` alt="")
                                                             | 
                                                             span= friend.name
                         #images.tab-pane.fade(role="tabpanel" aria-labelledby="images-tab")
-                            if (user.posts.length > 0)
-                                each post in user.posts
+                            if (profile.posts.length > 0)
+                                each post in profile.posts
                                     .card
                                         .card-body
                                             .text-muted.h7.mb-2
