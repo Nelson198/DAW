@@ -31,6 +31,9 @@ router.get("/", passport.authenticate("jwt", { session: false }), (req, res) => 
 router.get("/:email", passport.authenticate("jwt", { session: false }), async (req, res) => {
     try {
         const dados = await Users.findOneByEmail(req.params.email)
+        if (!dados)
+            return res.jsonp()
+
         const user = dados.toObject()
 
         user.avatar = await base64(`data/avatars/${user.avatar}`)
