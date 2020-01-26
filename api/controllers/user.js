@@ -48,6 +48,10 @@ module.exports.acceptFriend = async (email, newFriend) => {
     await User.updateOne({ email: newFriend }, { $push: { friends: email } }).exec()
 }
 
+module.exports.rejectFriend = async (email, rejectFriend) => {
+    await User.updateOne({ email: email }, { $pull: { friendRequests: rejectFriend } }).exec()
+}
+
 module.exports.removeFriend = async (email, friend) => {
     await User.updateOne({ email: email }, { $pull: { friends: friend } }).exec()
     await User.updateOne({ email: newFriend }, { $pull: { friends: email } }).exec()

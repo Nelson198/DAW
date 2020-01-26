@@ -69,6 +69,12 @@ router.post("/:email/acceptFriend", (req, res) => {
         .catch(e => res.status(500).jsonp(e))
 })
 
+router.post("/:email/rejectFriend", (req, res) => {
+    Users.rejectFriend(req.params.email, req.body.email)
+        .then(dados => res.jsonp(dados))
+        .catch(e => res.status(500).jsonp(e))
+})
+
 router.post("/:email/removeFriend", (req, res) => {
     Users.removeFriend(req.params.email, req.body.email)
         .then(dados => res.jsonp(dados))
