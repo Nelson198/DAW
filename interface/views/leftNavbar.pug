@@ -47,10 +47,10 @@ nav#leftSidebar
                     each event in user.events
                         if (event._id == eventId)
                             li.active
-                                a(href=`/events/${event_id}`)= event.name
+                                a(href=`/events/${event._id}`)= event.title
                         else
                             li
-                                a(href=`/events/${event_id}`)= event.name
+                                a(href=`/events/${event._id}`)= event.title
         else
             li
                 //-i.fas.fa-calendar
@@ -59,7 +59,7 @@ nav#leftSidebar
                     if (user.events.length > 0)
                         each event in user.events
                             li
-                                a(href=`/events/${event_id}`)= event.name
+                                a(href=`/events/${event._id}`)= event.title
                     else
                         li
                             a Nenhum evento
