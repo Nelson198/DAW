@@ -11,9 +11,6 @@ html
             .row
                 .col-sm-9.col-md-7.col-lg-5.mx-auto
                     .card.card-register.my-5
-                        // TODO
-                        if (!success)
-                            | Autenticação falhou
                         .card-body
                             h5.card-title.text-center Login
                             form.form-signin(action="/login" method="POST")
@@ -24,7 +21,11 @@ html
                                     input#inputPassword.form-control(type="password" name="password" placeholder="Password" required)
                                     label(for="inputPassword") Password
                                 button.btn.btn-lg.btn-block.text-uppercase#Login(type="submit") Login
-                                hr.my-4
+                                //- Show / not show authentication success
+                                if (!success)
+                                    hr.my-4
+                                    h5.card-title3.text-center Autenticação falhou
+                            hr.my-4
                             h5.card-title2.text-center Ainda não estás registado ?
                             a(href="/register" id="link")
                                 button.btn.btn-lg.btn-block.text-uppercase#Option Fazer registo
