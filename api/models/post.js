@@ -1,54 +1,65 @@
 const mongoose = require("mongoose")
 
-const CommentSchema = new mongoose.Schema({
-    content: {
-        type: String
+const CommentSchema = new mongoose.Schema(
+    {
+        content: {
+            type: String
+        },
+        author: {
+            type: String,
+            required: true
+        },
+        hashtags: {
+            type: [String]
+        },
+        attachments: {
+            type: [String]
+        },
+        date: {
+            type: Date,
+            default: Date.now
+        }
     },
-    author: {
-        type: String,
-        required: true
-    },
-    hashtags: {
-        type: [String]
-    },
-    attachments: {
-        type: [String]
-    },
-    date: {
-        type: Date,
-        default: Date.now
+    { 
+        _id: false,
+        versionKey: false
     }
-}, { _id: false })
+)
 
-const PostSchema = new mongoose.Schema({
-    author: {
-        type: String,
-        required: true
+const PostSchema = new mongoose.Schema(
+    {
+        author: {
+            type: String,
+            required: true
+        },
+        public: {
+            type: Boolean,
+            required: true
+        },
+        group: {
+            type: String,
+            default: null
+        },
+        hashtags: {
+            type: [String]
+        },
+        description: {
+            type: String
+        },
+        attachments: {
+            type: [String]
+        },
+        comments: {
+            type: [CommentSchema]
+        },
+        date: {
+            type: Date,
+            default: Date.now
+        }
     },
-    public: {
-        type: Boolean,
-        required: true
-    },
-    group: {
-        type: String,
-        default: null
-    },
-    hashtags: {
-        type: [String]
-    },
-    description: {
-        type: String
-    },
-    attachments: {
-        type: [String]
-    },
-    comments: {
-        type: [CommentSchema]
-    },
-    date: {
-        type: Date,
-        default: Date.now
+    {
+        versionKey: false
     }
-})
+)
 
 module.exports = mongoose.model("post", PostSchema, "posts")
