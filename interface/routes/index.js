@@ -59,7 +59,10 @@ router.post("/register", (req, res) => {
     const hash = bcrypt.hashSync(req.body.password, 10)
     axios.post("http://localhost:5000/api/users", {
         email: req.body.email,
+        course: req.body.course,
         name: req.body.nome,
+        gender: req.body.gender,
+        birthday: req.body.birthday,
         password: hash
     })
         .then(dados => res.redirect("/"))

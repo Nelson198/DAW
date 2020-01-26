@@ -6,7 +6,7 @@ const { app, server } = require("./socket")
 
 // Estabelecer a ligação à base de dados
 mongoose.connect("mongodb://127.0.0.1:27017/ISN", { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log("Servidor Mongo da API da agenda a correr..."))
+    .then(() => console.log("Servidor Mongo da API a correr..."))
     .catch((erro) => console.log("Mongo: erro na conexão: " + erro))
 
 // Configurar a autenticação com JWT
