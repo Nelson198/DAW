@@ -2,6 +2,7 @@ const Post = require("../models/post")
 const User = require("../models/user")
 const Group = require("../models/group")
 const moment = require("moment")
+moment.locale("pt-pt")
 
 module.exports.find = () => {
     return Post.find({}).sort({ date: -1 }).exec()
