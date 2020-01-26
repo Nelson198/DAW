@@ -28,7 +28,7 @@ router.post("/:id/addParticipant", passport.authenticate("jwt", { session: false
         .catch(e => res.status(500).jsonp(e))
 })
 
-router.post("/:id/remmoveParticipant", passport.authenticate("jwt", { session: false }), (req, res) => {
+router.post("/:id/removeParticipant", passport.authenticate("jwt", { session: false }), (req, res) => {
     Events.removeParticipant(req.params.id, req.body.email)
         .then(dados => res.jsonp(dados))
         .catch(e => res.status(500).jsonp(e))

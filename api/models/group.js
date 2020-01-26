@@ -24,6 +24,9 @@ const GroupSchema = new mongoose.Schema({
     posts: {
         type: [String]
     },
+    files: {
+        type: [String]
+    },
     creationDate: {
         type: Date,
         default: Date.now

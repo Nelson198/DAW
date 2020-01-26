@@ -59,6 +59,7 @@ https://www.json-generator.com/
         joinKey: '{{guid()}}',
         members: [],
         posts: [],
+        files: [],
         creationDate: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-dd")}}'
       }      
     ],

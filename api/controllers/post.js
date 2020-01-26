@@ -20,7 +20,7 @@ module.exports.insert = async post => {
     const newPost = new Post(post)
     await User.updateOne({ email: newPost.author }, { $push: { posts: newPost._id } }).exec()
     if (newPost.group !== null)
-        await Group.updateOne({ _id: newPost.group }, { $push: { posts: newPost._id } }).exec()
+        await Group.updateOne({ _id: newPost.group }, { $push: { posts: newPost._id, files: newPost.attachments } }).exec()
     return newPost.save()
 }
 
