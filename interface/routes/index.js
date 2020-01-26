@@ -22,6 +22,11 @@ router.get("/", verificaAutenticacao, async (req, res) => {
         const posts = await axios.get(`http://localhost:5000/api/posts?token=${token}`)
         const user = await axios.get(`http://localhost:5000/api/users/${req.user.email}?token=${token}`)
 
+        for (const post of posts.data) {
+            const author = await axios.get(`http://localhost:5000/api/users/${post.author}?token=${token}`)
+            post.author = author.data
+        }
+
         res.render("feed", { posts: posts.data, user: user.data })
     } catch (e) {
         res.render("error", { error: e })

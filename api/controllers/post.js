@@ -4,8 +4,17 @@ const Group = require("../models/group")
 const moment = require("moment")
 moment.locale("pt-pt")
 
-module.exports.find = () => {
-    return Post.find({}).sort({ date: -1 }).exec()
+module.exports.find = async () => {
+    const aux = await Post.find({}).sort({ date: -1 }).exec()
+
+    let posts = []
+    for (const p of aux) {
+        const post = p.toObject()
+        post.date = moment(post.date).fromNow()
+        posts.push(post)
+    }
+
+    return posts
 }
 
 module.exports.findOneById = async (id) => {
