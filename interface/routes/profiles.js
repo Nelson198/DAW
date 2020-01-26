@@ -31,7 +31,7 @@ router.get("/:id", verificaAutenticacao, async (req, res) => {
     })
 
     try {
-        const profile = await axios.get(`http://localhost:5000/api/users/${req.user.email}?token=${token}`)
+        const profile = await axios.get(`http://localhost:5000/api/users/${req.params.id}?token=${token}`)
 
         let posts = []
         for (const postId of profile.data.posts) {

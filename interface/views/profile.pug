@@ -54,7 +54,7 @@ block content
                                                     span Amigos:
                                                     br
                                                     each friend in user.friends
-                                                        a.mr-2(href=`/profiles/${user.email}`)
+                                                        a.mr-2(href=`/profiles/${friend.email}`)
                                                             img.rounded-circle(width="20" src=`${friend.avatar}` alt="")
                                                             | 
                                                             span= friend.name
