@@ -1,0 +1,99 @@
+extends layout.pug
+block content
+
+    include topNavbar.pug
+
+    //- Layout    
+    .wrapper
+        //- Sidebar
+        include leftNavbar.pug
+        
+        //- Page Content
+        .container-fluid.gedf-wrapper
+            //- Post card
+            .card.gedf-card.card1
+                .card-header
+                    ul#myTab.nav.nav-tabs.card-header-tabs(role="tablist")
+                        li.nav-item
+                            a#posts-tab.nav-link.active(data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="true")
+                                | Fazer uma publicação
+                        li.nav-item
+                            a#images-tab.nav-link(data-toggle="tab" role="tab" aria-controls="images" aria-selected="false" href="#images") Imagens
+                        li.nav-item
+                            a#pdfs-tab.nav-link(data-toggle="tab" role="tab" aria-controls="pdfs" aria-selected="false" href="#pdfs") PDF's
+                .card-body
+                    #myTabContent.tab-content
+                        #posts.tab-pane.fade.show.active(role="tabpanel" aria-labelledby="posts-tab")
+                            .form-group
+                                label.sr-only(for="message")
+                                textarea#message.form-control(rows="3" placeholder="O que estás a pensar?")
+                        #images.tab-pane.fade(role="tabpanel" aria-labelledby="images-tab")
+                            .form-group
+                                .custom-file
+                                    input#customFile.custom-file-input(type="file")
+                                    label.custom-file-label(for="customFile") Carregar imagem
+                            .py-4
+                        #pdfs.tab-pane.fade(role="tabpanel" aria-labelledby="pdfs-tab")
+                            .form-group
+                                .custom-file
+                                    input#customFile.custom-file-input(type="file")
+                                    label.custom-file-label(for="customFile") Carregar PDF
+                            .py-4
+                    .btn-toolbar.justify-content-between
+                        .btn-group
+                            button.btn.btn-primary(type="submit") Partilhar
+                        .btn-group
+                            button#btnGroupDrop1.btn.btn-link.dropdown-toggle(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+                                i.fa.fa-globe
+                            .dropdown-menu.dropdown-menu-right(aria-labelledby="btnGroupDrop1")
+                                a.dropdown-item(href="#")
+                                    i.fa.fa-globe
+                                    |  Público
+                                a.dropdown-item(href="#")
+                                    i.fa.fa-users
+                                    |  Amigos
+                                a.dropdown-item(href="#")
+                                    i.fa.fa-user
+                                    |  Para mim
+
+            .card.gedf-card.card2
+                //- Friends card
+                .card-header
+                    .d-flex.justify-content-between.align-items-center
+                        .d-flex.justify-content-between.align-items-center
+                            .mr-2
+                                img.rounded-circle(width="45" src="https://picsum.photos/50/50" alt="")
+                            .ml-2
+                                .h5.m-0 @Nelson
+                                .h7.text-muted Universidade do Minho
+                        div
+                            .dropdown
+                                button#gedf-drop1.btn.btn-link.dropdown-toggle(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+                                    i.fa.fa-ellipsis-h
+                                .dropdown-menu.dropdown-menu-right(aria-labelledby="gedf-drop1")
+                                    .h6.dropdown-header Configuration
+                                    a.dropdown-item(href="#") Save
+                                    a.dropdown-item(href="#") Hide
+                                    a.dropdown-item(href="#") Report
+                .card-body
+                    .text-muted.h7.mb-2
+                        i.fa.fa-clock-o
+                        | 10 minutos atrás
+                    a.card-link(href="#")
+                        h5.card-title O Braga vai ganhar a Taça da Liga.
+                    p.card-text
+                        | Vamos para cima deles ! 
+                        | Será 2-1 outra vez ?
+                .card-footer
+                    a.card-link(href="#")
+                        i.fas.fa-thumbs-up
+                        |  Gosto
+                    a.card-link(href="#")
+                        i.fa.fa-comment
+                        |  Comentar
+                    a.card-link(href="#")
+                        i.fas.fa-share
+                        |  Partilhar
+
+        //- Chat
+        include chat.pug

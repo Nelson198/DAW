@@ -21,14 +21,19 @@ router.get("/", verificaAutenticacao, (req, res) => {
         .catch(e => res.render("error", { error: e }))
 })
 
-router.get("/:id", verificaAutenticacao, (req, res) => {
+router.get("/:id", verificaAutenticacao, async (req, res) => {
     const token = jwt.sign({ email: req.user.email }, "tpDAW1920", {
         expiresIn: 3000
     })
 
-    axios.get(`http://localhost:5003/api/groups/${req.params.id}?token=${token}`)
-        .then(dados => res.render("evento", { evento: dados.data }))
-        .catch(e => res.render("error", { error: e }))
+    try {
+        const user = await axios.get(`http://localhost:5003/api/users/${req.user.email}?token=${token}`)
+        const group = await axios.get(`http://localhost:5003/api/groups/${req.params.id}?token=${token}`)
+
+        res.render("group", { group: group.data, user: user.data, group: req.params.id })
+    } catch (e) {
+        res.render("error", { error: e })
+    }
 })
 
 module.exports = router
