@@ -23,13 +23,10 @@ html
                                 button.btn.btn-lg.btn-block.text-uppercase#Login(type="submit") Login
                                 hr.my-4
                             h5.card-title2.text-center Ainda não estás registado ?
-                            button.btn.btn-lg.btn-block.text-uppercase#Option(onclick=`goToPage("register")`) Fazer registo
+                            a(href="/register" id="link")
+                                button.btn.btn-lg.btn-block.text-uppercase#Option Fazer registo
         
         //- JQuery 3.4.1
         script(src="/javascripts/jquery-3.4.1.slim.min.js")
         //- Bootstrap JS
         script(src="/javascripts/bootstrap.min.js")
-        //- Axios
-        script(src="/javascripts/axios.min.js")
-        //- My JS
-        script(src="/javascripts/actions.js")

@@ -113,6 +113,10 @@ body {
     border-color: #336e85;
 }
 
+#link {
+    text-decoration: none;
+}
+
 #Option {
     color: #666666;
     background: #e5e5e5;
