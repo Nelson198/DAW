@@ -94,4 +94,4 @@ app.use("*", (req, res, next) => {
     res.status(500).render("error", { erro: "Pedido HTTP não suportado !", route: `${req.protocol}://${req.get("host")}${req.originalUrl}` })
 })
 
-app.listen(6000, () => console.log(`Servidor da interface à escuta na porta 6000...`))
+app.listen(7000, () => console.log(`Servidor da interface à escuta na porta 7000 ...`))
