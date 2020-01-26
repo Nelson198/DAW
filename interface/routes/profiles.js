@@ -26,7 +26,7 @@ router.get("/:id", verificaAutenticacao, async (req, res) => {
         }
         profile.data.posts = posts
 
-        res.render("profile", { user: profile.data })
+        res.render("profile", { profile: true, user: profile.data })
     } catch (e) {
         res.render("error", { error: e })
     }
