@@ -95,6 +95,10 @@ body {
     color: #777;
 }
 
+#gender {
+    height: 50px;
+}
+
 #Register, #Login {
     color: #ffffff;
     background: #408aa7;
