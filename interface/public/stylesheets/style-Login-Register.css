@@ -2,37 +2,52 @@
     --input-padding-x: 1.5rem;
     --input-padding-y: .75rem;
   }
-  
+
 body {
+    /* Cor de fundo da página */
     background: linear-gradient(to left, #e5e5e5, #408aa7);
 }
   
+/* Componente que contém os dados para login / registo */
 .card-register {
     border: 0;
     border-radius: 1rem;
     box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
 }
-  
+
+/* Título da página login / registo */
 .card-register .card-title {
     margin-bottom: 2rem;
     font-weight: 300;
     font-size: 1.5rem;
 }
 
+/* Texto que se encontra acima do botão com a opção de mudar de página */
 .card-title2 {
     margin-bottom: 2rem;
     font-weight: 300;
     font-size: 1rem;
 }
-  
+
+/* Texto a indicar que a autenticação não foi bem sucedida */
+.card-title3 {
+    margin-bottom: 2rem;
+    font-weight: 500;
+    font-size: 1rem;
+    color: red;
+}
+
+/* Corpo do componente que contém os dados para login / registo */
 .card-register .card-body {
     padding: 2rem;
 }
-  
+
+/* Largura dos campos do elemento "form" */
 .form-signin, .form-register {
     width: 100%;
 }
-  
+
+/* Botão de fazer login / registar */
 .form-signin .btn, .form-register .btn {
     font-size: 80%;
     border-radius: 5rem;
@@ -41,12 +56,14 @@ body {
     padding: 1rem;
     transition: all 0.2s;
 }
-  
+
+/* Estilo aplicado a cada elemento presente no elemento "form" */
 .form-label-group {
     position: relative;
     margin-bottom: 1rem;
 }
-  
+
+
 .form-label-group input {
     height: auto;
     border-radius: 2rem;
@@ -73,12 +90,6 @@ body {
     transition: all .1s ease-in-out;
 }
 
-.form-label-group > select {
-    border-radius: 5rem;
-    color: #495057;
-    transition: all 0.1s ease-in-out;
-}
-  
 .form-label-group input::placeholder {
     color: transparent;
 }
@@ -95,14 +106,16 @@ body {
     color: #777;
 }
 
+/* Elemento "gender" presente na "form" do registo */
 #gender {
     height: 50px;
 }
 
+/* Estilo aplicado aos botões de login e de registo */
 #Register, #Login {
     color: #ffffff;
-    background: #408aa7;
-    border-color: #408aa7;
+    background: linear-gradient(to left, #e5e5e5, #408aa7);
+    border-color: #e5e5e5;
 
     font-size: 80%;
     border-radius: 5rem;
@@ -113,14 +126,15 @@ body {
 }
 
 #Register:hover, #Login:hover {
-    background-color: #336e85;
     border-color: #336e85;
 }
 
+/* Estilo aplicado ao elemento "a" */
 #link {
     text-decoration: none;
 }
 
+/* Estilo aplicado aos botões que estão associados à mudança de interface */
 #Option {
     color: #666666;
     background: #e5e5e5;
