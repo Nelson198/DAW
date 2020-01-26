@@ -19,8 +19,8 @@ module.exports.remove = id => {
 }
 
 module.exports.backup = async (events) => {
-    await Event.deleteMany({}).exec()
-    await Event.insertMany(events).exec()
+    await Event.deleteMany({})
+    await Event.insertMany(events)
 }
 
 module.exports.addParticipant = async (id, email) => {

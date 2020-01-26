@@ -19,8 +19,8 @@ module.exports.remove = email => {
 }
 
 module.exports.backup = async (users) => {
-    await User.deleteMany({}).exec()
-    await User.insertMany(users).exec()
+    await User.deleteMany({})
+    await User.insertMany(users)
 }
 
 module.exports.addFriend = async (email, newFriend) => {

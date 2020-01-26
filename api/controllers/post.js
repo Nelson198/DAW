@@ -38,8 +38,8 @@ module.exports.remove = id => {
 }
 
 module.exports.backup = async (posts) => {
-    await Post.deleteMany({}).exec()
-    await Post.insertMany(posts).exec()
+    await Post.deleteMany({})
+    await Post.insertMany(posts)
 }
 
 module.exports.addComment = async (id, comment) => {

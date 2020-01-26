@@ -11,6 +11,20 @@ const verificaAutenticacao = (req, res, next) => {
     }
 }
 
+router.get("/updateProfile", verificaAutenticacao, async (req, res) => {
+    const token = jwt.sign({ email: req.user.email }, "tpDAW1920", {
+        expiresIn: 3000
+    })
+
+    try {
+        const profile = await axios.get(`http://localhost:5000/api/users/${req.user.email}?token=${token}`)
+
+        res.render("updateClient", { profile: true, user: profile.data })
+    } catch (e) {
+        res.render("error", { error: e })
+    }
+})
+
 router.get("/:id", verificaAutenticacao, async (req, res) => {
     const token = jwt.sign({ email: req.user.email }, "tpDAW1920", {
         expiresIn: 3000

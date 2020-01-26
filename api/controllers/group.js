@@ -18,8 +18,8 @@ module.exports.remove = id => {
 }
 
 module.exports.backup = async (groups) => {
-    await Group.deleteMany({}).exec()
-    await Group.insertMany(groups).exec()
+    await Group.deleteMany({})
+    await Group.insertMany(groups)
 }
 
 module.exports.updateOne = (groupKey, updatedGroup) => {
