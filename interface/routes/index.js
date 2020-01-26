@@ -39,7 +39,11 @@ router.get("/logout", verificaAutenticacao, (req, res) => {
 })
 
 router.get("/login", (req, res) => {
-    res.render("login")
+    let success = true
+    if ("success" in req.query)
+        success = false
+
+    res.render("login", { success: success })
 })
 
 router.get("/register", (req, res) => {
@@ -48,9 +52,7 @@ router.get("/register", (req, res) => {
 
 router.post("/login", passport.authenticate("local", {
     successRedirect: "/",
-    successFlash: "Utilizador autenticado com sucesso!",
-    failureRedirect: "/login",
-    failureFlash: "Utilizador ou password inválido(s)..."
+    failureRedirect: "/login?success=false",
 })
 )
 

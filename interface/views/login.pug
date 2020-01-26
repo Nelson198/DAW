@@ -11,6 +11,9 @@ html
             .row
                 .col-sm-9.col-md-7.col-lg-5.mx-auto
                     .card.card-register.my-5
+                        // TODO
+                        if (!success)
+                            | Autenticação falhou
                         .card-body
                             h5.card-title.text-center Login
                             form.form-signin(action="/login" method="POST")

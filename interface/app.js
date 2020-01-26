@@ -11,7 +11,6 @@ const FileStore = require("session-file-store")(session)
 const passport = require("passport")
 const LocalStrategy = require("passport-local").Strategy
 const axios = require("axios")
-const flash = require("connect-flash")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 
@@ -25,10 +24,10 @@ passport.use(new LocalStrategy(
             .then(dados => {
                 const user = dados.data
                 if (!user) {
-                    return done(null, false, { message: "Utilizador inexistente!\n" })
+                    return done(null, false)
                 }
                 if (!bcrypt.compareSync(password, user.password)) {
-                    return done(null, false, { message: "Password inválida!\n" })
+                    return done(null, false)
                 }
 
                 return done(null, user)
@@ -76,8 +75,6 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }))
-
-app.use(flash())
 
 app.use(passport.initialize())
 app.use(passport.session())
