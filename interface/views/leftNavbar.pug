@@ -1,65 +1,67 @@
 //- Sidebar
-nav#leftSidebar
+wrapper
 
-    .leftSidebar-header
-        h3(id="titleSidebar") Informatics Social Network
+    nav#leftSidebar
 
-    ul.list-unstyled.components
-        if (!group && !event && !profile)
-            li.active
-                //-i.fas.fa-newspaper
-                a(href="/") Feed de notícias
-        else
-            li
-                //-i.fas.fa-newspaper
-                a(href="/") Feed de notícias
+        .leftSidebar-header
+            h3(id="titleSidebar") Informatics Social Network
 
-        if (groupId)
-            li
-                //-i.fas.fa-users
-                a.dropdown-toggle(href="#groupSubmenu" data-toggle="collapse" aria-expanded="false") Grupos
-                ul#groupSubmenu.collapse.list-unstyled.show
-                    each group in user.groups
-                        if (group._id == groupId)
-                            li.active
-                                a(href=`/groups/${group._id}`)= group.name
-                        else
-                            li
-                                a(href=`/groups/${group._id}`)= group.name
-        else
-            li
-                //-i.fas.fa-users
-                a.dropdown-toggle(href="#groupSubmenu" data-toggle="collapse" aria-expanded="false") Grupos
-                ul#groupSubmenu.collapse.list-unstyled
-                    if (user.groups.length > 0)
+        ul.list-unstyled.components
+            if (!group && !event && !profile)
+                li.active
+                    //-i.fas.fa-newspaper
+                    a(href="/") Feed de notícias
+            else
+                li
+                    //-i.fas.fa-newspaper
+                    a(href="/") Feed de notícias
+
+            if (groupId)
+                li
+                    //-i.fas.fa-users
+                    a.dropdown-toggle(href="#groupSubmenu" data-toggle="collapse" aria-expanded="false") Grupos
+                    ul#groupSubmenu.collapse.list-unstyled.show
                         each group in user.groups
-                            li
-                                a(href=`/groups/${group._id}`)= group.name
-                    else
-                        li
-                            a Nenhum grupo
-
-        if (eventId)
-            li
-                //-i.fas.fa-calendar
-                a.dropdown-toggle(href="#eventSubmenu" data-toggle="collapse" aria-expanded="false") Eventos
-                ul#eventSubmenu.collapse.list-unstyled.show
-                    each event in user.events
-                        if (event._id == eventId)
-                            li.active
-                                a(href=`/events/${event._id}`)= event.title
+                            if (group._id == groupId)
+                                li.active
+                                    a(href=`/groups/${group._id}`)= group.name
+                            else
+                                li
+                                    a(href=`/groups/${group._id}`)= group.name
+            else
+                li
+                    //-i.fas.fa-users
+                    a.dropdown-toggle(href="#groupSubmenu" data-toggle="collapse" aria-expanded="false") Grupos
+                    ul#groupSubmenu.collapse.list-unstyled
+                        if (user.groups.length > 0)
+                            each group in user.groups
+                                li
+                                    a(href=`/groups/${group._id}`)= group.name
                         else
                             li
-                                a(href=`/events/${event._id}`)= event.title
-        else
-            li
-                //-i.fas.fa-calendar
-                a.dropdown-toggle(href="#eventSubmenu" data-toggle="collapse" aria-expanded="false") Eventos
-                ul#eventSubmenu.collapse.list-unstyled
-                    if (user.events.length > 0)
+                                a Nenhum grupo
+
+            if (eventId)
+                li
+                    //-i.fas.fa-calendar
+                    a.dropdown-toggle(href="#eventSubmenu" data-toggle="collapse" aria-expanded="false") Eventos
+                    ul#eventSubmenu.collapse.list-unstyled.show
                         each event in user.events
+                            if (event._id == eventId)
+                                li.active
+                                    a(href=`/events/${event._id}`)= event.title
+                            else
+                                li
+                                    a(href=`/events/${event._id}`)= event.title
+            else
+                li
+                    //-i.fas.fa-calendar
+                    a.dropdown-toggle(href="#eventSubmenu" data-toggle="collapse" aria-expanded="false") Eventos
+                    ul#eventSubmenu.collapse.list-unstyled
+                        if (user.events.length > 0)
+                            each event in user.events
+                                li
+                                    a(href=`/events/${event._id}`)= event.title
+                        else
                             li
-                                a(href=`/events/${event._id}`)= event.title
-                    else
-                        li
-                            a Nenhum evento
+                                a Nenhum evento
