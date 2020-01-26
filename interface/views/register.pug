@@ -1,21 +1,43 @@
 doctype html
 html
     head
-        title= title
-        link(rel="stylesheet", href="/stylesheets/style-LoginRegister.css")
-        link(rel="stylesheet", href="/stylesheets/all.css")
+        title Registo
+        //- Register style
+        link(rel="stylesheet", href="/stylesheets/style-Login-Register.css")
+        //- Bootstrap CSS
+        link(rel="stylesheet" href="/stylesheets/bootstrap.min.css")
     body
-        div(class="card")
-            h1(id="title") Registo
-            form(class="form" action="/register" method="POST")
-                i(class="far fa-envelope icon2")
-                input(id="email2" type="text" name="email" placeholder="Email" required)
-                br
-                i(class="fas fa-user-alt icon2")
-                input(id="nome" type="text" name="nome" placeholder="Nome" required)
-                br
-                i(class="fas fa-key icon2")
-                input(id="password2" type="password" name="password" placeholder="Password" required)
-                br
-                i(class="fas fa-paper-plane icon2")
-                input(id="registar" type="submit" value="Registar")
+        .container
+            .row
+                .col-sm-9.col-md-7.col-lg-5.mx-auto
+                    .card.card-register.my-5
+                        .card-body
+                            h5.card-title.text-center Registar
+                            form.form-signin
+                                .form-label-group
+                                    input#inputEmail.form-control(type="email" placeholder="Email address" required autofocus)
+                                    label(for="inputEmail") Email
+                                .form-label-group
+                                    input#inputCourse.form-control(type="text" placeholder="Curso" required)
+                                    label(for="inputCourse") Curso
+                                .form-label-group
+                                    input#inputName.form-control(type="text" placeholder="Nome" required)
+                                    label(for="inputName") Nome
+                                .form-label-group
+                                    select.form-control(name="gender" required)
+                                        option(value="" disabled selected) Género
+                                        option(value="male") Masculino
+                                        option(value="female") Feminino
+                                .form-label-group
+                                    input#inputDate.form-control(type="date" placeholder="Data de nascimento" required)
+                                    label(for="inputDate") Data de nascimento
+                                .form-label-group
+                                    input#inputPassword.form-control(type="password" placeholder="Password" required)
+                                    label(for="inputPassword") Password
+                                hr.my-4
+                                button.btn.btn-lg.btn-block.text-uppercase#Register(type="submit") Registar
+
+        //- JQuery 3.4.1
+        script(src="/javascripts/jquery-3.4.1.slim.min.js")
+        //- Bootstrap JS
+        script(src="javascripts/bootstrap.min.js")

@@ -1,7 +1,7 @@
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
 body {
-    background-color: rgb(229, 229, 229);
+    background-color: #e5e5e5;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -83,7 +83,7 @@ ul ul a {
 
 #leftSidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px ridge rgb(229, 229, 229);
+    border-bottom: 1px ridge #e5e5e5;
 }
 
 #leftSidebar ul p {
