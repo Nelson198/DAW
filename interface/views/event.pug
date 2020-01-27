@@ -23,9 +23,9 @@ block content
                             | Participantes 
                     li
                         if (event.participants.filter(m => m.email == user.email).length === 1)
-                            button.btn.btn-outline-danger.ml-2.p-2(style="float: right; backgroud: transparent; border: none" onclick=`leaveEvent("${user.email}", "${event._id}")`) Sair
+                            button.btn.btn-outline-danger.ml-2.p-2(style="float: right; backgroud: transparent; border: none" onclick=`leaveEvent("${user.email}", "${event._id}")`) Remover
                         else
-                            button.btn.btn-outline-success.ml-2.p-2(style="float: right; backgroud: transparent; border: none" onclick=`joinEvent("${user.email}", "${event._id}")`) Entrar                          
+                            button.btn.btn-outline-success.ml-2.p-2(style="float: right; backgroud: transparent; border: none" onclick=`joinEvent("${user.email}", "${event._id}")`) Aderir                        
             .card-body
                 #myTabContent.tab-content
                     #posts.tab-pane.fade.show.active(role="tabpanel" aria-labelledby="posts-tab")
