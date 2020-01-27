@@ -29,8 +29,7 @@ nav(class="navbar navbar-dark fixed-top" style="background-color: rgb(64, 138, 1
         li(class="nav-item")
             a(class="nav-link active d-flex align-items-center" href="/friendRequests") 
                 img(src="/images/add.svg" height="30" class="d-inline-block align-top iconNavbar" alt="")
-                // TODO - embelezar número
-                span= user.friendRequests.length
+                span.ml-2#friendsNumber= user.friendRequests.length
 
         //- Notificações
         li(class="nav-item")

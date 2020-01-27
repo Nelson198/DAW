@@ -29,8 +29,14 @@ block content
                                             .d-flex.justify-content-between.align-items-center
                                                 .ml-2
                                                     .h5.mb-2
-                                                        span Título: 
-                                                        span= event.title
+                                                        a(href=`/events/${event._id}`)
+                                                            if (user.events.filter(e => e._id == event._id).length === 1)
+                                                                span Título: 
+                                                                span= event.title
+                                                                span  (neste evento)
+                                                            else
+                                                                span Título: 
+                                                                span= event.title
                                                     .h7.text-muted.mb-1
                                                         span Descrição: 
                                                         span= event.description
