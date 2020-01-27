@@ -33,7 +33,7 @@ block content
                                 if (ownProfile)
                                     a(href="/profiles/updateProfile") Editar
                                 else
-                                    if (profile.friendRequests.filter(f => f == user.email).length === 1)
+                                    if (profile.friendRequests.filter(f => f.email == user.email).length === 1)
                                         | Pedido enviado
                                     else if (user.friends.filter(f => f.email == profile.email).length === 0)
                                         button(onclick=`addFriend("${user.email}", "${profile.email}")`)

@@ -57,19 +57,19 @@ module.exports.rejectFriend = async (email, rejectFriend) => {
 
 module.exports.removeFriend = async (email, friend) => {
     await User.updateOne({ email: email }, { $pull: { friends: friend } }).exec()
-    await User.updateOne({ email: newFriend }, { $pull: { friends: email } }).exec()
+    await User.updateOne({ email: friend }, { $pull: { friends: email } }).exec()
 }
 
 module.exports.updateOne = (email, updatedUser) => {
     return User.updateOne({ email: email }, { $set: updatedUser }).exec()
 }
 
-module.exports.joinGroup = async (email, groupKey) => {
-    await Group.updateOne({ joinKey: groupKey }, { $push: { members: email } })
-    await User.updateOne({ email: email }, { $push: { friendRequests: email } }).exec()
+module.exports.joinGroup = async (email, groupId) => {
+    await Group.updateOne({ _id: groupId }, { $push: { members: email } }).exec()
+    await User.updateOne({ email: email }, { $push: { groups: groupId } }).exec()
 }
 
-module.exports.leaveGroup = async (email, groupKey) => {
-    await Group.updateOne({ joinKey: groupKey }, { $pull: { members: email } })
-    await User.updateOne({ email: email }, { $pull: { friendRequests: email } }).exec()
+module.exports.leaveGroup = async (email, groupId) => {
+    await Group.updateOne({ _id: groupId }, { $pull: { members: email } }).exec()
+    await User.updateOne({ email: email }, { $pull: { groups: groupId } }).exec()
 }

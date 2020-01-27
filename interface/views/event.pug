@@ -22,7 +22,7 @@ block content
                         a#members-tab.nav-link(data-toggle="tab" role="tab" aria-controls="members" aria-selected="false" href="#members")
                             | Participantes
                     li
-                        if (event.participantes.filter(m => m.email == user.email).length === 1)
+                        if (event.participants.filter(m => m.email == user.email).length === 1)
                             button.mr-2(style="float: right; backgroud: transparent; border: none" onclick=`leaveEvent("${user.email}", "${event._id}")`) -
                         else
                             button.mr-2(style="float: right; backgroud: transparent; border: none" onclick=`joinEvent("${user.email}", "${event._id}")`) +                            

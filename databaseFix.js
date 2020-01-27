@@ -12,21 +12,21 @@ mongoose.connect("mongodb://127.0.0.1:27017/ISN", { useNewUrlParser: true, useUn
                 // Public post
                 const rand = Math.floor(Math.random() * (users.length - 1))
                 await mongoose.connection.db.collection("posts").updateOne({ _id: post._id }, { $set: { author: users[rand].email } })
-                await mongoose.connection.db.collection("users").updateOne({ email: users[rand].email }, { $addToSet: { posts: post._id } })
+                await mongoose.connection.db.collection("users").updateOne({ email: users[rand].email }, { $addToSet: { posts: post._id.toString() } })
             } else {
                 const binRand = Math.round(Math.random())
                 if (binRand == 0) {
                     // Private post in a group
                     const randUser = Math.floor(Math.random() * (users.length - 1))
                     const randGroup = Math.floor(Math.random() * (groups.length - 1))
-                    await mongoose.connection.db.collection("posts").updateOne({ _id: post._id }, { $set: { author: users[randUser].email, group: groups[randGroup]._id } })
-                    await mongoose.connection.db.collection("users").updateOne({ email: users[randUser].email }, { $addToSet: { posts: post._id } })
-                    await mongoose.connection.db.collection("groups").updateOne({ _id: groups[randGroup]._id }, { $addToSet: { posts: post._id, members: users[randUser].email } })
+                    await mongoose.connection.db.collection("posts").updateOne({ _id: post._id }, { $set: { author: users[randUser].email, group: groups[randGroup]._id.toString() } })
+                    await mongoose.connection.db.collection("users").updateOne({ email: users[randUser].email }, { $addToSet: { posts: post._id.toString() } })
+                    await mongoose.connection.db.collection("groups").updateOne({ _id: groups[randGroup]._id }, { $addToSet: { posts: post._id.toString(), members: users[randUser].email } })
                 } else {
                     // Private post
                     const rand = Math.floor(Math.random() * (users.length - 1))
                     await mongoose.connection.db.collection("posts").updateOne({ _id: post._id }, { $set: { author: users[rand].email } })
-                    await mongoose.connection.db.collection("users").updateOne({ email: users[rand].email }, { $addToSet: { posts: post._id } })
+                    await mongoose.connection.db.collection("users").updateOne({ email: users[rand].email }, { $addToSet: { posts: post._id.toString() } })
                 }
             }
 
@@ -44,7 +44,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/ISN", { useNewUrlParser: true, useUn
             const usersM = users.slice(rand, rand + 5).map(u => { return u.email })
             await mongoose.connection.db.collection("groups").updateOne({ _id: group._id }, { $addToSet: { members: { $each: usersM } } })
             for (const mail of usersM)
-                await mongoose.connection.db.collection("users").updateOne({ email: mail }, { $addToSet: { groups: group._id } })
+                await mongoose.connection.db.collection("users").updateOne({ email: mail }, { $addToSet: { groups: group._id.toString() } })
         }
 
         for (const user of users) {
@@ -60,7 +60,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/ISN", { useNewUrlParser: true, useUn
             const usersM = users.slice(rand, rand + 5).map(u => { return u.email })
             await mongoose.connection.db.collection("events").updateOne({ _id: event._id }, { $addToSet: { participants: { $each: usersM } } })
             for (const mail of usersM)
-                await mongoose.connection.db.collection("users").updateOne({ email: mail }, { $addToSet: { events: event._id } })
+                await mongoose.connection.db.collection("users").updateOne({ email: mail }, { $addToSet: { events: event._id.toString() } })
         }
 
         console.log("Done")

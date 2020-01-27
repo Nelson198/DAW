@@ -41,4 +41,28 @@ router.get("/:id", verificaAutenticacao, async (req, res) => {
     }
 })
 
+router.post("/:id/addParticipant", verificaAutenticacao, (req, res) => {
+    const token = jwt.sign({ email: req.user.email }, "tpDAW1920", {
+        expiresIn: 3000
+    })
+
+    axios.post(`http://localhost:5000/api/events/${req.params.id}/addParticipant?token=${token}`, { email: req.body.email })
+        .then(r => {
+            res.send()
+        })
+        .catch(err => res.send(err))
+})
+
+router.post("/:id/removeParticipant", verificaAutenticacao, (req, res) => {
+    const token = jwt.sign({ email: req.user.email }, "tpDAW1920", {
+        expiresIn: 3000
+    })
+
+    axios.post(`http://localhost:5000/api/events/${req.params.id}/removeParticipant?token=${token}`, { email: req.body.email })
+        .then(r => {
+            res.send()
+        })
+        .catch(err => res.send(err))
+})
+
 module.exports = router
