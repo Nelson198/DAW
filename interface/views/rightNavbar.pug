@@ -1,11 +1,11 @@
 nav#rightSidebar
 
     .rightSidebar-header.mb-2
-        h3 Chat
+        h3 Amigos
 
     if (user.friends.length > 0)
         each friend in user.friends
-            a(class="nav-link d-flex align-items-center" href="#")
+            a(class="nav-link d-flex align-items-center" href=`/profiles/${friend.email}`)
                 img(src="/images/avatar.png" height="40" class="d-inline-block align-top mr-2" alt="")
                 span= friend.name
     else

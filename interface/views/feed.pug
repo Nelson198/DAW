@@ -48,16 +48,16 @@ block content
 
                                     .dropdown-divider
                                     each group in user.groups
-                                        option(value=`${group.name}`)
+                                        option(value=`${group._id}`)
                                             a.dropdown-item= group.name
-                    
+
                     .btn-group
                         button.btn.btn-primary(type="submit") Partilhar
 
 
     if (posts.length > 0)
         each post in posts
-            .card.card2.mt-4.mb-4
+            .card.card2.mt-4.mb-4(id=`${post._id}`)
                 .card-header
                     .d-flex.justify-content-between.align-items-center
                         .d-flex.justify-content-between.align-items-center
@@ -91,15 +91,17 @@ block content
                         .card-body
                             p.card-text= comment.content
 
-
                 .card-footer.mt-3
-                    a.card-link(href="#")
-                        i.fa.fa-comment
-                        |  Comentar
-                        // TODO
+                    form.form-group(action=`/${post._id}/addComment` method="POST")
+                        label.sr-only(for="message")
+                        input.form-control(type="text" name="content" placeholder="Insere um comentário" required)
+
+                        button.card-link(type="submit")
+                            i.fa.fa-comment
+                            |  Comentar
 
     else
         | Nenhuma publicação
 
     //- Chat (Right bar)
-    include chat.pug
+    include rightNavbar.pug

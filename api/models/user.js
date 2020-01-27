@@ -16,6 +16,27 @@ const ConversationSchema = new mongoose.Schema(
     }
 )
 
+const NotificationSchema = new mongoose.Schema(
+    {
+        author: {
+            type: String,
+            required: true
+        },
+        content: {
+            type: String,
+            required: true
+        },
+        link: {
+            type: String,
+            required: true
+        }
+    },
+    {
+        _id: false,
+        versionKey: false
+    }
+)
+
 const UserSchema = new mongoose.Schema(
     {
         email: {
@@ -64,6 +85,9 @@ const UserSchema = new mongoose.Schema(
         },
         conversations: {
             type: [ConversationSchema]
+        },
+        notifications: {
+            type: [NotificationSchema]
         },
         creationDate: {
             type: Date,

@@ -118,9 +118,9 @@ router.post("/:postId/addComment", verificaAutenticacao, (req, res) => {
 
     req.body.author = req.user.email
 
-    axios.post(`http://localhost:5000/api/posts/${req.params.postId}/addComment?token=${token}`, { comment: req.body })
+    axios.post(`http://localhost:5000/api/posts/${req.params.postId}/addComment?token=${token}`, req.body)
         .then(r => {
-            res.send()
+            res.redirect(`/#${req.params.postId}`)
         })
         .catch(err => res.send(err))
 })
@@ -141,10 +141,10 @@ router.post("/newPost", verificaAutenticacao, upload.array('file'), (req, res) =
     })
 
     req.body.author = req.user.email
-    
-    if(req.body.public == "public")
+
+    if (req.body.public == "public")
         req.body.public = true
-    else if(req.body.group == "private")
+    else if (req.body.group == "private")
         req.body.public = false
     else {
         req.body.group = req.body.public
@@ -153,7 +153,7 @@ router.post("/newPost", verificaAutenticacao, upload.array('file'), (req, res) =
 
     axios.post(`http://localhost:5000/api/posts?token=${token}`, (req.body, req.files))
         .then(r => {
-            res.send()
+            res.redirect("/")
         })
         .catch(err => res.send(err))
 })
