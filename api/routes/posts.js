@@ -10,7 +10,7 @@ moment.locale("pt-pt")
 router.get("/", passport.authenticate("jwt", { session: false }), async (req, res) => {
     try {
         const data = await Users.findOneByEmail(req.user.email)
-        const aux = await Posts.find({ $or: [{ public: true }, { author: req.user.email }, { public: false, group: { $in: data.groups } }] })
+        const aux = await Posts.find({ $or: [{ public: true }, { author: req.user.email }, { public: false, author: { $in: data.friends } }, { public: false, group: { $in: data.groups } }] })
 
         let posts = []
         for (const post of aux) {
@@ -23,6 +23,31 @@ router.get("/", passport.authenticate("jwt", { session: false }), async (req, re
             }
 
             posts.push(post)
+        }
+
+        res.jsonp(posts)
+    } catch (e) {
+        res.status(500).jsonp(e)
+    }
+})
+
+router.get("/hashtags/:hashtag", passport.authenticate("jwt", { session: false }), async (req, res) => {
+    try {
+        const data = await Users.findOneByEmail(req.user.email)
+        const aux = await Posts.find({ $or: [{ public: true }, { author: req.user.email }, { public: false, author: { $in: data.friends }}, { public: false, group: { $in: data.groups } }] } )
+
+        let posts = []
+        for (const post of aux) {
+            post.author = await Users.findOneByEmail(post.author)
+
+            post.comments.sort((c1, c2) => c1.date - c2.date)
+            for (const comment of post.comments) {
+                comment.author = await Users.findOneByEmail(comment.author)
+                comment.date = moment(comment.date).fromNow()
+            }
+
+            if(hashtag in post.hashtags)
+                posts.push(post)
         }
 
         res.jsonp(posts)
