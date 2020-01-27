@@ -28,8 +28,13 @@ module.exports.addFriend = async (email, newFriend) => {
 }
 
 module.exports.acceptFriend = async (email, newFriend) => {
+    const notification = {
+        author: email,
+        content: "O teu pedido de amizade foi aceite",
+        link: `/profiles/${email}`
+    }
     await User.updateOne({ email: email }, { $pull: { friendRequests: newFriend }, $push: { friends: newFriend } }).exec()
-    await User.updateOne({ email: newFriend }, { $push: { friends: email } }).exec()
+    await User.updateOne({ email: newFriend }, { $push: { friends: email, notifications: notification } }).exec()
 }
 
 module.exports.rejectFriend = async (email, rejectFriend) => {
@@ -46,8 +51,16 @@ module.exports.updateOne = (email, updatedUser) => {
 }
 
 module.exports.joinGroup = async (email, groupId) => {
-    await Group.updateOne({ _id: groupId }, { $push: { members: email } }).exec()
+    const group = await Group.findOneAndUpdate({ _id: groupId }, { $push: { members: email } }).exec()
     await User.updateOne({ email: email }, { $push: { groups: groupId } }).exec()
+
+    const notification = {
+        author: email,
+        content: "Alguém se juntou a um grupo do qual fazes parte",
+        link: `/groups/${groupId}`
+    }
+    for (const member of group.members)
+        await User.updateOne({ email: member }, { $push: { notifications: notification } }).exec()
 }
 
 module.exports.leaveGroup = async (email, groupId) => {

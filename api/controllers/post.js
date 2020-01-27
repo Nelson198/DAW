@@ -53,9 +53,29 @@ module.exports.findByGroup = async (id) => {
 
 module.exports.insert = async post => {
     const newPost = new Post(post)
-    await User.updateOne({ email: newPost.author }, { $push: { posts: newPost._id } }).exec()
-    if (newPost.group !== null)
-        await Group.updateOne({ _id: newPost.group }, { $push: { posts: newPost._id, files: newPost.attachments } }).exec()
+    const author = await User.findOneAndUpdate({ email: newPost.author }, { $push: { posts: newPost._id } }).exec()
+    if (newPost.group !== null) {
+        const group = await Group.findOneAndUpdate({ _id: newPost.group }, { $push: { posts: newPost._id, files: newPost.attachments } }).exec()
+
+        const notification = {
+            author: author.email,
+            content: "Alguém fez uma nova publicação num grupo do qual fazes parte",
+            link: `/groups/${newPost.group}`
+        }
+        for (const member of group.members) {
+            if (member != author.email && !author.friends.includes(member))
+                await User.updateOne({ email: member }, { $push: { notifications: notification } }).exec()
+        }
+    }
+
+    const notification = {
+        author: author.email,
+        content: "Um amigo fez uma nova publicação",
+        link: `/profiles/${author.email}`
+    }
+    for (const member of author.friends)
+        await User.updateOne({ email: member }, { $push: { notifications: notification } }).exec()
+
     return newPost.save()
 }
 
