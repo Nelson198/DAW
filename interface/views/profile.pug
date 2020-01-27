@@ -19,6 +19,9 @@ block content
                         a#posts-tab.nav-link.active(data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="true")
                             | Informação
                     li.nav-item
+                        a#members-tab.nav-link(data-toggle="tab" role="tab" aria-controls="members" aria-selected="false" href="#members")
+                            | Amigos
+                    li.nav-item
                         a#images-tab.nav-link(data-toggle="tab" role="tab" aria-controls="images" aria-selected="false" href="#images")
                             | Publicações
             .card-body
@@ -62,6 +65,23 @@ block content
                                                         img.rounded-circle(width="20" src=`${friend.avatar}` alt="")
                                                         | 
                                                         span= friend.name
+
+                    #members.tab-pane.fade(role="tabpanel" aria-labelledby="members-tab")
+                        if (user.friends.length > 0)
+                            each friend in user.friends
+                                a.card.card-header.mt-2(href=`/profiles/${friend.email}`)
+                                    .d-flex.justify-content-between.align-items-center
+                                        .d-flex.justify-content-between.align-items-center
+                                            .mr-2
+                                                img.rounded-circle(width="45" src=`${friend.avatar}` alt="")
+                                            .ml-2
+                                                .h5.m-0
+                                                    span= friend.name
+                                                .h7.text-muted
+                                                    span= friend.course
+                        else
+                            | Nenhum amigo
+
                     #images.tab-pane.fade(role="tabpanel" aria-labelledby="images-tab")
                         if (profile.posts.length > 0)
                             each post in profile.posts

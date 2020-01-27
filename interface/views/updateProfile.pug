@@ -20,9 +20,6 @@ block content
                     li.nav-item
                         a#posts-tab.nav-link.active(data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="true")
                             | Informação
-                    li.nav-item
-                        a#images-tab.nav-link(data-toggle="tab" role="tab" aria-controls="images" aria-selected="false" href="#images")
-                            | Amigos
             .card-body
                 #myTabContent.tab-content
                     #posts.tab-pane.fade.show.active(role="tabpanel" aria-labelledby="posts-tab")
@@ -53,16 +50,6 @@ block content
                                                 input#inputBio.form-control.input(type="text" name="bio" placeholder=`${user.bio}`) 
 
                                             button.btn.btn-lg.btn-block#Save(type="submit") Guardar
-                                                
-                    #images.tab-pane.fade(role="tabpanel" aria-labelledby="images-tab")
-                        if (user.friends.length > 0)
-                            each friend in user.friends
-                                a.mr-2(href=`/profiles/${user.email}`)
-                                    img.rounded-circle(width="20" src=`${friend.avatar}` alt="")
-                                    | 
-                                    span= friend.name
-                        else
-                            | Nenhum amigo
 
     //- Chat (Right bar)
     include chat.pug
