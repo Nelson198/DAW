@@ -32,7 +32,9 @@ block content
                                                         span= u.name
                                                     .h7.text-muted
                                                         span= u.course
-                                                    // TODO - accept/remove request
+                                                    button.mr-2(style="float: right; backgroud: transparent; border: none" onclick=`acceptFriend("${user.email}", "${u.email}")`) +
+                                                    button.mr-2(style="float: right; backgroud: transparent; border: none" onclick=`rejectFriend("${user.email}", "${u.email}")`) -
+
                             else
                                 | Nenhum pedido de amizade
 
