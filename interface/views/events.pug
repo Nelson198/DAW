@@ -31,18 +31,18 @@ block content
                                                     .h5.mb-2
                                                         a(href=`/events/${event._id}`)
                                                             if (user.events.filter(e => e._id == event._id).length === 1)
-                                                                span Título: 
+                                                                span(style="font-weight: bold") Título: 
                                                                 span= event.title
-                                                                span  (neste evento)
+                                                                span.badge.badge-info.ml-4.mt-2.p-2 Aderido
                                                             else
-                                                                span Título: 
+                                                                span(style="font-weight: bold") Título: 
                                                                 span= event.title
-                                                                button.ml-2(style="backgroud: transparent; border: none" onclick=`joinEvent("${user.email}", "${event._id}")`) +
+                                                                button.btn.btn-outline-success.ml-4(style="backgroud: transparent; border: none" onclick=`joinEvent("${user.email}", "${event._id}")`) Aderir
                                                     .h7.text-muted.mb-1
-                                                        span Descrição: 
+                                                        span(style="font-weight: bold") Descrição: 
                                                         span= event.description
                                                     .h7.text-muted.mb-1
-                                                        span Data: 
+                                                        span(style="font-weight: bold") Data: 
                                                         span= event.date
                         else
                             | Nenhumm evento

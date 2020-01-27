@@ -28,19 +28,19 @@ block content
                                 .d-flex.justify-content-between.align-items-center
                                     .d-flex.justify-content-between.align-items-center
                                         form.form-update.ml-4(action="/groups" method="POST")
-                                            .h7.text-muted.mb-2
-                                                span Nome:
+                                            .h7.text-muted.mb-3
+                                                span(style="font-weight: bold") Nome:
                                                 input#inputName.form-control(type="text" name="name" placeholder="Nome do grupo" required autofocus)
-                                            .h7.text-muted.mb-2
-                                                span Descrição:                                                        
+                                            .h7.text-muted.mb-3
+                                                span(style="font-weight: bold") Descrição:                                                        
                                                 input#inputBio.form-control(type="text" name="description" placeholder="Insira uma descrição" required)
-                                            .h7.text-muted.mb-2
-                                                span Privacidade:
+                                            .h7.text-muted.mb-3
+                                                span(style="font-weight: bold") Privacidade:
                                                 select.form-control(name="public" id="public" required)
                                                     option(value="public" selected) Público
                                                     option(value="private") Privado
 
-                                            button.btn.btn-lg.btn-block#Save(type="submit") Criar
+                                            button.btn.btn-lg.btn-block#SaveButton(type="submit") Criar
 
     //- Chat (Right bar)
     include rightNavbar.pug

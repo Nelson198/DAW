@@ -28,16 +28,16 @@ block content
                                 .d-flex.justify-content-between.align-items-center
                                     .d-flex.justify-content-between.align-items-center
                                         form.form-update.ml-4(action="/events" method="POST")
-                                            .h7.text-muted.mb-2
-                                                span Título:
+                                            .h7.text-muted.mb-3
+                                                span(style="font-weight: bold") Título:
                                                 input#inputName.form-control(type="text" name="title" placeholder="Insera um título" required autofocus)
-                                            .h7.text-muted.mb-2
-                                                span Descrição:                                                        
+                                            .h7.text-muted.mb-3
+                                                span(style="font-weight: bold") Descrição:                                                        
                                                 input#inputBio.form-control(type="text" name="description" placeholder="Insira uma descrição" required)
-                                            .h7.text-muted.mb-2
-                                                span Data:
+                                            .h7.text-muted.mb-3
+                                                span(style="font-weight: bold") Data:
                                                 input#inputDate.form-control(type="date" name="date" placeholder="Data do evento" required)
-                                            button.btn.btn-lg.btn-block#Save(type="submit") Criar
+                                            button.btn.btn-lg.btn-block#SaveButton(type="submit") Criar
 
     //- Chat (Right bar)
     include rightNavbar.pug

@@ -34,19 +34,19 @@ block content
                                             .h5
                                                 a(href=`/profiles/${user.email}`)
                                             .h7.text-muted.mb-2
-                                                span Nome:
+                                                span(style="font-weight: bold") Nome:
                                                 input#inputName.form-control(type="text" name="name" value=`${user.name}` required autofocus)
                                             .h7.text-muted.mb-2
-                                                span E-mail:                                                        
+                                                span(style="font-weight: bold") E-mail:                                                        
                                                 input#inputEmail.form-control(type="email" name="email" value=`${user.email}` required)
                                             .h7.text-muted.mb-2
-                                                span Aniversário:
+                                                span(style="font-weight: bold") Aniversário:
                                                 input#inputDate.form-control(type="date" name="birthday" value=`${user.birthdayDate}` required)
                                             .h7.text-muted.mb-2
-                                                span Curso:
+                                                span(style="font-weight: bold") Curso:
                                                 input#inputCourse.form-control(type="text" name="course" value=`${user.course}` required) 
                                             .h7.text-muted.mb-4
-                                                span Biografia:
+                                                span(style="font-weight: bold") Biografia:
                                                 input#inputBio.form-control(type="text" name="bio" value=`${user.bio}`) 
 
                                             button.btn.btn-lg.btn-block#SaveButton(type="submit") Guardar

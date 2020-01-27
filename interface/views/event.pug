@@ -35,13 +35,13 @@ block content
                                     .d-flex.justify-content-between.align-items-center
                                         .ml-2
                                             .h5.mb-2
-                                                span Título: 
+                                                span(style="font-weight: bold") Título: 
                                                 span= event.title
                                             .h7.text-muted.mb-1
-                                                span Descrição: 
+                                                span(style="font-weight: bold") Descrição: 
                                                 span= event.description
                                             .h7.text-muted.mb-1
-                                                span Data: 
+                                                span(style="font-weight: bold") Data: 
                                                 span= event.date
                     #members.tab-pane.fade(role="tabpanel" aria-labelledby="members-tab")
                         if (event.participants.length > 0)

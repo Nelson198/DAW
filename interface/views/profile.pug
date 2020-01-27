@@ -52,19 +52,19 @@ block content
                                                     span  - 
                                                     span= profile.email
                                             .h7.text-muted.mb-1
-                                                span Género: 
+                                                span(style="font-weight: bold") Género: 
                                                 if (profile.gender == "male")
                                                     span Masculino
                                                 else
                                                     span Feminino
                                             .h7.text-muted.mb-1
-                                                span Aniversário: 
+                                                span(style="font-weight: bold") Aniversário: 
                                                 span= profile.birthday
                                             .h7.text-muted.mb-1
-                                                span Curso: 
+                                                span(style="font-weight: bold") Curso: 
                                                 span= profile.course
                                             .h7.text-muted.mb-1
-                                                span Biografia: 
+                                                span(style="font-weight: bold") Biografia: 
                                                 span= profile.bio
 
                     #members.tab-pane.fade(role="tabpanel" aria-labelledby="members-tab")
@@ -89,7 +89,9 @@ block content
                                 .card.mb-2
                                     .card-body
                                         .text-muted.h7.mb-2
-                                            i.fa.fa-clock-o= post.date
+                                            i.fas.fa-clock
+                                            | 
+                                            = post.date
                                         p.card-text= post.description
                                     if (post.attachments.length > 0)
                                         each attachment in post.attachments

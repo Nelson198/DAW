@@ -47,7 +47,9 @@ block content
                                                         span= post.author.course
                                     .card-body
                                         .text-muted.h7.mb-2
-                                            i.fa.fa-clock-o= post.date
+                                            i.fas.fa-clock
+                                            | 
+                                            = post.date
                                         p.card-text= post.description
                                         if (post.attachments.length > 0)
                                             each attachment in post.attachments
