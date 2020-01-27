@@ -122,4 +122,20 @@ router.post("/:postId/addComment", verificaAutenticacao, (req, res) => {
         .catch(err => res.send(err))
 })
 
+router.post("/newPost", verificaAutenticacao, (req, res) => {
+    const token = jwt.sign({ email: req.user.email }, "tpDAW1920", {
+        expiresIn: 3000
+    })
+
+    req.body.author = req.user.email
+
+    req.body.group
+
+    axios.post(`http://localhost:5000/api/posts?token=${token}`, req.body)
+        .then(r => {
+            res.send()
+        })
+        .catch(err => res.send(err))
+})
+
 module.exports = router
