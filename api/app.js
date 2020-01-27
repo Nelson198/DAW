@@ -2,7 +2,6 @@ const express = require("express")
 const cookieParser = require("cookie-parser")
 const logger = require("morgan")
 const mongoose = require("mongoose")
-const { app, server } = require("./socket")
 
 // Estabelecer a ligação à base de dados
 mongoose.connect("mongodb://127.0.0.1:27017/ISN", { useNewUrlParser: true, useUnifiedTopology: true })
@@ -31,6 +30,8 @@ passport.use(new JWTStrategy({
 }))
 ///////
 
+const app = express()
+
 // Configurar as rotas
 app.use(passport.initialize())
 
@@ -52,4 +53,4 @@ app.use("*", (req, res) => {
     res.status(404).json({ error: "Innefective route." })
 })
 
-server.listen(5000, () => console.log(`Servidor da API à escuta na porta 5000 ...`))
+app.listen(5000, () => console.log(`Servidor da API à escuta na porta 5000 ...`))

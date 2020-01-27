@@ -50,7 +50,7 @@ router.post("/", passport.authenticate("jwt", { session: false }), (req, res) =>
 })
 
 router.post("/:id/addComment", passport.authenticate("jwt", { session: false }), (req, res) => {
-    Posts.addComment(req.params.id, req.body.comment)
+    Posts.addComment(req.params.id, req.body)
         .then(dados => res.jsonp(dados))
         .catch(e => res.status(500).jsonp(e))
 })

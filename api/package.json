@@ -16,9 +16,7 @@
         "morgan": "~1.9.1",
         "passport": "^0.4.1",
         "passport-jwt": "^4.0.0",
-        "pug": "^2.0.4",
-        "shortid": "^2.2.15",
-        "socket.io": "^2.3.0"
+        "pug": "^2.0.4"
     },
     "devDependencies": {
         "nodemon": "^2.0.2"

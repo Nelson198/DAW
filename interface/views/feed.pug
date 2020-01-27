@@ -65,7 +65,7 @@ block content
 
     if (posts.length > 0)
         each post in posts
-            .card.card2.mt-4.mb-4
+            .card.card2.mt-4.mb-4(id=`${post._id}`)
                 .card-header
                     .d-flex.justify-content-between.align-items-center
                         .d-flex.justify-content-between.align-items-center
@@ -99,17 +99,17 @@ block content
                         .card-body
                             p.card-text= comment.content
 
-
                 .card-footer.mt-3
-                    .form-group
+                    form.form-group(action=`/${post._id}/addComment` method="POST")
                         label.sr-only(for="message")
-                        input.form-control(type="text" name="description" placeholder="O que estás a pensar?" required)
-                    a.card-link(href="#")
-                        i.fa.fa-comment
-                        |  Comentar
+                        input.form-control(type="text" name="content" placeholder="Insere um comentário" required)
+
+                        button.card-link(type="submit")
+                            i.fa.fa-comment
+                            |  Comentar
 
     else
         | Nenhuma publicação
 
     //- Chat (Right bar)
-    include chat.pug
+    include rightNavbar.pug
