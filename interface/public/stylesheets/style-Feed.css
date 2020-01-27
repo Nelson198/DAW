@@ -26,10 +26,6 @@ body {
     opacity: 0.8;
 }
 
-#signOut:hover {
-    color: red;
-}
-
 #arrowNavbar {
     color: #ffffff;
 }
@@ -161,13 +157,13 @@ ul ul a {
     width: 280%;
 }
 
-#Save {
+#SaveButton {
     color: #666666;
     background: #e5e5e5;
     border-color: #e5e5e5;
 }
 
-#Save:hover {
+#SaveButton:hover {
     color: #505050;
     background: #b4b4b4;
     border-color: #b4b4b4;

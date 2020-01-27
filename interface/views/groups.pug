@@ -33,11 +33,11 @@ block content
                                                             if (user.groups.filter(g => g._id == group._id).length === 1)
                                                                 span Nome: 
                                                                 span= group.name
-                                                                span  (neste grupo)
+                                                                span.badge.badge-info.ml-4.mt-2.p-2 Meu grupo
                                                             else
                                                                 span Nome: 
                                                                 span= group.name
-                                                                button.ml-2(style="backgroud: transparent; border: none" onclick=`joinGroup("${user.email}", "${group._id}")`) +
+                                                                button.btn.btn-outline-success.ml-2(style="backgroud: transparent; border: none" onclick=`joinGroup("${user.email}", "${group._id}")`) +
                                                     .h7.text-muted.mb-1
                                                         span Descrição: 
                                                         span= group.description
