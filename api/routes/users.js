@@ -9,7 +9,7 @@ const router = express.Router()
 
 /* GET users listing. */
 router.get("/", passport.authenticate("jwt", { session: false }), (req, res) => {
-    Users.find({}, { _id: 0, email: 1, name: 1, avatar: 1 })
+    Users.find({}, { _id: 0, email: 1, name: 1 })
         .then(dados => res.jsonp(dados))
         .catch(e => res.status(500).jsonp(e))
 })

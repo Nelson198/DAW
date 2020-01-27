@@ -20,12 +20,7 @@ module.exports.find = () => {
 }
 
 module.exports.findOneByEmail = async (email) => {
-    const user = await User.findOne({ email: email }).exec()
-    if (!user)
-        return null
-
-    user.avatar = await base64(`data/avatars/${user.avatar}`)
-    return user
+    return User.findOne({ email: email }).exec()
 }
 
 module.exports.insert = user => {
