@@ -1,7 +1,7 @@
 const Group = require("../models/group")
 
-module.exports.find = () => {
-    return Group.find().exec()
+module.exports.find = (condition) => {
+    return Group.find(condition).exec()
 }
 
 module.exports.findOneById = id => {

@@ -7,7 +7,7 @@ const router = express.Router()
 
 /* GET groups listing. */
 router.get("/", passport.authenticate("jwt", { session: false }), (req, res) => {
-    Groups.find({ $or: [{ public: true }, { members: req.user.username }] })
+    Groups.find({ $or: [{ public: true }, { members: req.user.email }] })
         .then(dados => res.jsonp(dados))
         .catch(e => res.status(500).jsonp(e))
 })
