@@ -65,4 +65,18 @@ router.post("/:id/removeParticipant", verificaAutenticacao, (req, res) => {
         .catch(err => res.send(err))
 })
 
+router.post("/", verificaAutenticacao, (req, res) => {
+    const token = jwt.sign({ email: req.user.email }, "tpDAW1920", {
+        expiresIn: 3000
+    })
+
+    req.body.participants = [req.user.email]
+
+    axios.post(`http://localhost:5000/api/events?token=${token}`, req.body)
+        .then(r => {
+            res.redirect(`/events/${r.data._id}`)
+        })
+        .catch(err => res.send(err))
+})
+
 module.exports = router

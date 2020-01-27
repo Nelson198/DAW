@@ -9,8 +9,9 @@ module.exports.findOneById = id => {
     return Event.findOne({ _id: id }).exec()
 }
 
-module.exports.insert = event => {
+module.exports.insert = async (event) => {
     const newEvent = new Event(event)
+    await User.updateOne({ email: newEvent.participants[0] }, { $push: { events: newEvent._id } }).exec()
     return newEvent.save()
 }
 
