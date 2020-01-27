@@ -76,10 +76,31 @@ block content
                     .text-muted.h7.mb-2
                         i.fa.fa-clock-o= post.date
                     p.card-text= post.description
-                .card-footer
+
+                //- COMMENTS
+                each comment in post.comments
+                    .card-footer.ml-5.mr-5.mt-3
+                        .card-header
+                            .d-flex.justify-content-between.align-items-center
+                                .d-flex.justify-content-between.align-items-center
+                                    a.mr-2(href=`/profiles/${post.author.email}`)
+                                        img.rounded-circle(width="35" src=`${post.author.avatar}` alt="")
+                                    .ml-2
+                                        .h5.m-0
+                                            a(href=`/profiles/${post.author.email}`)= comment.author
+                                .text-muted.h7.mb-2
+                                    i.fa.fa-clock-o= comment.date
+
+                        .card-body
+                            p.card-text= comment.content
+
+
+                .card-footer.mt-3
                     a.card-link(href="#")
                         i.fa.fa-comment
                         |  Comentar
+                        // TODO
+
     else
         | Nenhuma publicação
 
