@@ -128,8 +128,15 @@ router.post("/newPost", verificaAutenticacao, (req, res) => {
     })
 
     req.body.author = req.user.email
-
-    req.body.group
+    
+    if(req.body.public == "public")
+        req.body.public = true
+    else if(req.body.group == "private")
+        req.body.public = false
+    else {
+        req.body.group = req.body.public
+        req.body.public = false
+    }
 
     axios.post(`http://localhost:5000/api/posts?token=${token}`, req.body)
         .then(r => {
