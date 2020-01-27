@@ -65,4 +65,31 @@ router.post("/:email/leaveGroup", verificaAutenticacao, (req, res) => {
         .catch(err => res.send(err))
 })
 
+router.post("/createGroup", verificaAutenticacao, (req, res) => {
+    const token = jwt.sign({ email: req.user.email }, "tpDAW1920", {
+        expiresIn: 3000
+    })
+
+    req.body.public = req.body.public == "public"
+    req.body.members = [req.user.email]
+
+    axios.post(`http://localhost:5000/api/groups?token=${token}`, req.body)
+        .then(r => {
+            res.send()
+        })
+        .catch(err => res.send(err))
+})
+
+router.post("/createEvent", verificaAutenticacao, (req, res) => {
+    const token = jwt.sign({ email: req.user.email }, "tpDAW1920", {
+        expiresIn: 3000
+    })
+
+    axios.post(`http://localhost:5000/api/events?token=${token}`, req.body)
+        .then(r => {
+            res.send()
+        })
+        .catch(err => res.send(err))
+})
+
 module.exports = router

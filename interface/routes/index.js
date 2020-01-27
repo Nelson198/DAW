@@ -79,4 +79,19 @@ router.post("/register", (req, res) => {
         .catch(e => res.render("error", { error: e }))
 })
 
+
+router.post("/:postId/addComment", verificaAutenticacao, (req, res) => {
+    const token = jwt.sign({ email: req.user.email }, "tpDAW1920", {
+        expiresIn: 3000
+    })
+
+    req.body.author = req.user.email
+
+    axios.post(`http://localhost:5000/api/posts/${req.params.postId}/addComment?token=${token}`, { comment: req.body })
+        .then(r => {
+            res.send()
+        })
+        .catch(err => res.send(err))
+})
+
 module.exports = router

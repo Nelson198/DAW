@@ -3,7 +3,8 @@ const mongoose = require("mongoose")
 const CommentSchema = new mongoose.Schema(
     {
         content: {
-            type: String
+            type: String,
+            required: true
         },
         author: {
             type: String,
@@ -20,7 +21,7 @@ const CommentSchema = new mongoose.Schema(
             default: Date.now
         }
     },
-    { 
+    {
         _id: false,
         versionKey: false
     }
