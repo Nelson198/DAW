@@ -39,7 +39,8 @@ const PostSchema = new mongoose.Schema(
             type: [String]
         },
         description: {
-            type: String
+            type: String,
+            required: true
         },
         attachments: {
             type: [String]

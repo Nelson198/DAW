@@ -11,7 +11,7 @@ block content
         
     //- Page Content
     .card.card1
-        form(action="/" method="POST")
+        form(action="/newPost" method="POST")
             .card-header
                 ul#myTab.nav.nav-tabs.card-header-tabs(role="tablist")
                     li.nav-item
@@ -26,7 +26,7 @@ block content
                     #posts.tab-pane.fade.show.active(role="tabpanel" aria-labelledby="posts-tab")
                         .form-group
                             label.sr-only(for="message")
-                            textarea#message.form-control(rows="3" placeholder="O que estás a pensar?")
+                            input#message.form-control(type="text" name="description" rows="3" placeholder="O que estás a pensar?" required)
                     #images.tab-pane.fade(role="tabpanel" aria-labelledby="images-tab")
                         .form-group
                             .custom-file
@@ -41,21 +41,26 @@ block content
                         .py-4
                 .btn-toolbar.justify-content-between
                     .btn-group
-                        button.btn.btn-primary(type="submit") Partilhar
-                    .btn-group
-                        button#btnGroupDrop1.btn.btn-link.dropdown-toggle(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
-                            i.fa.fa-globe
-                            .dropdown-menu.dropdown-menu-right(aria-labelledby="btnGroupDrop1")
-                                a.dropdown-item(href="#")
-                                    i.fa.fa-globe
-                                    |  Público
-                                a.dropdown-item(href="#")
-                                    i.fa.fa-users
-                                    |  Amigos
+                        select.form-control(name="public" id="public" required)
+                            button#btnGroupDrop1.btn.btn-link.dropdown-toggle(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+                                i.fa.fa-globe
+                                .dropdown-menu.dropdown-menu-right(aria-labelledby="btnGroupDrop1")
+                                    .dropdown-item
+                                        i.fa.fa-globe
+                                            option(value="public" selected)
+                                            |  Público
+                                    .dropdown-item
+                                        i.fa.fa-users
+                                            option(value="private")
+                                            |  Amigos
 
-                                .dropdown-divider
-                                each group in user.groups
-                                    a.dropdown-item= group.name
+                                    .dropdown-divider
+                                    each group in user.groups
+                                        .dropdown-item= group.name
+                                            option(type="text" name="group" value=`${group.name}`)
+                    
+                    .btn-group
+                        button.btn.btn-primary(type="submit") Partilhar
 
 
     if (posts.length > 0)
