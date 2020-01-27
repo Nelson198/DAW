@@ -46,18 +46,18 @@ block content
                                 i.fa.fa-globe
                                 .dropdown-menu.dropdown-menu-right(aria-labelledby="btnGroupDrop1")
                                     a.dropdown-item
-                                        i.fa.fa-globe
-                                            option(value="public" selected)
+                                        option(value="public" selected)
+                                            i.fa.fa-globe
                                             |  Público
                                     a.dropdown-item
-                                        i.fa.fa-users
-                                            option(value="private")
+                                        option(value="private")
+                                            i.fa.fa-users
                                             |  Amigos
 
                                     .dropdown-divider
                                     each group in user.groups
-                                        a.dropdown-item= group.name
-                                            option(value=`${group.name}`)
+                                        option(value=`${group.name}`)
+                                            a.dropdown-item= group.name
                     
                     .btn-group
                         button.btn.btn-primary(type="submit") Partilhar
