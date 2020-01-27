@@ -101,10 +101,12 @@ block content
 
 
                 .card-footer.mt-3
+                    .form-group
+                        label.sr-only(for="message")
+                        input.form-control(type="text" name="description" placeholder="O que estás a pensar?" required)
                     a.card-link(href="#")
                         i.fa.fa-comment
                         |  Comentar
-                        // TODO
 
     else
         | Nenhuma publicação
