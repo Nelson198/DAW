@@ -45,3 +45,19 @@ let leaveEvent = (email, eventId) => {
         })
         .catch(err => alert(err))
 }
+
+let acceptFriend = (email, friend) => {
+    axios.post(`http://localhost:7000/profiles/${email}/acceptFriend`, { email: friend })
+        .then(res => {
+            location.assign(`/friendRequests`)
+        })
+        .catch(err => alert(err))
+}
+
+let rejectFriend = (email, friend) => {
+    axios.post(`http://localhost:7000/profiles/${email}/rejectFriend`, { email: friend })
+        .then(res => {
+            location.assign(`/friendRequests`)
+        })
+        .catch(err => alert(err))
+}
