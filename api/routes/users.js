@@ -29,6 +29,13 @@ router.get("/:email", passport.authenticate("jwt", { session: false }), async (r
         }
         user.friends = friends
 
+        let friendRequests = []
+        for (const frEmail of user.friendRequests) {
+            const friend = await Users.findOneByEmail(frEmail)
+            friendRequests.push(friend)
+        }
+        user.friendRequests = friendRequests
+
         let groups = []
         for (const groupId of user.groups) {
             const group = await Groups.findOneById(groupId)
