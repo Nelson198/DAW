@@ -95,4 +95,16 @@ router.post("/:email/rejectFriend", verificaAutenticacao, (req, res) => {
         .catch(err => res.send(err))
 })
 
+router.post("/update", verificaAutenticacao, (req, res) => {
+    const token = jwt.sign({ email: req.user.email }, "tpDAW1920", {
+        expiresIn: 3000
+    })
+
+    axios.patch(`http://localhost:5000/api/users/${req.user.email}?token=${token}`, req.body)
+        .then(r => {
+            res.redirect(`/profiles/${req.user.email}`)
+        })
+        .catch(err => res.send(err))
+})
+
 module.exports = router

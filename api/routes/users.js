@@ -50,6 +50,7 @@ router.get("/:email", passport.authenticate("jwt", { session: false }), async (r
         }
         user.events = events
 
+        user.birthdayDate = moment(user.birthday).format('YYYY-MM-DD')
         user.birthday = moment(user.birthday).format('DD-MM-YYYY') + " (" + moment(user.birthday).fromNow("years") + ")"
 
         res.jsonp(user)
