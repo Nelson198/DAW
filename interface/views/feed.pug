@@ -26,7 +26,7 @@ block content
                     #posts.tab-pane.fade.show.active(role="tabpanel" aria-labelledby="posts-tab")
                         .form-group
                             label.sr-only(for="message")
-                            input#message.form-control(type="text" name="description" rows="3" placeholder="O que estás a pensar?" required)
+                            textarea#message.form-control(type="text" name="description" rows="3" placeholder="O que estás a pensar?" required)
                     #images.tab-pane.fade(role="tabpanel" aria-labelledby="images-tab")
                         .form-group
                             .custom-file
@@ -45,20 +45,20 @@ block content
                             button#btnGroupDrop1.btn.btn-link.dropdown-toggle(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
                                 i.fa.fa-globe
                                 .dropdown-menu.dropdown-menu-right(aria-labelledby="btnGroupDrop1")
-                                    .dropdown-item
-                                        i.fa.fa-globe
-                                            option(value="public" selected)
+                                    a.dropdown-item
+                                        option(value="public" selected)
+                                            i.fa.fa-globe
                                             |  Público
-                                    .dropdown-item
-                                        i.fa.fa-users
-                                            option(value="private")
+                                    a.dropdown-item
+                                        option(value="private")
+                                            i.fa.fa-users
                                             |  Amigos
 
                                     .dropdown-divider
                                     each group in user.groups
-                                        .dropdown-item= group.name
-                                            option(type="text" name="group" value=`${group.name}`)
-                    
+                                        option(value=`${group._id}`)
+                                            a.dropdown-item= group.name
+
                     .btn-group
                         button.btn.btn-primary(type="submit") Partilhar
 
@@ -70,7 +70,7 @@ block content
                     .d-flex.justify-content-between.align-items-center
                         .d-flex.justify-content-between.align-items-center
                             a.mr-2(href=`/profiles/${post.author.email}`)
-                                img.rounded-circle(width="45" src=`${post.author.avatar}` alt="")
+                                img.rounded-circle(width="45" src="/images/avatar.png" alt="")
                             .ml-2
                                 .h5.m-0
                                     a(href=`/profiles/${post.author.email}`)= post.author.name
@@ -88,11 +88,11 @@ block content
                         .card-header
                             .d-flex.justify-content-between.align-items-center
                                 .d-flex.justify-content-between.align-items-center
-                                    a.mr-2(href=`/profiles/${post.author.email}`)
-                                        img.rounded-circle(width="35" src=`${post.author.avatar}` alt="")
+                                    a.mr-2(href=`/profiles/${comment.author.email}`)
+                                        img.rounded-circle(width="35" src="/images/avatar.png" alt="")
                                     .ml-2
                                         .h5.m-0
-                                            a(href=`/profiles/${post.author.email}`)= comment.author
+                                            a(href=`/profiles/${comment.author.email}`)= comment.author.name
                                 .text-muted.h7.mb-2
                                     i.fa.fa-clock-o= comment.date
 

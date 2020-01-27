@@ -11,14 +11,14 @@ https://www.json-generator.com/
       birthday: '{{date(new Date(1995, 0, 1), new Date(2001, 0, 1), "YYYY-MM-dd")}}',
       creationDate: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-dd")}}',
       course: '{{random("Informatics Engineering", "Computer Science", "Telecommunications Engineering and Informatics")}}',
-      avatar: 'default.png',
       bio: '{{lorem(random(20,30), "words")}}',
       friends: [],
       posts: [],
       groups: [],
       events: [],
       friendRequests: [],
-      conversations: []
+      conversations: [],
+      notifications: []
     }
   ],
   

@@ -10,7 +10,28 @@ const ConversationSchema = new mongoose.Schema(
             type: [String]
         }
     },
-    { 
+    {
+        _id: false,
+        versionKey: false
+    }
+)
+
+const NotificationSchema = new mongoose.Schema(
+    {
+        author: {
+            type: String,
+            required: true
+        },
+        content: {
+            type: String,
+            required: true
+        },
+        link: {
+            type: String,
+            required: true
+        }
+    },
+    {
         _id: false,
         versionKey: false
     }
@@ -47,10 +68,6 @@ const UserSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-        avatar: {
-            type: String,
-            default: "default.png"
-        },
         friends: {
             type: [String]
         },
@@ -68,6 +85,9 @@ const UserSchema = new mongoose.Schema(
         },
         conversations: {
             type: [ConversationSchema]
+        },
+        notifications: {
+            type: [NotificationSchema]
         },
         creationDate: {
             type: Date,

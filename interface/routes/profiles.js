@@ -33,13 +33,9 @@ router.get("/:id", verificaAutenticacao, async (req, res) => {
     try {
         const user = await axios.get(`http://localhost:5000/api/users/${req.user.email}?token=${token}`)
         const profile = await axios.get(`http://localhost:5000/api/users/${req.params.id}?token=${token}`)
+        const posts = await axios.get(`http://localhost:5000/api/posts/email/${req.params.id}?token=${token}`)
 
-        let posts = []
-        for (const postId of profile.data.posts) {
-            const post = await axios.get(`http://localhost:5000/api/posts/${postId}?token=${token}`)
-            posts.push(post.data)
-        }
-        profile.data.posts = posts
+        profile.data.posts = posts.data
 
         res.render("profile", { user: user.data, profile: profile.data, ownProfile: req.user.email == req.params.id })
     } catch (e) {
