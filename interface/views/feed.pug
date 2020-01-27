@@ -25,6 +25,28 @@ block content
                         .form-group
                             label.sr-only(for="message")
                             textarea#message.form-control(type="text" name="description" rows="3" placeholder="O que estás a pensar?" required)
+                        .btn-toolbar.justify-content-between
+                            .btn-group
+                                select.form-control(name="public" id="public" required)
+                                    button#btnGroupDrop1.btn.btn-link.dropdown-toggle(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+                                        i.fa.fa-globe
+                                        .dropdown-menu.dropdown-menu-right(aria-labelledby="btnGroupDrop1")
+                                            a.dropdown-item
+                                                option(value="public" selected)
+                                                    i.fa.fa-globe
+                                                    |  Público
+                                            a.dropdown-item
+                                                option(value="private")
+                                                    i.fa.fa-users
+                                                    |  Amigos
+
+                                            .dropdown-divider
+                                            each group in user.groups
+                                                option(value=`${group._id}`)
+                                                    a.dropdown-item= group.name
+
+                            .btn-group
+                                button.btn.btn-primary(type="submit") Partilhar
                     #images.tab-pane.fade(role="tabpanel" aria-labelledby="images-tab")
                         #imagess
                             .form-group(id="f1")
@@ -34,28 +56,6 @@ block content
                         button.w3-button.w3-round-large.w3-indigo(id='mais1') +1
                         button.w3-button.w3-round-large.w3-indigo(id='remover' disabled) -1
                         .py-1
-                .btn-toolbar.justify-content-between
-                    .btn-group
-                        select.form-control(name="public" id="public" required)
-                            button#btnGroupDrop1.btn.btn-link.dropdown-toggle(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
-                                i.fa.fa-globe
-                                .dropdown-menu.dropdown-menu-right(aria-labelledby="btnGroupDrop1")
-                                    a.dropdown-item
-                                        option(value="public" selected)
-                                            i.fa.fa-globe
-                                            |  Público
-                                    a.dropdown-item
-                                        option(value="private")
-                                            i.fa.fa-users
-                                            |  Amigos
-
-                                    .dropdown-divider
-                                    each group in user.groups
-                                        option(value=`${group._id}`)
-                                            a.dropdown-item= group.name
-
-                    .btn-group
-                        button.btn.btn-primary(type="submit") Partilhar
 
 
     if (posts.length > 0)

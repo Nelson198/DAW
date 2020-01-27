@@ -11,7 +11,7 @@ router.get("/", passport.authenticate("jwt", { session: false }), async (req, re
     const backup = {}
     backup.users = await Users.find()
     backup.groups = await Groups.find()
-    backup.posts = await Posts.find()
+    backup.posts = await Posts.find({})
     backup.events = await Events.find()
 
     res.jsonp(backup)
