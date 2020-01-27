@@ -50,6 +50,9 @@ router.get("/:email", passport.authenticate("jwt", { session: false }), async (r
         }
         user.events = events
 
+        for (const notification of user.notifications)
+            notification.author = await Users.findOneByEmail(notification.author)
+
         user.birthdayDate = moment(user.birthday).format('YYYY-MM-DD')
         user.birthday = moment(user.birthday).format('DD-MM-YYYY') + " (" + moment(user.birthday).fromNow("years") + ")"
 
@@ -97,6 +100,12 @@ router.post("/:email/joinGroup", (req, res) => {
 
 router.post("/:email/leaveGroup", (req, res) => {
     Users.leaveGroup(req.params.email, req.body._id)
+        .then(dados => res.jsonp(dados))
+        .catch(e => res.status(500).jsonp(e))
+})
+
+router.post("/:email/removeNotification", (req, res) => {
+    Users.removeNotification(req.params.email, req.body._id)
         .then(dados => res.jsonp(dados))
         .catch(e => res.status(500).jsonp(e))
 })

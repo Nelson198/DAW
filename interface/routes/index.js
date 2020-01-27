@@ -46,6 +46,20 @@ router.get("/friendRequests", verificaAutenticacao, async (req, res) => {
     }
 })
 
+router.get("/notifications", verificaAutenticacao, async (req, res) => {
+    const token = jwt.sign({ email: req.user.email }, "tpDAW1920", {
+        expiresIn: 3000
+    })
+
+    try {
+        const user = await axios.get(`http://localhost:5000/api/users/${req.user.email}?token=${token}`)
+
+        res.render("notifications", { user: user.data })
+    } catch (e) {
+        res.render("error", { error: e })
+    }
+})
+
 router.get("/createGroup", verificaAutenticacao, async (req, res) => {
     const token = jwt.sign({ email: req.user.email }, "tpDAW1920", {
         expiresIn: 3000
@@ -145,11 +159,13 @@ router.post("/newPost", verificaAutenticacao, upload.array('attachments'), (req,
 
     req.body.author = req.user.email
 
-    if (req.body.public == "public")
+    if (req.body.public == "public") {
+        req.body.group = null
         req.body.public = true
-    else if (req.body.group == "private")
+    } else if (req.body.public == "private") {
+        req.body.group = null
         req.body.public = false
-    else {
+    } else {
         req.body.group = req.body.public
         req.body.public = false
     }

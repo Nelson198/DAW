@@ -17,7 +17,6 @@ https://www.json-generator.com/
       groups: [],
       events: [],
       friendRequests: [],
-      conversations: [],
       notifications: []
     }
   ],

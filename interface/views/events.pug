@@ -33,11 +33,14 @@ block content
                                                             if (user.events.filter(e => e._id == event._id).length === 1)
                                                                 span(style="font-weight: bold") Título: 
                                                                 span= event.title
-                                                                span.badge.badge-info.ml-4.mt-2.p-2 Aderido
                                                             else
                                                                 span(style="font-weight: bold") Título: 
                                                                 span= event.title
-                                                                button.btn.btn-outline-success.ml-4(style="backgroud: transparent; border: none" onclick=`joinEvent("${user.email}", "${event._id}")`) Aderir
+
+                                                        if (user.events.filter(e => e._id == event._id).length === 1)
+                                                            span.badge.badge-info.ml-4.mt-2.p-2 Aderido
+                                                        else
+                                                            button.btn.btn-outline-success.ml-4(style="backgroud: transparent; border: none" onclick=`joinEvent("${user.email}", "${event._id}")`) Aderir
                                                     .h7.text-muted.mb-1
                                                         span(style="font-weight: bold") Descrição: 
                                                         span= event.description

@@ -1,21 +1,5 @@
 const mongoose = require("mongoose")
 
-const ConversationSchema = new mongoose.Schema(
-    {
-        other: {
-            type: String,
-            required: true
-        },
-        messages: {
-            type: [String]
-        }
-    },
-    {
-        _id: false,
-        versionKey: false
-    }
-)
-
 const NotificationSchema = new mongoose.Schema(
     {
         author: {
@@ -32,7 +16,6 @@ const NotificationSchema = new mongoose.Schema(
         }
     },
     {
-        _id: false,
         versionKey: false
     }
 )
@@ -82,9 +65,6 @@ const UserSchema = new mongoose.Schema(
         },
         friendRequests: {
             type: [String]
-        },
-        conversations: {
-            type: [ConversationSchema]
         },
         notifications: {
             type: [NotificationSchema]

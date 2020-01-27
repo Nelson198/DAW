@@ -33,8 +33,9 @@ nav(class="navbar navbar-dark fixed-top" style="background-color: rgb(64, 138, 1
 
         //- Notificações
         li(class="nav-item")
-            a(class="nav-link active d-flex align-items-center" href="#") 
+            a(class="nav-link active d-flex align-items-center" href="/notifications") 
                 img(src="/images/bell.svg" height="30" class="d-inline-block align-top iconNavbar" alt="")
+                span.ml-2#friendsNumber= user.notifications.length
 
     //- Botão terminar sessão
     a(href="/logout")

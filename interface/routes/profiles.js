@@ -91,6 +91,18 @@ router.post("/:email/rejectFriend", verificaAutenticacao, (req, res) => {
         .catch(err => res.send(err))
 })
 
+router.post("/:email/removeNotification", verificaAutenticacao, (req, res) => {
+    const token = jwt.sign({ email: req.user.email }, "tpDAW1920", {
+        expiresIn: 3000
+    })
+
+    axios.post(`http://localhost:5000/api/users/${req.params.email}/removeNotification?token=${token}`, { _id: req.body._id })
+        .then(r => {
+            res.send()
+        })
+        .catch(err => res.send(err))
+})
+
 router.post("/update", verificaAutenticacao, (req, res) => {
     const token = jwt.sign({ email: req.user.email }, "tpDAW1920", {
         expiresIn: 3000

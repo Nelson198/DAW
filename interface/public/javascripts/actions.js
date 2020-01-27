@@ -62,6 +62,14 @@ let rejectFriend = (email, friend) => {
         .catch(err => alert(err))
 }
 
+let removeNotification = (email, notificationId) => {
+    axios.post(`http://localhost:7000/profiles/${email}/removeNotification`, { _id: notificationId })
+        .then(res => {
+            location.assign(`/notifications`)
+        })
+        .catch(err => alert(err))
+}
+
 $(() => {
     var count = 1
 
@@ -73,14 +81,14 @@ $(() => {
 
         var campo = $('<div></div>', { class: 'form-group', id: 'f' + count })
         $("#imagess").append(campo)
-        
+
         var ficheiro = $("<div></div>", { class: "custom-file", id: "ficheiro" + count })
         $(`#f${count}`).append(ficheiro)
-        
+
         let ficheiroInput = $("<input/>", { class: "custom-file-input", id: "customFile2", type: "file", name: "attachments" })
         let ficheiroLabel = $("<label class='custom-file-label'>Carregar ficheiro</label>")
         $(`#ficheiro${count}`).append(ficheiroInput, ficheiroLabel)
-        
+
         $("#remover").prop("disabled", false)
         document.getElementById("f" + count).addEventListener('change', showFileName)
     })
