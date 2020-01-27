@@ -37,6 +37,12 @@ router.get("/:id", passport.authenticate("jwt", { session: false }), (req, res) 
         .catch(e => res.status(500).jsonp(e))
 })
 
+router.get("/email/:email", passport.authenticate("jwt", { session: false }), (req, res) => {
+    Posts.findByEmail(req.params.email)
+        .then(dados => res.jsonp(dados))
+        .catch(e => res.status(500).jsonp(e))
+})
+
 router.post("/", passport.authenticate("jwt", { session: false }), (req, res) => {
     Posts.insert(req.body)
         .then(dados => res.jsonp(dados))

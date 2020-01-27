@@ -56,9 +56,9 @@ block content
 
                                     .dropdown-divider
                                     each group in user.groups
-                                        option(value=`${group.name}`)
+                                        option(value=`${group._id}`)
                                             a.dropdown-item= group.name
-                    
+
                     .btn-group
                         button.btn.btn-primary(type="submit") Partilhar
 

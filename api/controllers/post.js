@@ -25,6 +25,32 @@ module.exports.findOneById = async (id) => {
     return post
 }
 
+module.exports.findByEmail = async (email) => {
+    const aux = await Post.find({ author: email }).sort({ date: -1 }).exec()
+
+    let posts = []
+    for (const p of aux) {
+        const post = p.toObject()
+        post.date = moment(post.date).fromNow()
+        posts.push(post)
+    }
+
+    return posts
+}
+
+module.exports.findByGroup = async (id) => {
+    const aux = await Post.find({ group: id }).sort({ date: -1 }).exec()
+
+    let posts = []
+    for (const p of aux) {
+        const post = p.toObject()
+        post.date = moment(post.date).fromNow()
+        posts.push(post)
+    }
+
+    return posts
+}
+
 module.exports.insert = async post => {
     const newPost = new Post(post)
     await User.updateOne({ email: newPost.author }, { $push: { posts: newPost._id } }).exec()

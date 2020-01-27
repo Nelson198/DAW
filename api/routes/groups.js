@@ -24,14 +24,10 @@ router.get("/:id", passport.authenticate("jwt", { session: false }), async (req,
         }
         group.members = members
 
-        let posts = []
-        for (const postId of group.posts) {
-            const post = await Posts.findOneById(postId)
-
+        let posts = await Posts.findByGroup(req.params.id)
+        for (const post of posts) {
             const author = await Users.findOneByEmail(post.author)
             post.author = author
-
-            posts.push(post)
         }
         group.posts = posts
 
