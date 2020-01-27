@@ -2,6 +2,7 @@ const express = require("express")
 const axios = require("axios")
 const passport = require("passport")
 const bcrypt = require("bcryptjs")
+const fs = require("fs")
 const jwt = require("jsonwebtoken")
 const router = express.Router()
 
@@ -125,10 +126,12 @@ router.post("/:postId/addComment", verificaAutenticacao, (req, res) => {
         .catch(err => res.send(err))
 })
 
-router.post("/newPost", verificaAutenticacao, upload.array('file'), (req, res) => {
+router.post("/newPost", verificaAutenticacao, upload.array('attachments'), (req, res) => {
     const token = jwt.sign({ email: req.user.email }, "tpDAW1920", {
         expiresIn: 3000
     })
+
+    req.body.attachments = []
 
     req.files.forEach((file, index) => {
         let oldPath = __dirname + '/../' + file.path
@@ -137,7 +140,7 @@ router.post("/newPost", verificaAutenticacao, upload.array('file'), (req, res) =
             if (err) throw err
         })
 
-        req.body.attachments({ $push: {} })
+        req.body.attachments.push(file.originalname)
     })
 
     req.body.author = req.user.email
@@ -151,7 +154,7 @@ router.post("/newPost", verificaAutenticacao, upload.array('file'), (req, res) =
         req.body.public = false
     }
 
-    axios.post(`http://localhost:5000/api/posts?token=${token}`, (req.body, req.files))
+    axios.post(`http://localhost:5000/api/posts?token=${token}`, req.body)
         .then(r => {
             res.redirect("/")
         })

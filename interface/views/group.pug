@@ -73,17 +73,14 @@ block content
                     #files.tab-pane.fade(role="tabpanel" aria-labelledby="files-tab")
                         if (group.files.length > 0)
                             each file in group.files
-                                // TODO
-                                a.card.card-header.mt-2(href=`/profiles/${member.email}`)
+                                a.card.card-header.mt-2(href=`/files/${file}` download=`${file}`)
                                     .d-flex.justify-content-between.align-items-center
                                         .d-flex.justify-content-between.align-items-center
                                             .mr-2
-                                                img.rounded-circle(width="45" src="/images/avatar.png" alt="")
+                                                img.rounded-circle(width="45" src="/images/file.png" alt="")
                                             .ml-2
                                                 .h5.m-0
-                                                    span= member.name
-                                                .h7.text-muted
-                                                    span= member.course
+                                                    span= file
                         else
                             | Nenhum ficheiro
 
