@@ -65,21 +65,24 @@ let rejectFriend = (email, friend) => {
 $(() => {
     var count = 1
 
+    document.getElementById("f1").addEventListener('change', showFileName)
+
     $("#mais1").click(e => {
         e.preventDefault()
         count++
 
         var campo = $('<div></div>', { class: 'form-group', id: 'f' + count })
         $("#imagess").append(campo)
-
+        
         var ficheiro = $("<div></div>", { class: "custom-file", id: "ficheiro" + count })
         $(`#f${count}`).append(ficheiro)
-
+        
         let ficheiroInput = $("<input/>", { class: "custom-file-input", id: "customFile2", type: "file", name: "attachments" })
         let ficheiroLabel = $("<label class='custom-file-label'>Carregar ficheiro:</label>")
         $(`#ficheiro${count}`).append(ficheiroInput, ficheiroLabel)
-
+        
         $("#remover").prop("disabled", false)
+        document.getElementById("f" + count).addEventListener('change', showFileName)
     })
 
     $("#remover").click(e => {
@@ -97,3 +100,7 @@ $(() => {
         }
     })
 })
+
+function showFileName(event) {
+    event.srcElement.nextSibling.textContent = event.srcElement.files[0].name
+}
