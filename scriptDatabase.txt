@@ -40,11 +40,6 @@ https://www.json-generator.com/
         {
           content: '{{lorem(random(1,10), "words")}}',
           author: 'default',
-          hashtags: [
-            '{{repeat(0,3)}}',
-            '{{lorem(1, "words")}}'
-          ],
-          attachments: [],
           date: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-dd")}}'
         }
       ]
