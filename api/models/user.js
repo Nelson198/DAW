@@ -10,7 +10,7 @@ const ConversationSchema = new mongoose.Schema(
             type: [String]
         }
     },
-    { 
+    {
         _id: false,
         versionKey: false
     }
@@ -46,10 +46,6 @@ const UserSchema = new mongoose.Schema(
         course: {
             type: String,
             required: true
-        },
-        avatar: {
-            type: String,
-            default: "default.png"
         },
         friends: {
             type: [String]
