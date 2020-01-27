@@ -47,4 +47,28 @@ router.get("/:id", verificaAutenticacao, async (req, res) => {
     }
 })
 
+router.post("/:email/addFriend", verificaAutenticacao, (req, res) => {
+    const token = jwt.sign({ email: req.user.email }, "tpDAW1920", {
+        expiresIn: 3000
+    })
+
+    axios.post(`http://localhost:5000/api/users/${req.params.email}/addFriend?token=${token}`, { email: req.body.email })
+        .then(r => {
+            res.send()
+        })
+        .catch(err => res.send(err))
+})
+
+router.post("/:email/removeFriend", verificaAutenticacao, (req, res) => {
+    const token = jwt.sign({ email: req.user.email }, "tpDAW1920", {
+        expiresIn: 3000
+    })
+
+    axios.post(`http://localhost:5000/api/users/${req.params.email}/removeFriend?token=${token}`, { email: req.body.email })
+        .then(r => {
+            res.send()
+        })
+        .catch(err => res.send(err))
+})
+
 module.exports = router
