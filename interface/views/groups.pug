@@ -29,13 +29,19 @@ block content
                                             .d-flex.justify-content-between.align-items-center
                                                 .ml-2
                                                     .h5.mb-2
-                                                        span Nome: 
-                                                        span= group.name
+                                                        a(href=`/groups/${group._id}`)
+                                                            if (user.groups.filter(g => g._id == group._id).length === 1)
+                                                                span Nome: 
+                                                                span= group.name
+                                                                span  (neste grupo)
+                                                            else
+                                                                span Nome: 
+                                                                span= group.name
                                                     .h7.text-muted.mb-1
                                                         span Descrição: 
                                                         span= group.description
                                                     .h7.text-muted.mb-1
-                                                        span Privacidade:
+                                                        span Privacidade: 
                                                         if (group.public)
                                                             span Público
                                                         else
