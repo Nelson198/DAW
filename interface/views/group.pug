@@ -45,6 +45,8 @@ block content
                                                         a(href=`/profiles/${post.author.email}`)= post.author.name
                                                     .h7.text-muted
                                                         span= post.author.course
+                                                if (post.author.email == user.email)
+                                                    button.btn.btn-outline-danger.ml-3.mb-2.mt-2(onclick=`removePost("${post._id}")`) Remover
                                     .card-body
                                         .text-muted.h7.mb-2
                                             i.fas.fa-clock

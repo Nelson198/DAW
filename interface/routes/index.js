@@ -140,6 +140,18 @@ router.post("/:postId/addComment", verificaAutenticacao, (req, res) => {
         .catch(err => res.send(err))
 })
 
+router.post("/:postId/removePost", verificaAutenticacao, (req, res) => {
+    const token = jwt.sign({ email: req.user.email }, "tpDAW1920", {
+        expiresIn: 3000
+    })
+
+    axios.delete(`http://localhost:5000/api/posts/${req.params.postId}?token=${token}`)
+        .then(r => {
+            res.redirect("/")
+        })
+        .catch(err => res.send(err))
+})
+
 router.post("/newPost", verificaAutenticacao, upload.array('attachments'), (req, res) => {
     const token = jwt.sign({ email: req.user.email }, "tpDAW1920", {
         expiresIn: 3000

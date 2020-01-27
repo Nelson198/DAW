@@ -25,8 +25,16 @@ module.exports.backup = async (events) => {
 }
 
 module.exports.addParticipant = async (id, email) => {
-    await Event.updateOne({ _id: id }, { $push: { participants: email } }).exec()
+    const event = await Event.findOneAndUpdate({ _id: id }, { $push: { participants: email } }).exec()
     await User.updateOne({ email: email }, { $push: { events: id } }).exec()
+
+    const notification = {
+        author: email,
+        content: "Alguém se juntou a um evento do qual fazes parte",
+        link: `/events/${id}`
+    }
+    for (const member of event.participants)
+        await User.updateOne({ email: member }, { $push: { notifications: notification } }).exec()
 }
 
 module.exports.removeParticipant = async (id, email) => {
