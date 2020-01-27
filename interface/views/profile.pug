@@ -32,6 +32,15 @@ block content
                                 // TODO - embelezar este "botão"
                                 if (ownProfile)
                                     a(href="/profiles/updateProfile") Editar
+                                else
+                                    if (profile.friendRequests.filter(f => f == user.email).length === 1)
+                                        | Pedido enviado
+                                    else if (user.friends.filter(f => f.email == profile.email).length === 0)
+                                        button(onclick=`addFriend("${user.email}", "${profile.email}")`)
+                                            | Adicionar
+                                    else
+                                        button(onclick=`removeFriend("${user.email}", "${profile.email}")`)
+                                            | Remover
                                 .d-flex.justify-content-between.align-items-center
                                     .d-flex.justify-content-between.align-items-center
                                         a.ml-2(href=`/profiles/${profile.email}`)

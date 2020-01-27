@@ -82,13 +82,13 @@ router.post("/:email/removeFriend", (req, res) => {
 })
 
 router.post("/:email/joinGroup", (req, res) => {
-    Users.joinGroup(req.params.email, req.body.joinKey)
+    Users.joinGroup(req.params.email, req.body._id)
         .then(dados => res.jsonp(dados))
         .catch(e => res.status(500).jsonp(e))
 })
 
 router.post("/:email/leaveGroup", (req, res) => {
-    Users.leaveGroup(req.params.email, req.body.joinKey)
+    Users.leaveGroup(req.params.email, req.body._id)
         .then(dados => res.jsonp(dados))
         .catch(e => res.status(500).jsonp(e))
 })
