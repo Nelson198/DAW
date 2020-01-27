@@ -76,7 +76,7 @@ $(() => {
         $(`#f${count}`).append(ficheiro)
 
         let ficheiroInput = $("<input/>", { class: "custom-file-input", id: "customFile2", type: "file", name: "attachments" })
-        let ficheiroLabel = $("<label class='custom-file-label'>Carregar ficheiro:</label>")
+        let ficheiroLabel = $("<label class='custom-file-label'>Carregar ficheiro</label>")
         $(`#ficheiro${count}`).append(ficheiroInput, ficheiroLabel)
 
         $("#remover").prop("disabled", false)

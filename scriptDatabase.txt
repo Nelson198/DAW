@@ -34,7 +34,7 @@ https://www.json-generator.com/
       ],
       description: '{{lorem(random(1,10), "words")}}',
       attachments: [],
-      date: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-dd")}}',
+      date: '{{date(new Date(2020, 0, 1), new Date(), "YYYY-MM-dd")}}',
       comments: [
         '{{repeat(0,5)}}',
         {

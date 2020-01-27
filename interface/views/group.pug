@@ -49,10 +49,16 @@ block content
                                         .text-muted.h7.mb-2
                                             i.fa.fa-clock-o= post.date
                                         p.card-text= post.description
-                                    .card-footer
-                                        a.card-link(href="#")
-                                            i.fa.fa-comment
-                                            |  Comentar
+                                        if (post.attachments.length > 0)
+                                            each attachment in post.attachments
+                                                a.card.card-header.mt-2(href=`/files/${attachment}` download=`${attachment}`)
+                                                    .d-flex.justify-content-between.align-items-center
+                                                        .d-flex.justify-content-between.align-items-center
+                                                            .mr-2
+                                                                img.rounded-circle(width="30" src="/images/file.png" alt="")
+                                                            .ml-2
+                                                                .h5.m-0
+                                                                    span= attachment
                         else
                             | Nenhuma publicação
                     #members.tab-pane.fade(role="tabpanel" aria-labelledby="members-tab")

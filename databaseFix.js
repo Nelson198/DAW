@@ -31,12 +31,12 @@ mongoose.connect("mongodb://127.0.0.1:27017/ISN", { useNewUrlParser: true, useUn
             }
 
             let comments = []
-            const delta = 1000*60
+            let delta = 1000 * 60
             for (const comment of post.comments) {
                 const rand = Math.floor(Math.random() * (users.length - 1))
                 comment.author = users[rand].email
                 delta += rand * 60 * 1000
-                comment.date.setTime(post.date.getTime() + delta).
+                comment.date.setTime(post.date.getTime() + delta)
                 comments.push(comment)
             }
             await mongoose.connection.db.collection("posts").updateOne({ _id: post._id }, { $set: { comments: comments } })
