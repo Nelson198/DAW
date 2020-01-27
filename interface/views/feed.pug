@@ -45,19 +45,19 @@ block content
                             button#btnGroupDrop1.btn.btn-link.dropdown-toggle(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
                                 i.fa.fa-globe
                                 .dropdown-menu.dropdown-menu-right(aria-labelledby="btnGroupDrop1")
-                                    .dropdown-item
+                                    a.dropdown-item
                                         i.fa.fa-globe
                                             option(value="public" selected)
                                             |  Público
-                                    .dropdown-item
+                                    a.dropdown-item
                                         i.fa.fa-users
                                             option(value="private")
                                             |  Amigos
 
                                     .dropdown-divider
                                     each group in user.groups
-                                        .dropdown-item= group.name
-                                            option(type="text" name="group" value=`${group.name}`)
+                                        a.dropdown-item= group.name
+                                            option(value=`${group.name}`)
                     
                     .btn-group
                         button.btn.btn-primary(type="submit") Partilhar
