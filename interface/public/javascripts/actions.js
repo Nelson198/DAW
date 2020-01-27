@@ -70,6 +70,14 @@ let removeNotification = (email, notificationId) => {
         .catch(err => alert(err))
 }
 
+let removePost = (postId) => {
+    axios.post(`http://localhost:7000/${postId}/removePost`)
+        .then(res => {
+            location.assign("/")
+        })
+        .catch(err => alert(err))
+}
+
 $(() => {
     var count = 1
 

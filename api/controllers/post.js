@@ -79,8 +79,11 @@ module.exports.insert = async post => {
     return newPost.save()
 }
 
-module.exports.remove = id => {
-    return Post.deleteOne({ _id: id }).exec()
+module.exports.remove = async (id) => {
+    const post = await Post.findOneAndDelete({ _id: id }).exec()
+    await User.updateOne({ email: post.author }, { $pull: { posts: post._id } })
+    if (post.group)
+        await Group.updateOne({ _id: post.group }, { $pull: { posts: post._id } })
 }
 
 module.exports.backup = async (posts) => {
