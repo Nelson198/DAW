@@ -3,6 +3,8 @@ const Users = require("../controllers/user")
 const express = require("express")
 const passport = require("passport")
 const router = express.Router()
+const moment = require("moment")
+moment.locale("pt-pt")
 
 /* GET posts listing. */
 router.get("/", passport.authenticate("jwt", { session: false }), async (req, res) => {
@@ -13,6 +15,13 @@ router.get("/", passport.authenticate("jwt", { session: false }), async (req, re
         let posts = []
         for (const post of aux) {
             post.author = await Users.findOneByEmail(post.author)
+
+            post.comments.sort((c1, c2) => c1.date - c2.date)
+            for (const comment of post.comments) {
+                comment.author = await Users.findOneByEmail(comment.author)
+                comment.date = moment(comment.date).fromNow()
+            }
+
             posts.push(post)
         }
 
