@@ -30,24 +30,24 @@ block content
                                         a.ml-5.mr-5(href=`/profiles/${user.email}`)
                                             img.rounded-circle(width="200" src=`${user.avatar}` alt="")
                                         .ml-2
-                                        form.form-update.ml-4(action="/update" method="POST")
+                                        form.form-update.ml-4(action="/profiles/update" method="POST")
                                             .h5
                                                 a(href=`/profiles/${user.email}`)
                                             .h7.text-muted.mb-2
                                                 span Nome:
-                                                input#inputName.form-control(type="text" name="name" placeholder=`${user.name}` required autofocus)
+                                                input#inputName.form-control(type="text" name="name" value=`${user.name}` required autofocus)
                                             .h7.text-muted.mb-2
                                                 span E-mail:                                                        
-                                                input#inputEmail.form-control(type="email" name="email" placeholder=`${user.email}` required)
+                                                input#inputEmail.form-control(type="email" name="email" value=`${user.email}` required)
                                             .h7.text-muted.mb-2
                                                 span Aniversário:
-                                                input#inputDate.form-control(type="date" name="birthday" placeholder=`${user.birthday}` required)
+                                                input#inputDate.form-control(type="date" name="birthday" value=`${user.birthdayDate}` required)
                                             .h7.text-muted.mb-2
                                                 span Curso:
-                                                input#inputCourse.form-control(type="text" name="course" placeholder=`${user.course}` required) 
+                                                input#inputCourse.form-control(type="text" name="course" value=`${user.course}` required) 
                                             .h7.text-muted.mb-4
                                                 span Biografia:
-                                                input#inputBio.form-control(type="text" name="bio" placeholder=`${user.bio}`) 
+                                                input#inputBio.form-control(type="text" name="bio" value=`${user.bio}`) 
 
                                             button.btn.btn-lg.btn-block#SaveButton(type="submit") Guardar
 

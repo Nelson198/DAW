@@ -10,12 +10,6 @@ const CommentSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-        hashtags: {
-            type: [String]
-        },
-        attachments: {
-            type: [String]
-        },
         date: {
             type: Date,
             default: Date.now
@@ -45,7 +39,8 @@ const PostSchema = new mongoose.Schema(
             type: [String]
         },
         description: {
-            type: String
+            type: String,
+            required: true
         },
         attachments: {
             type: [String]
