@@ -158,6 +158,16 @@ router.post("/newPost", verificaAutenticacao, upload.array('attachments'), (req,
     })
 
     req.body.author = req.user.email
+    req.body.hashtags = []
+
+    let words = req.body.description.split(/#/)
+
+    let i = 1
+    
+    while (i < words.length) {
+        req.body.hashtags.push(words[i].replace(/\s/g, ''))
+        i += 1
+    }
 
     if (req.body.public == "public") {
         req.body.group = null
