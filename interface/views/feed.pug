@@ -18,9 +18,7 @@ block content
                         a#posts-tab.nav-link.active(data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="true")
                             | Fazer uma publicação
                     li.nav-item
-                        a#images-tab.nav-link(data-toggle="tab" role="tab" aria-controls="images" aria-selected="false" href="#images") Imagens
-                    li.nav-item
-                        a#pdfs-tab.nav-link(data-toggle="tab" role="tab" aria-controls="pdfs" aria-selected="false" href="#pdfs") PDF's
+                        a#images-tab.nav-link(data-toggle="tab" role="tab" aria-controls="images" aria-selected="false" href="#images") Anexos
             .card-body
                 #myTabContent.tab-content
                     #posts.tab-pane.fade.show.active(role="tabpanel" aria-labelledby="posts-tab")
@@ -28,17 +26,11 @@ block content
                             label.sr-only(for="message")
                             textarea#message.form-control(type="text" name="description" rows="3" placeholder="O que estás a pensar?" required)
                     #images.tab-pane.fade(role="tabpanel" aria-labelledby="images-tab")
-                        .form-group
-                            .custom-file
-                                input#customFile1.custom-file-input(type="file")
-                                label.custom-file-label(for="customFile1") Carregar imagem
-                        .py-4
-                    #pdfs.tab-pane.fade(role="tabpanel" aria-labelledby="pdfs-tab")
-                        .form-group
-                            .custom-file
-                                input#customFile2.custom-file-input(type="file")
-                                label.custom-file-label(for="customFile2") Carregar PDF
-                        .py-4
+                        .form-group(id="f1")
+                            .custom-file(id="ficheiro1")
+                                input#customFile1.custom-file-input(type="file" name="attachments")
+                                label.custom-file-label(for="customFile1") Carregar ficheiro
+                        button.w3-button.w3-round-large.w3-indigo(id='mais1') +1
                 .btn-toolbar.justify-content-between
                     .btn-group
                         select.form-control(name="public" id="public" required)

@@ -61,3 +61,39 @@ let rejectFriend = (email, friend) => {
         })
         .catch(err => alert(err))
 }
+
+$(() => {
+    var count = 1
+
+    $("#mais1").click(e => {
+        e.preventDefault()
+        count++
+        
+        var campo = $('<div></div>', { class: 'form-group', id: 'f' + count })
+        $("#images").append(campo)
+        
+        var ficheiro = $("<div></div>", { class: "custom-file", id: "ficheiro" + count })
+        $(`#f${count}`).append(ficheiro)
+        
+        let ficheiroInput = $("<input/>", { class: "custom-file-input", id: "customFile2", type: "file", name: "attachments" })
+        let ficheiroLabel = $("<label class='custom-file-label'>Carregar ficheiro:</label>")
+        $(`#ficheiro${count}`).append(ficheiroInput, ficheiroLabel)
+
+        $("#remover").prop("disabled", false)
+    })
+
+    $("#remover").click(e => {
+        e.preventDefault()
+        if (count >= 2) {
+            $("#f" + count).remove()
+            count--
+        }
+    })
+
+    $("#remover").hover(e => {
+        e.preventDefault()
+        if (count == 1) {
+            $("#remover").prop("disabled", true)
+        }
+    })
+})

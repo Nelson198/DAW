@@ -5,6 +5,9 @@ const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const router = express.Router()
 
+var multer = require('multer')
+var upload = multer({ dest: 'uploads/' })
+
 const verificaAutenticacao = (req, res, next) => {
     if (req.isAuthenticated()) {
         next()
@@ -122,9 +125,19 @@ router.post("/:postId/addComment", verificaAutenticacao, (req, res) => {
         .catch(err => res.send(err))
 })
 
-router.post("/newPost", verificaAutenticacao, (req, res) => {
+router.post("/newPost", verificaAutenticacao, upload.array('file'), (req, res) => {
     const token = jwt.sign({ email: req.user.email }, "tpDAW1920", {
         expiresIn: 3000
+    })
+
+    req.files.forEach((file, index) => {
+        let oldPath = __dirname + '/../' + file.path
+        let newPath = __dirname + '/../public/files/' + file.originalname
+        fs.rename(oldPath, newPath, (err) => {
+            if (err) throw err
+        })
+
+        req.body.attachments({ $push: {} })
     })
 
     req.body.author = req.user.email
@@ -138,7 +151,7 @@ router.post("/newPost", verificaAutenticacao, (req, res) => {
         req.body.public = false
     }
 
-    axios.post(`http://localhost:5000/api/posts?token=${token}`, req.body)
+    axios.post(`http://localhost:5000/api/posts?token=${token}`, (req.body, req.files))
         .then(r => {
             res.send()
         })
