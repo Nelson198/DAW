@@ -15,10 +15,6 @@ const GroupSchema = new mongoose.Schema(
             type: Boolean,
             required: true
         },
-        joinKey: {
-            type: String,
-            default: shortid.generate
-        },
         members: {
             type: [String]
         },

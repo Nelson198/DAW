@@ -2,13 +2,25 @@ const Events = require("../controllers/event")
 const Users = require("../controllers/user")
 const express = require("express")
 const passport = require("passport")
+const moment = require("moment")
 const router = express.Router()
 
 /* GET events listing. */
-router.get("/", passport.authenticate("jwt", { session: false }), (req, res) => {
-    Events.find()
-        .then(dados => res.jsonp(dados))
-        .catch(e => res.status(500).jsonp(e))
+router.get("/", passport.authenticate("jwt", { session: false }), async (req, res) => {
+    try {
+        const dados = await Events.find()
+
+        let events = []
+        for (const e of dados) {
+            const event = e.toObject()
+            event.date = moment(event.date).format('DD-MM-YYYY')
+            events.push(event)
+        }
+
+        res.jsonp(events)
+    } catch (e) {
+        res.status(500).jsonp(e)
+    }
 })
 
 router.get("/:id", passport.authenticate("jwt", { session: false }), async (req, res) => {
@@ -22,6 +34,8 @@ router.get("/:id", passport.authenticate("jwt", { session: false }), async (req,
             participants.push(participant)
         }
         event.participants = participants
+
+        event.date = moment(event.date).format('DD-MM-YYYY')
 
         res.jsonp(event)
     } catch (e) {

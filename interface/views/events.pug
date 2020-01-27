@@ -1,0 +1,44 @@
+extends layout.pug
+block content
+
+    //- Layout    
+    
+    //- Top bar
+    include topNavbar.pug
+
+    //- Left bar
+    include leftNavbar.pug
+        
+    //- Page Content
+    .container-fluid.gedf-wrapper
+        //- Post card
+        .card.gedf-card.card1
+            .card-header
+                ul#myTab.nav.nav-tabs.card-header-tabs(role="tablist")
+                    li.nav-item
+                        a#posts-tab.nav-link.active(data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="true")
+                            | Eventos
+            .card-body
+                #myTabContent.tab-content
+                    #posts.tab-pane.fade.show.active(role="tabpanel" aria-labelledby="posts-tab")
+                        if (events.length > 0)
+                            each event in events
+                                .card.mt-2
+                                    .card-header
+                                        .d-flex.justify-content-between.align-items-center
+                                            .d-flex.justify-content-between.align-items-center
+                                                .ml-2
+                                                    .h5.mb-2
+                                                        span Título: 
+                                                        span= event.title
+                                                    .h7.text-muted.mb-1
+                                                        span Descrição: 
+                                                        span= event.description
+                                                    .h7.text-muted.mb-1
+                                                        span Data: 
+                                                        span= event.date
+                        else
+                            | Nenhumm evento
+
+    //- Chat (Right bar)
+    include chat.pug
