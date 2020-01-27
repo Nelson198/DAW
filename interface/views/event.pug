@@ -21,11 +21,11 @@ block content
                     li.nav-item
                         a#members-tab.nav-link(data-toggle="tab" role="tab" aria-controls="members" aria-selected="false" href="#members")
                             | Participantes
-                    li.mr-5(style="float: right")
+                    li
                         if (event.participantes.filter(m => m.email == user.email).length === 1)
-                            button.ml-5(style="backgroud: transparent; border: none" onclick=`leaveEvent("${user.email}", "${event._id}")`) -
+                            button.mr-2(style="float: right; backgroud: transparent; border: none" onclick=`leaveEvent("${user.email}", "${event._id}")`) -
                         else
-                            button.ml-5(style="backgroud: transparent; border: none" onclick=`joinEvent("${user.email}", "${event._id}")`) +                            
+                            button.mr-2(style="float: right; backgroud: transparent; border: none" onclick=`joinEvent("${user.email}", "${event._id}")`) +                            
             .card-body
                 #myTabContent.tab-content
                     #posts.tab-pane.fade.show.active(role="tabpanel" aria-labelledby="posts-tab")

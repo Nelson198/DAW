@@ -24,11 +24,11 @@ block content
                     li.nav-item
                         a#files-tab.nav-link(data-toggle="tab" role="tab" aria-controls="files" aria-selected="false" href="#files")
                             | Ficheiros
-                    li.mr-5(style="float: right")
+                    li
                         if (group.members.filter(m => m.email == user.email).length === 1)
-                            button.ml-5(style="backgroud: transparent; border: none" onclick=`leaveGroup("${user.email}", "${group._id}")`) -
+                            button.mr-2(style="float: right; backgroud: transparent; border: none" onclick=`leaveGroup("${user.email}", "${group._id}")`) -
                         else
-                            button.ml-5(style="backgroud: transparent; border: none" onclick=`joinGroup("${user.email}", "${group._id}")`) +
+                            button.mr-2(style="float: right; backgroud: transparent; border: none" onclick=`joinGroup("${user.email}", "${group._id}")`) +
             .card-body
                 #myTabContent.tab-content
                     #posts.tab-pane.fade.show.active(role="tabpanel" aria-labelledby="posts-tab")
