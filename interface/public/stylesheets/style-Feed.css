@@ -126,6 +126,11 @@ ul ul a {
     border-bottom: 2px dashed #ffffff;
 }
 
+#rightSidebar a:hover {
+    color: rgb(64, 138, 167);
+    background: #ffffff;
+}
+
 /* Caixa para efetuar uma publicação */
 /* Perfil do utilizador */
 .card1 {
@@ -152,8 +157,8 @@ ul ul a {
     color: #696969;
 }
 
-.input {
-    width: 200%;
+#inputName, #inputEmail, #inputDate, #inputCourse, #inputBio {
+    width: 280%;
 }
 
 #Save {
