@@ -57,18 +57,10 @@ block content
                                             .h7.text-muted.mb-1
                                                 span Biografia: 
                                                 span= profile.bio
-                                            .h7.text-muted.mb-1
-                                                span Amigos:
-                                                br
-                                                each friend in profile.friends
-                                                    a.mr-2(href=`/profiles/${friend.email}`)
-                                                        img.rounded-circle(width="20" src=`${friend.avatar}` alt="")
-                                                        | 
-                                                        span= friend.name
 
                     #members.tab-pane.fade(role="tabpanel" aria-labelledby="members-tab")
-                        if (user.friends.length > 0)
-                            each friend in user.friends
+                        if (profile.friends.length > 0)
+                            each friend in profile.friends
                                 a.card.card-header.mt-2(href=`/profiles/${friend.email}`)
                                     .d-flex.justify-content-between.align-items-center
                                         .d-flex.justify-content-between.align-items-center
