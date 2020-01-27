@@ -20,12 +20,12 @@ block content
                             | Informações
                     li.nav-item
                         a#members-tab.nav-link(data-toggle="tab" role="tab" aria-controls="members" aria-selected="false" href="#members")
-                            | Participantes
+                            | Participantes 
                     li
-                        if (event.participants.filter(m => m.email == user.email).length === 1)
-                            button.mr-2(style="float: right; backgroud: transparent; border: none" onclick=`leaveEvent("${user.email}", "${event._id}")`) -
+                        if (group.participants.filter(m => m.email == user.email).length === 1)
+                            button.btn.btn-outline-danger.ml-2.p-2(style="float: right; backgroud: transparent; border: none" onclick=`leaveGroup("${user.email}", "${group._id}")`) Sair
                         else
-                            button.mr-2(style="float: right; backgroud: transparent; border: none" onclick=`joinEvent("${user.email}", "${event._id}")`) +                            
+                            button.btn.btn-outline-success.ml-2.p-2(style="float: right; backgroud: transparent; border: none" onclick=`joinGroup("${user.email}", "${group._id}")`) Entrar                          
             .card-body
                 #myTabContent.tab-content
                     #posts.tab-pane.fade.show.active(role="tabpanel" aria-labelledby="posts-tab")

@@ -32,8 +32,8 @@ block content
                                                         span= u.name
                                                     .h7.text-muted
                                                         span= u.course
-                                                    button.mr-2(style="float: right; backgroud: transparent; border: none" onclick=`acceptFriend("${user.email}", "${u.email}")`) +
-                                                    button.mr-2(style="float: right; backgroud: transparent; border: none" onclick=`rejectFriend("${user.email}", "${u.email}")`) -
+                                                    button.btn.btn-outline-success.ml-2.p-2(style="float: right; backgroud: transparent; border: none" onclick=`acceptFriend("${user.email}", "${u.email}")`) Aceitar
+                                                    button.btn.btn-outline-danger.ml-2.p-2(style="float: right; backgroud: transparent; border: none" onclick=`rejectFriend("${user.email}", "${u.email}")`) Rejeitar
 
                             else
                                 | Nenhum pedido de amizade
