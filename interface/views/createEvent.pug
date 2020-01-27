@@ -1,0 +1,43 @@
+extends layout.pug
+block content
+
+    include topNavbar.pug
+
+    //- Layout    
+    
+    //- Top bar
+    include topNavbar.pug
+
+    //- Left bar
+    include leftNavbar.pug
+        
+    //- Page Content
+    .container-fluid.gedf-wrapper
+        //- Post card
+        .card.gedf-card.card1
+            .card-header
+                ul#myTab.nav.nav-tabs.card-header-tabs(role="tablist")
+                    li.nav-item
+                        a#posts-tab.nav-link.active(data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="true")
+                            | Criar evento
+            .card-body
+                #myTabContent.tab-content
+                    #posts.tab-pane.fade.show.active(role="tabpanel" aria-labelledby="posts-tab")
+                        .card
+                            .card-header
+                                .d-flex.justify-content-between.align-items-center
+                                    .d-flex.justify-content-between.align-items-center
+                                        form.form-update.ml-4(action="/createEvent" method="POST")
+                                            .h7.text-muted.mb-2
+                                                span Título:
+                                                input#inputName.form-control(type="text" name="title" placeholder="Insera um título" required autofocus)
+                                            .h7.text-muted.mb-2
+                                                span Descrição:                                                        
+                                                input#inputBio.form-control(type="text" name="description" placeholder="Insira uma descrição" required)
+                                            .h7.text-muted.mb-2
+                                                span Data:
+                                                input#inputDate.form-control(type="date" name="date" placeholder="Data do evento" required)
+                                            button.btn.btn-lg.btn-block#Save(type="submit") Criar
+
+    //- Chat (Right bar)
+    include chat.pug

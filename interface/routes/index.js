@@ -42,6 +42,34 @@ router.get("/friendRequests", verificaAutenticacao, async (req, res) => {
     }
 })
 
+router.get("/createGroup", verificaAutenticacao, async (req, res) => {
+    const token = jwt.sign({ email: req.user.email }, "tpDAW1920", {
+        expiresIn: 3000
+    })
+
+    try {
+        const user = await axios.get(`http://localhost:5000/api/users/${req.user.email}?token=${token}`)
+
+        res.render("createGroup", { user: user.data })
+    } catch (e) {
+        res.render("error", { error: e })
+    }
+})
+
+router.get("/createEvent", verificaAutenticacao, async (req, res) => {
+    const token = jwt.sign({ email: req.user.email }, "tpDAW1920", {
+        expiresIn: 3000
+    })
+
+    try {
+        const user = await axios.get(`http://localhost:5000/api/users/${req.user.email}?token=${token}`)
+
+        res.render("createEvent", { user: user.data })
+    } catch (e) {
+        res.render("error", { error: e })
+    }
+})
+
 router.get("/logout", verificaAutenticacao, (req, res) => {
     req.logout()
     res.redirect("/login")
