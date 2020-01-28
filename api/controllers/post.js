@@ -17,6 +17,18 @@ module.exports.find = async (condition) => {
     return posts
 }
 
+module.exports.findHashtags = () => {
+    return Post.aggregate()
+        .unwind("$hashtags")
+        .group({
+            _id: "$hashtags",
+            count: {
+                $sum: 1
+            }
+        })
+        .sort({ "count": "desc" }).exec()
+}
+
 module.exports.findOneById = async (id) => {
     const aux = await Post.findOne({ _id: id }).exec()
     const post = aux.toObject()

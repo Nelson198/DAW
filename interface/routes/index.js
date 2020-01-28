@@ -105,6 +105,36 @@ router.get("/register", (req, res) => {
     res.render("register")
 })
 
+router.get("/hashtags", async (req, res) => {
+    const token = jwt.sign({ email: req.user.email }, "tpDAW1920", {
+        expiresIn: 3000
+    })
+
+    try {
+        const user = await axios.get(`http://localhost:5000/api/users/${req.user.email}?token=${token}`)
+        const hashtags = await axios.get(`http://localhost:5000/api/posts/hashtags?token=${token}`)
+
+        res.render("hashtags", { user: user.data, hashtags: hashtags.data })
+    } catch (e) {
+        res.render("error", { error: e })
+    }
+})
+
+router.get("/hashtags/:hashtag", async (req, res) => {
+    const token = jwt.sign({ email: req.user.email }, "tpDAW1920", {
+        expiresIn: 3000
+    })
+
+    try {
+        const user = await axios.get(`http://localhost:5000/api/users/${req.user.email}?token=${token}`)
+        const hashtag = await axios.get(`http://localhost:5000/api/posts/hashtags/${req.params.hashtag}?token=${token}`)
+
+        res.render("hashtag", { user: user.data, hashtag: hashtag.data, ht: req.params.hashtag })
+    } catch (e) {
+        res.render("error", { error: e })
+    }
+})
+
 router.post("/login", passport.authenticate("local", {
     successRedirect: "/",
     failureRedirect: "/login?success=false",
@@ -174,14 +204,11 @@ router.post("/newPost", verificaAutenticacao, upload.array('attachments'), (req,
 
     let words = req.body.description.match(/#[a-zA-Z0-9]+/gi)
 
-    
     let i = 0
     while (i < words.length) {
         req.body.hashtags.push(words[i].replace(/#/g, ''))
         i += 1
     }
-    
-    console.log(req.body.hashtags)
 
     if (req.body.public == "public") {
         req.body.group = null
