@@ -31,10 +31,19 @@ router.get("/", passport.authenticate("jwt", { session: false }), async (req, re
     }
 })
 
+router.get("/hashtags", passport.authenticate("jwt", { session: false }), async (req, res) => {
+    try {
+        const hashtags = await Posts.findHashtags()
+        res.jsonp(hashtags)
+    } catch (e) {
+        res.status(500).jsonp(e)
+    }
+})
+
 router.get("/hashtags/:hashtag", passport.authenticate("jwt", { session: false }), async (req, res) => {
     try {
         const data = await Users.findOneByEmail(req.user.email)
-        const aux = await Posts.find({ $or: [{ public: true }, { author: req.user.email }, { public: false, author: { $in: data.friends }}, { public: false, group: { $in: data.groups } }] } )
+        const aux = await Posts.find({ $or: [{ public: true }, { author: req.user.email }, { public: false, author: { $in: data.friends } }, { public: false, group: { $in: data.groups } }] })
 
         let posts = []
         for (const post of aux) {
@@ -46,7 +55,7 @@ router.get("/hashtags/:hashtag", passport.authenticate("jwt", { session: false }
                 comment.date = moment(comment.date).fromNow()
             }
 
-            if(hashtag in post.hashtags)
+            if (post.hashtags.includes(req.params.hashtag))
                 posts.push(post)
         }
 

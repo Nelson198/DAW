@@ -7,7 +7,7 @@ wrapper
             h3 Informatics Social Network
 
         ul.list-unstyled.components
-            if (!groupId && !eventId && !profile)
+            if (!groupId && !eventId && !profile && !hashtags && !hashtag)
                 li.active
                     //-i.fas.fa-newspaper
                     a(href="/") Feed de notícias
@@ -80,3 +80,12 @@ wrapper
                         else
                             li
                                 a(href=`/events`) Outros eventos ...
+
+            if (hashtags || hashtag)
+                li.active
+                    //-i.fas.fa-calendar
+                    a(href="/hashtags") Hashtags
+            else
+                li
+                    //-i.fas.fa-calendar
+                    a(href="/hashtags") Hashtags
