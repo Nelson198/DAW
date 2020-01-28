@@ -13,6 +13,7 @@
 %--------------------------------------
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage{listings}
 %--------------------------------------
 
 % Portuguese-specific commands
@@ -158,6 +159,11 @@
 \chapter{Conclusão}
 Este trabalho permitiu a aplicação dos conteúdos lecionados ao longo da UC, bem como o aprofundamento e alargamento dos conhecimentos relativos ao desenvolvimento de aplicações web.
 
+Por um lado, tivemos a oportunidade de implementar um servidor de API, o qual serve de intermediário para as operações efetuadas sobre a base de dados.
+
+Por outro lado, desenvolvemos um servidor de interface, o qual responde aos pedidos do cliente, comunicando com o servidor de API sempre que necessário.
+
+Em suma, construimos uma aplicação web, passando por todos os seus constituintes, desde o \textit{back-end} ao \textit{front-end}.
 
 \chapter{Webgrafia}
 	\begin{itemize}
@@ -177,6 +183,8 @@ Este trabalho permitiu a aplicação dos conteúdos lecionados ao longo da UC, b
 \appendix
 \chapter{Token}
 
-\verbatim{eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0b2tlbiBnZXJhZG8gcGFyYSBhIGxpdmUgZGVtbyIsImlhdCI6MTU4MDIwOTkwMn0.YXxS90uxAuBbRYXM65Mzjes_V8kEBW-MfUVzuH7TQ5Y}
+\begin{lstlisting}[breaklines]
+    eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0b2tlbiBnZXJhZG8gcGFyYSBhIGxpdmUgZGVtbyIsImlhdCI6MTU4MDIwOTkwMn0.YXxS90uxAuBbRYXM65Mzjes_V8kEBW-MfUVzuH7TQ5Y
+\end{lstlisting}
 
 \end{document}
