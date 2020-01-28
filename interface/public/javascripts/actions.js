@@ -81,7 +81,9 @@ let removePost = (postId) => {
 $(() => {
     var count = 1
 
-    document.getElementById("f1").addEventListener('change', showFileName)
+    const f1 = document.getElementById("f1")
+    if (f1)
+        f1.addEventListener('change', showFileName)
 
     $("#mais1").click(e => {
         e.preventDefault()
