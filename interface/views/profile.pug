@@ -92,9 +92,15 @@ block content
                                             i.fas.fa-clock
                                             | 
                                             = post.date
+                                            if (profile.email == user.email)
+                                                button.btn.btn-outline-danger.ml-3.mb-2.mt-2(onclick=`removePost("${post._id}")`) Remover
                                         p.card-text= post.description
-                                        if (profile.email == user.email)
-                                            button.btn.btn-outline-danger.ml-3.mb-2.mt-2(onclick=`removePost("${post._id}")`) Remover
+                                        if (post.hashtags.length > 0)
+                                            span Hashtags: 
+                                            each hashtag in post.hashtags
+                                                a(href=`/hashtags/${hashtag}`)
+                                                    span  #
+                                                    span= hashtag
                                     if (post.attachments.length > 0)
                                         each attachment in post.attachments
                                             a.card.card-header.mt-2(href=`/files/${attachment}` download=`${attachment}`)
