@@ -47,7 +47,12 @@ passport.deserializeUser((email, done) => {
     })
 
     axios.get(`http://localhost:5000/api/users/${email}?token=${token}`)
-        .then(dados => done(null, dados.data))
+        .then(dados => {
+            if (!dados.data)
+                done(null, false)
+            else
+                done(null, dados.data)
+        })
         .catch(erro => done(erro))
 })
 

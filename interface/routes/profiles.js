@@ -108,6 +108,9 @@ router.post("/update", verificaAutenticacao, (req, res) => {
         expiresIn: 3000
     })
 
+    if (!req.body.password)
+        req.body.password = undefined
+
     axios.patch(`http://localhost:5000/api/users/${req.user.email}?token=${token}`, req.body)
         .then(r => {
             res.redirect(`/profiles/${req.user.email}`)

@@ -27,7 +27,9 @@ block content
                                             .d-flex.justify-content-between.align-items-center
                                                 .ml-2
                                                     .h5.m-0
-                                                        a(href=`/hashtags/${hashtag._id}`)= hashtag._id
+                                                        a(href=`/hashtags/${hashtag._id}`)
+                                                            span #
+                                                            span= hashtag._id
                                                     span= hashtag.count
                                                     span  publicações
                             else
