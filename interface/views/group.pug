@@ -53,6 +53,12 @@ block content
                                             | 
                                             = post.date
                                         p.card-text= post.description
+                                        if (post.hashtags.length > 0)
+                                            span Hashtags: 
+                                            each hashtag in post.hashtags
+                                                a(href=`/hashtags/${hashtag}`)
+                                                    span  #
+                                                    span= hashtag
                                         if (post.attachments.length > 0)
                                             each attachment in post.attachments
                                                 a.card.card-header.mt-2(href=`/files/${attachment}` download=`${attachment}`)
