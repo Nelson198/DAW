@@ -82,7 +82,7 @@
 
 	O sistema é dividido em duas partes principais: servidor de API e servidor de interface.
 
-    O servidor de API trata de toda a interação com a base de dados, servindo de \textit{middleware} entre a mesma e o servidor de interface.
+    O servidor de API trata de toda a interação com a base de dados, servindo de intermediário entre a mesma e o servidor de interface.
 
 	O servidor de interface trata da apresentação das informações ao utilizador, sendo que, para isso, utiliza ficheiros \texttt{pug}, que geram \texttt{HTML}, aliados a \texttt{CSS}.
     As informações são obtidas recorrendo ao servidor de API.
@@ -94,7 +94,7 @@
     De forma a poder usufruir da plataforma, um utilizador terá de se autenticar. Para isso, usará um email e uma \textit{password}, caso já se encontre registado.
     Caso contrário, deverá registrar-se, indicando os dados pedidos pela rede social.
 
-    Aquando de um novo registo, as informações respetivas são enviadas do servidor de interface para o servidor de API, com esta última a ser responsável por guardar as mesmas na base de dados.
+    Aquando de um novo registo, as informações respetivas são enviadas do servidor de interface para o servidor de API, com este último a ser responsável por guardar as mesmas na base de dados.
 
 
 	\subsection{Publicações}
@@ -118,7 +118,8 @@
 
     \subsection{Informação de perfil}
     É possível visitar a página do perfil de um qualquer utilizador. Nesta são exibidas todas as informações desse utilizador, como o seu nome, email, data de nascimento, biografia, amigos e publicações.
-    Caso esta página seja a do próprio utilizador, é ainda disponibilizado um botão "Editar". Este redireciona a mesma para um outra página que permite editar as informações.
+    É disponibilizado um botão para adicionar utilizadores que ainda não sejam amigos e remover outros que já sejam.
+    Caso esta página seja a do próprio utilizador, é ainda disponibilizado um botão "Editar". Este redireciona a mesma para uma outra página que permite editar as informações.
 
 
     \subsection{Amigos}
@@ -142,16 +143,16 @@
 	Vejamos como colocar a plataforma em funcionamento:
 
 	\begin{enumerate}
-        \item Executa-se o comando \texttt{mongoimport }
-              Pode ainda ser necessário iniciar o MongoDB, com o comando \texttt{mongod}.
-
-		\item Executa-se o servidor de API, fazendo \texttt{npm i} seguido de \texttt{npm start}.
+		\item Executa-se o servidor de API, fazendo \texttt{npm i} seguido de \texttt{npm start}, na pasta \texttt{api/}.
+        
+        \item Faz-se um pedido POST, colocando o conteúdo do ficheiro \texttt{rawDatabase.json} no \textit{Body}, para a rota http://localhost:5000/api/backup?token=eyJhb... (ver token em anexo)
+        
+        \item De seguida, executa-se o \textit{script} \texttt{databaseFix.js}, na pasta principal, que estabelece relações entre as entidades adicionadas no ponto anterior.
+              De notar que deverá ser necessário instalar o \textit{package} \texttt{mongoose}.
 		
-		\item executa-se o catálogo, fazendo \textit{make runCatalog};
-	
-		\item executa-se um negociador (ou vários, tendo para isso de alterar o ficheiro do servidor), fazendo \textit{make compileJava} e \textit{make runDealer};
-	
-		\item colocam-se os clientes a correr, ao executar \textit{make runClient}.
+		\item Executa-se o servidor de interface, fazendo \texttt{npm i} seguido de \texttt{npm start}, na pasta \texttt{interface/}.
+
+        \item Por fim, num \textit{browser}, acede-se a http://localhost:7000/ e utiliza-se a plataforma.
 	\end{enumerate}
 
 \chapter{Conclusão}
@@ -171,5 +172,11 @@ Este trabalho permitiu a aplicação dos conteúdos lecionados ao longo da UC, b
         \item \textbf{Documentação - \textit{MongoDB}}:
 		\par \textit{\url{https://docs.mongodb.com/}}
     \end{itemize}
+
+
+\appendix
+\chapter{Token}
+
+\verbatim{eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0b2tlbiBnZXJhZG8gcGFyYSBhIGxpdmUgZGVtbyIsImlhdCI6MTU4MDIwOTkwMn0.YXxS90uxAuBbRYXM65Mzjes_V8kEBW-MfUVzuH7TQ5Y}
 
 \end{document}
