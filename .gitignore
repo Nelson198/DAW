@@ -106,3 +106,8 @@ dist
 # App
 interface/sessions/*
 package-lock.json
+
+# tex
+*.aux
+*.out
+*.toc

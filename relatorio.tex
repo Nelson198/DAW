@@ -1,0 +1,175 @@
+% Setup -------------------------------
+
+\documentclass[a4paper]{report}
+\usepackage[a4paper, total={6in, 10in}]{geometry}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+\PassOptionsToPackage{hyphens}{url}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+
+% Encoding
+%--------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+%--------------------------------------
+
+% Portuguese-specific commands
+%--------------------------------------
+\usepackage[portuguese]{babel}
+%--------------------------------------
+
+% Hyphenation rules
+%--------------------------------------
+\usepackage{hyphenat}
+%--------------------------------------
+
+% Capa do relatório
+
+\title{
+	Desenvolvimento de Aplicações Web
+	\\ \Large{\textbf{Trabalho Prático}}
+	\\ -
+	\\ Mestrado em Engenharia Informática
+	\\ \large{Universidade do Minho}
+	\\ Relatório
+}
+\author{
+	\begin{tabular}{ll}
+		\textbf{Grupo}
+		\\\hline
+		PG41080 & João Ribeiro Imperadeiro
+		\\
+		PG41081 & José Alberto Martins Boticas
+		\\
+		PG41091 & Nelson José Dias Teixeira
+	\end{tabular}
+}
+
+\date{\today}
+
+\begin{document}
+
+\begin{titlepage}
+    \maketitle
+\end{titlepage}
+
+% Índice
+
+\tableofcontents
+
+% Introdução
+
+\chapter{Introdução} \label{intro} {
+	Neste trabalho prático é requerido o desenvolvimento de uma rede social de alunos para alunos onde possam partilhar materiais, discutir datas, combinar eventos, entre outros. 
+	
+    Os requisitos mínimos para este projeto são uma plataforma que:
+    \begin{itemize}
+        \item faça a gestão de utilizadores com autenticação;
+        \item faça distinção do que é público e privado;
+        \item permita aos utilizadores publicar conteúdos;
+        \item permita partilhar ficheiros ou fotos;
+    \end{itemize}
+
+    É necessário ainda assegurar que só utilizadores autenticados poderão publicar ou comentar publicações de outros.
+
+    Neste projeto foram cumpridos estes requisitos e ainda se adicionaram mais alguns.
+}
+
+\chapter{A plataforma}
+	\section{Informatics Social Network (ISN)}
+
+	O sistema é dividido em duas partes principais: servidor de API e servidor de interface.
+
+    O servidor de API trata de toda a interação com a base de dados, servindo de \textit{middleware} entre a mesma e o servidor de interface.
+
+	O servidor de interface trata da apresentação das informações ao utilizador, sendo que, para isso, utiliza ficheiros \texttt{pug}, que geram \texttt{HTML}, aliados a \texttt{CSS}.
+    As informações são obtidas recorrendo ao servidor de API.
+
+	\section{Funcionalidades}
+    De seguida, apresentam-se as principais funcionalidades do sistema.
+	
+	\subsection{Autenticação}
+    De forma a poder usufruir da plataforma, um utilizador terá de se autenticar. Para isso, usará um email e uma \textit{password}, caso já se encontre registado.
+    Caso contrário, deverá registrar-se, indicando os dados pedidos pela rede social.
+
+    Aquando de um novo registo, as informações respetivas são enviadas do servidor de interface para o servidor de API, com esta última a ser responsável por guardar as mesmas na base de dados.
+
+
+	\subsection{Publicações}
+    Um utilizador pode publicar conteúdos. Assim, poderá escrever uma mensagem, à sua escolha, e ainda adicionar ficheiros, no número que entender. 
+    Para além disso, pode ainda escolher se essa mesma publicação poderá ser vista por qualquer pessoa, apenas pelos seus amigos ou pelos membros de um certo grupo.
+
+    Uma publicação é capaz de identificar e guardar as tags utilizadas na mesma, iniciadas por "#".
+
+
+    \subsection{Grupos}
+    Um grupo pode ser criado por qualquer utilizador e pode ser público (qualquer pessoa pode aceder livremente ao mesmo e aos seus conteúdos) ou privado (apenas os seus membros podem aceder aos conteúdos partilhados no mesmo).
+
+    A página de um grupo apresenta três abas: as publicações do mesmo; os seus membros; os ficheiros partilhados em publicações no mesmo.
+
+
+    \subsection{Eventos}
+    Um evento pode ser criado por qualquer utilizador.
+
+    A página de um evento apresenta duas abas: as informações do mesmo (título e data, por exemplo); os seus participantes.
+
+
+    \subsection{Informação de perfil}
+    É possível visitar a página do perfil de um qualquer utilizador. Nesta são exibidas todas as informações desse utilizador, como o seu nome, email, data de nascimento, biografia, amigos e publicações.
+    Caso esta página seja a do próprio utilizador, é ainda disponibilizado um botão "Editar". Este redireciona a mesma para um outra página que permite editar as informações.
+
+
+    \subsection{Amigos}
+    Um utilizador pode adicionar e remover amigos, sendo que uma adição fica dependente da aceitação do outro utilizador envolvido.
+
+    É disponibilizada uma página com os pedidos de amizade que um utilizador recebe, na qual o mesmo pode aceitá-los ou recusá-los.
+
+
+    \subsection{Notificações}
+    Um utilizador receberá notificações sempre que:
+    \begin{itemize}
+        \item um amigo faz uma publicação
+        \item é feita uma publicação num grupo ao qual o utilizador pertence
+        \item um outro utilizador se junta a um grupo no qual o utilizador é membro
+        \item um outro utilizador se junta a um evento no qual o utilizador participará
+        \item um outro utilizador aceita um pedido de amizade do utilizador 
+    \end{itemize}
+
+
+	\section{Arranque do sistema} % A COMPLETAR
+	Vejamos como colocar a plataforma em funcionamento:
+
+	\begin{enumerate}
+        \item Executa-se o comando \texttt{mongoimport }
+              Pode ainda ser necessário iniciar o MongoDB, com o comando \texttt{mongod}.
+
+		\item Executa-se o servidor de API, fazendo \texttt{npm i} seguido de \texttt{npm start}.
+		
+		\item executa-se o catálogo, fazendo \textit{make runCatalog};
+	
+		\item executa-se um negociador (ou vários, tendo para isso de alterar o ficheiro do servidor), fazendo \textit{make compileJava} e \textit{make runDealer};
+	
+		\item colocam-se os clientes a correr, ao executar \textit{make runClient}.
+	\end{enumerate}
+
+\chapter{Conclusão}
+Este trabalho permitiu a aplicação dos conteúdos lecionados ao longo da UC, bem como o aprofundamento e alargamento dos conhecimentos relativos ao desenvolvimento de aplicações web.
+
+
+\chapter{Webgrafia}
+	\begin{itemize}
+		\item \textbf{\textit{W3}}:
+		\par \textit{\url{https://w3schools.com}}
+        \item \textbf{Documentação - \textit{Bootstrap}}:
+		\par \textit{\url{https://getbootstrap.com/docs/4.4/getting-started/introduction/}}
+		\item \textbf{Documentação - \textit{Express}}:
+		\par \textit{\url{https://expressjs.com/en/5x/api.html}}
+        \item \textbf{\textit{Pug}}:
+		\par \textit{\url{https://pugjs.org/api/getting-started.html}}
+        \item \textbf{Documentação - \textit{MongoDB}}:
+		\par \textit{\url{https://docs.mongodb.com/}}
+    \end{itemize}
+
+\end{document}
